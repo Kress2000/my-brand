@@ -147,8 +147,9 @@
     padding:  0 1rem 0 1rem;
     margin-top: 1rem;
 }
-.about-header h1{
+ .pageTitle{
     font-size: var(--fsizeTitleMini);
+    margin-bottom: -1rem;
 }
 .about-header p{
     letter-spacing: 1px;
@@ -173,7 +174,6 @@
     padding: 1rem;
     width: 80vw;
     margin-bottom: 2rem;
-
 }
 .about-medias{
     display: none;
@@ -187,8 +187,53 @@
     display: flex;
     width: 100vw;
 }
+.exp1 div p{
+    padding-left: 0rem;
+}
+.projectBox{
+    display: flex;
+}
+.phoneRotate{
+    width: 60vw;
+    position: relative;
+}
+.phoneRotate img{
+    position: absolute;
+    left: -0.5rem;
+}
+.show-project{
+    width: 40vw;
 
+}
+.exp2{
+    padding: 0;
+}
+.exp2 >div {
+    flex-direction: column;
+}
+.exp2 >div .otherProjectsBox{
+    display: flex;
+    flex: 1 1 40%;
+    overflow: hidden;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    
+}
+.exp2 >div .otherProjectsBox >div{
+    display: flex;
+    width: 100%;
+}
 
+@media  screen and ( max-width: 350px) {
+    .exp2 >div .otherProjectsBox{
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    
+}
 
 
 

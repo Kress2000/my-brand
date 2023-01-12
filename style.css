@@ -329,11 +329,13 @@ body{
     justify-content: flex-start;
     align-items: center;
 }
-.about-header h1{
+ .pageTitle{
     font-family: var(--ffamilyH1);
     font-size: var(--fsizeTitle);
     padding: 1rem 0  0 0;
     margin: 0;
+    width: 100%;
+    text-align: center;
 }
 .about-border{
     background: var(--btn-bg);
@@ -518,6 +520,13 @@ width: 90%;
     margin: 0;
     padding: 0;
 }
+#experiences .pageTitle{
+    margin-bottom: -3rem;
+    position: relative;
+    z-index: 20;
+
+
+}
 .exp-box{
     margin: 0;
     padding: 0;
@@ -529,6 +538,7 @@ width: 90%;
     align-items: flex-start;
     position: relative;
     background-color: var(--bg);
+    padding: 2rem 0;
 }
 .exp1 .animate{
 opacity: .04;
@@ -610,41 +620,85 @@ height: 100%;
     0%{
         transform: rotateY(0deg);
     }
-    25%{
-        transform: rotateY(45deg);
+    10%{
+        transform: rotateY(33deg);
+    }
+    20%{
+    transform: rotateY(66deg);
+    }
+    30%{
+        transform: rotateY(132deg);
+        }
+    40%{
+        transform: rotateY(165deg);
     }
     50%{
-    transform: rotateY(90deg);
+        transform: rotateY(198deg);
     }
-    75%{
-        transform: rotateY(135deg);
-        }
+    60%{
+        transform: rotateY(231deg);
+    }
+    70%{
+    transform: rotateY(264deg);
+    }
     80%{
-        transform: rotateY(180deg);
-    }
-    0%{
-        transform: rotateY(0deg);
-    }
-    25%{
-        transform: rotateY(45deg);
-    }
-    50%{
-    transform: rotateY(90deg);
-    }
-    75%{
-        transform: rotateY(135deg);
+        transform: rotateY(297deg);
         }
-    80%{
-        transform: rotateY(180deg);
+    90%{
+        transform: rotateY(330deg);
     }
     100%{
         transform: rotateY(360deg);
     }
+
     
 }
+.exp2{
+    display: flex;
+    flex-direction: column;
+    padding: 0 2rem;
+    margin-top: -4rem;
+    position: relative;
+    z-index: 20;
+    padding-bottom: 2rem;
+}
+.exp2 h2{
+    text-align: center;
+    font-weight: bold;
+}
+.exp2 >div{
+    display: flex;
+    flex-wrap: wrap;
+}
+.otherProjectsBox{
+    width: 50%;
+    display: flex;
+    overflow: hidden;
+}
+.exp2 >div .otherProjectsBox >div{
+    border: 1px solid var(--btn-bg);
+    margin: .3rem;
+    border-radius: .9rem;
+    width: 50%;
+    padding: .5rem;
+    display: flex;
+    flex-direction: column;
+}
+.otherProjectsBox  .bg{
+    background-color: var(--btn-bg);
+}
+.Demo{
+    background-color: transparent !important;
+    cursor: var(--cursor);
+    width: fit-content;
+    color: var(--white);
+    border-radius: .4rem;
+    border: 1px solid var(--btn-bg);
+}
+.bg .Demo{
+    border: 1px solid var(--white);
 
-
-
+}
 
 /* ---FOOTER SECTION ---*/
 .wrapper .footer-section{
