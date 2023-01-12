@@ -1,4 +1,5 @@
 @media  screen and ( max-width: 600px) {
+ 
     :root {
         --purple: #ff00ae;
         --white: #ffffff;
@@ -61,7 +62,7 @@
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    min-height: fit-content;
+    min-height: max-content;
 }
 .nav-logo-box{
     display: flex;
@@ -71,24 +72,31 @@
 }
 #nav-section .nav-links{
     display: flex;
-    margin-top: 1rem;
+    padding: 0;
+    padding-top: 1rem;
     flex-direction: column;
     width: 100%;
-    padding: 0 0 1rem 0;
+    justify-content: space-between;
 }
-    .nav-links li{
-        margin-left: 0;
-        margin-top: 1rem;
+   .nav-links li{
         width: 100%;
-        padding: .5rem 0;
-    }
-    .nav-links li a{
-        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        margin: .3rem 0;
         padding: .5rem;
+        overflow: hidden;
     }
+    
+    .nav-links li a{
+        width: 100%;
+        padding: 1rem 0;
+        color: var(--bg);
+        cursor: var(--cursor);
+    }
+    
     .nav-links li a small{
         display: none;
-    }
+    } 
     #close-box{
         display: flex;
     }
@@ -104,6 +112,9 @@
         width: 100%;
         margin-top: 4rem;
     }
+    .nav-footer *{
+        overflow: hidden;
+    }
     .nav-footer-box{
         display: flex;
         flex-direction: column;
@@ -115,6 +126,9 @@
     .copy{
         font-size: 1.2rem;
     }
+.nav-footer .nav-footer-box >div{
+    padding: .5rem;
+}
 .nav-footer .nav-footer-box a{
     display: flex;
     justify-content: flex-end;
@@ -149,11 +163,10 @@
 }
  .pageTitle{
     font-size: var(--fsizeTitleMini);
-    margin-bottom: -1rem;
 }
 .about-header p{
     letter-spacing: 1px;
-    padding: .2rem 0 0 0;
+    padding: 1rem 0 0 0;
     margin: 0;
     font-size: .7rem;
 }
@@ -223,9 +236,10 @@
 .exp2 >div .otherProjectsBox >div{
     display: flex;
     width: 100%;
+    height: 40vh;
 }
 
-@media  screen and ( max-width: 350px) {
+@media  screen and ( max-width: 390px) {
     .exp2 >div .otherProjectsBox{
         display: flex;
         flex-direction: column;

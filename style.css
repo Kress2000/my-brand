@@ -599,11 +599,11 @@ height: 100%;
 .btn a{
     color: var(--white);
     cursor: var(--cursor);
+    text-decoration: none;
 }
 .btn:hover{
     background-color: transparent;
     border: 2px solid var(--btn-bg);
-    display: none;
 }
 .projectBox .phoneRotate{
     padding: 0 2rem;
@@ -683,9 +683,25 @@ height: 100%;
     padding: .5rem;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    height: 30vh;
+}
+ .otherProjectsBox >div h4{
+    margin: 0 0 1rem 0;
+    padding: 0;
+}
+.otherProjectsBox >div p{
+    margin: 0 0 1rem 0;
+    padding: 0;
+    font-size: .9rem;
 }
 .otherProjectsBox  .bg{
     background-color: var(--btn-bg);
+}
+.otherProjectsBox .nobg{
+    background-color: var(--bg);
 }
 .Demo{
     background-color: transparent !important;
@@ -694,13 +710,22 @@ height: 100%;
     color: var(--white);
     border-radius: .4rem;
     border: 1px solid var(--btn-bg);
+    position: absolute;
+    bottom: 1rem;
 }
 .bg .Demo{
     border: 1px solid var(--white);
-
 }
+.otherProjectsBox .bg .Demo:hover{
+    background-color: var(--bg);
+}
+.otherProjectsBox .nobg .Demo:hover{
+    background-color: var(--btn-bg);
+}
+/* blogs page */
 
-/* ---FOOTER SECTION ---*/
+
+/* --- FOOTER SECTION ---*/
 .wrapper .footer-section{
     background: #12121E;
     margin: 0;
