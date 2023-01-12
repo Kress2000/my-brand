@@ -72,6 +72,20 @@ const navBarHoverScrolling = ()=>{
          })
      })
 }
+// Set active link nav tag
+navATags.forEach(aTag=>{
+    aTag.addEventListener("click", ()=>{
+        aTag.classList.add("active");
+        let active = document.querySelectorAll(".active");
+        if(active.length>1){
+            for(let i=0;  i <active.length; i++){
+                active[0].classList.remove("active");
+            }
+        }
+    });
+})
+// click on small navbar screens
+
 // sticky navbar bottom
 let sticky = navBar.offsetTop;
 window.addEventListener("scroll", ()=>{

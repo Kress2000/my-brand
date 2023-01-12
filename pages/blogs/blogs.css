@@ -1,0 +1,14 @@
+*{
+    box-sizing: border-box;
+    list-style: none;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    background: rgba(32, 41, 59, 0.992);
+    color: white;
+    padding: 0 2rem;
+    overflow: hidden;
+}
+.blogs{
+    min-height: 100vh;
+}

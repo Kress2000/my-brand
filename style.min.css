@@ -188,7 +188,7 @@
     width: 80vw;
     margin-bottom: 2rem;
 }
-.about-medias{
+.about-body .about-medias{
     display: none;
 }
 /* experiences page */
@@ -231,19 +231,60 @@
     width: 100%;
     justify-content: center;
     align-items: center;
-    
 }
 .exp2 >div .otherProjectsBox >div{
     display: flex;
-    width: 100%;
+    width: 90vw;
     height: 40vh;
+}
+.blogs-page{
+    padding: 0;
+}
+/* contact page */
+.contact{
+    padding: 0rem;
+}
+.contact-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.sent-mails{
+    margin-left: 0rem;
+    margin-top: 2rem;
+}
+.contact-box .contact-card{
+    border-radius: 1.5rem;
+    padding: .5rem;
+}
+.greetings .about-medias ul{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+.greetings .about-medias ul li{
+    width: 3rem;
+    height: 3rem;
+}
+.greetings .about-medias ul li a i{
+    font-size: 1.5rem;
+}
+.sent-mails{
+    margin-left: 0rem;
 }
 
 @media  screen and ( max-width: 390px) {
+    .wrapper{
+        overflow: hidden !important;
+        width: 100vw !important;
+    }
+    .wrapper *{
+        flex-shrink: 1;
+    }
     .exp2 >div .otherProjectsBox{
         display: flex;
         flex-direction: column;
-
+    overflow: hidden;
     }
 
     
