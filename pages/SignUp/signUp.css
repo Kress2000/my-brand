@@ -68,7 +68,6 @@ body{
     height: 5px;
     background-color: var(--cursor-bg);
     border-radius: 50%;
-
 }
 @keyframes cursorAnim {
     from {
@@ -104,7 +103,7 @@ body{
     margin-bottom: 2rem;
 }
 form{
-    height: fit-content;
+    height: max-content;
     width: 30vw;
     display: flex;
     flex-direction: column;
@@ -115,9 +114,9 @@ form{
     padding: 2rem;
 }
 form >div{
-    height: 5vh;
+    min-height: 7vh;
     width: 100%;
-    margin-top: 1rem;
+    overflow: hidden;
 }
 form >div input{
     width: 100%;
@@ -126,6 +125,7 @@ form >div input{
     background: hsla(0, 0%, 100%, .5);
     padding-left: 1rem;
     box-shadow: none;
+
     border: 1px solid transparent;
 }
 form >div input::placeholder{
@@ -149,6 +149,7 @@ form button{
     cursor: var(--cursor);
     margin-top: 2rem;
     transition: var(--transition);
+    margin-bottom: 1rem;
 
 }
 form button:hover{
