@@ -33,7 +33,7 @@
     --bg: rgba(32, 41, 59, 0.992);
     --whiteopc: hsla(0, 0%, 100%, .5);
     --transition: all .5s ease-in-out;
-    --cursor: url("../../img/cursorPointer.svg"), auto;
+    --cursor: url("../../../img/cursorPointer.svg"), auto;
     --btmBorder: 10px solid #A40FFF;
     --ffamilyH1: 'Varela Round', sans-serif;
     --fsizeTitle: 4rem;
@@ -45,7 +45,7 @@ body{
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding-top: 3rem;
+    padding-top: 1rem;
 }
 /* cursor */
 .cursor {
@@ -78,6 +78,9 @@ body{
         transform: scale(.7);
     }
 }
+.blogs{
+    min-height: 100vh;
+}
 .expand {
     animation: cursorAnim3 .5s forwards;
     border: 1px solid var(--cursor-bg);
@@ -96,88 +99,65 @@ body{
 }
 .pageTitle{
     font-family: var(--ffamilyH1);
-    font-size: 3rem;
+    font-size: 2rem;
     padding: 1rem 0  0 0;
     margin: 0;
     width: 100%;
     text-align: center;
     margin-bottom: 2rem;
 }
-form{
-    height: fit-content;
-    width: 30vw;
+.blogs .blog-box{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2rem;
+}
+.blogs .blog-box > div{
+    margin: 1rem 0;
+    border:  1px solid var(--btn-bg);
+    border-radius: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
-    border-radius: 2rem;
-    border: 1px solid var(--white);
-    padding: 2rem;
-}
-form >div{
-    height: 5vh;
-    width: 100%;
-    margin-top: 1rem;
-}
-form >div input{
-    width: 100%;
-    padding: .5rem;
-    border-radius: 1rem;
-    background: hsla(0, 0%, 100%, .5);
-    padding-left: 1rem;
-    box-shadow: none;
-    border: 1px solid transparent;
-}
-form >div input::placeholder{
-    color: var(--bg)
-}
-form >div input:focus{
-    box-shadow: none;
-    border: 1px solid var(--btn-bg);
-    color: var(--btn-bg);
-    font-weight: bold;
-}
-form button{
-    padding: .5rem;
-    background-color: var(--btn-bg);
-    color: var(--white);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: .5rem; 
-    border: 1px solid transparent;  
+    height: 300px;
+    width: 300px;
     cursor: var(--cursor);
-    margin-top: 2rem;
+    margin-right: 1rem;
     transition: var(--transition);
-
 }
-form button:hover{
-    background: var(--bg);
-    color: var(--white);
+.blogs .blog-box > div img{
+    border-radius: 1rem;
+    height: 50%;
+    margin-bottom: 1rem;
+}
+.blogs .blog-box > div:hover{
+    background-color: rgba(31, 45, 71, 0.992);
     border: 1px solid var(--white);
-
 }
-.haveAcc{
+.blogs .blog-box > div > div{
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
-    color: white;
+    padding: 5px;
+    margin-top: auto;
+}
+.blogs .blog-box > div > div strong{
     font-size: small;
 }
-.haveAcc a{
-    cursor: var(--cursor);
-    margin-left: .5rem;
-    color: var(--btn-bg);
-    text-decoration: none;
-    transition: var(--transition);
+.blogs .blog-box > div > div small{
+    font-size: x-small;
+    color: hsla(0, 0%, 100%, .3);
 }
-.haveAcc a:hover{
-    text-decoration: underline;
-    text-decoration-color: #00D1FF;
+.blogs .blog-box > div > div span{
+    color: hsla(0, 0%, 100%, .7);
+    font-style: oblique;
+    font-size: small;
 }
-
+.blogs .blog-box > div > div span i{
+    color: var(--purple);
+    margin-right: .5rem;
+}
 /* --- FOOTER SECTION ---*/
- .footer-section{
+.footer-section{
     background: #12121E;
     margin: 0;
     width: 100%;
@@ -213,24 +193,30 @@ form button:hover{
 .footer-section{
     width: 100vw;
 }
-
+/* small medias */
 @media  screen and ( max-width: 600px) {
     body{
         overflow: hidden;
+        padding: 0 1rem;
+        padding-top: 2rem;
     }
     .pageTitle{
         font-size: 2rem;
         width: 80vw;
     }
-    form{
-        width: 90vw;
-        margin: calc(100vw - 90vw);
+    .blogs .blog-box > div{
+        height: 200px;
     }
-    body{
-        padding: 0 1rem;
-        padding-top: 2rem;
     }
-  
+@media  screen and ( max-width: 300px) {
+    .blogs .blog-box{
+        display: flex;
+        flex-direction: column;
+    }
+    .blogs .blog-box > div{
+        width: calc(100vw - 1rem);
+        height: 300px;
+        margin: 2rem 0.5rem;
     }
 
-    
+}
