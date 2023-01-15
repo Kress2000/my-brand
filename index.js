@@ -85,7 +85,6 @@ navATags.forEach(aTag=>{
     });
 })
 // click on small navbar screens
-
 // sticky navbar bottom
 let sticky = navBar.offsetTop;
 window.addEventListener("scroll", ()=>{

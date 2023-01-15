@@ -7,22 +7,23 @@
     font-family: 'Poppins', sans-serif;
     overflow-x: hidden;
 }
+
 /* Scrollbar */
 ::-webkit-scrollbar {
     width: 1rem;
-  }
-  ::-webkit-scrollbar-track {
+}
+::-webkit-scrollbar-track {
     box-shadow: inset 0 0 2px rgb(0, 255, 255); 
     border-radius: 1rem;
-  }
+}
   ::-webkit-scrollbar-thumb {
-    background: var(--btn-bg); 
-    border-radius: 1rem;
+      background: var(--btn-bg); 
+      border-radius: 1rem;
 }
 ::-webkit-scrollbar-thumb:hover {
     background-color: var(--purple); 
     transition: var(--transition);
-  }
+}
 :root {
     --purple: #ff00ae;
     --white: #ffffff;
@@ -37,7 +38,7 @@
     --btmBorder: 10px solid #A40FFF;
     --ffamilyH1: 'Varela Round', sans-serif;
     --fsizeTitle: 4rem;
-  }
+}
 body{
     background: var(--bg);
     color: var(--white);
@@ -46,6 +47,112 @@ body{
     justify-content: flex-start;
     align-items: center;
     padding-top: 1rem;
+    cursor: url(../../../img/cursor.svg), auto;
+}
+#popUp{
+    position: fixed;
+    inset: 0 0 0 0;
+    background-color: #12121ed1;
+    z-index: 20;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem;
+    overflow-y: hidden;
+    cursor: url(../../../img/cursor.svg) ,auto;
+
+}
+#backBtn{
+    height: 3rem;
+    width: 5rem;
+    background-color: var(--white);
+    color: var(--bg);
+    font-weight: bold;
+    cursor: var(--cursor);
+    transition: var(--transition);
+    border-radius: 1rem;
+}
+#popupBox{
+    background: var(--bg);
+    align-self: center;
+    width: 70%;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 1rem;
+    height: max-content;
+    overflow-y: auto;
+} 
+#popUp #popupBox img{
+    width: 100%;
+    height: 40%;
+    margin-bottom: .2rem;
+}
+#popUp #popupBox > div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    margin-bottom: .5rem;
+    width: 100%;
+    height: 5rem;
+}
+
+ .blogs .blog-box .details{
+    display: none;
+    flex-wrap: wrap;
+    flex-shrink: 1;
+    padding: 0 1rem;
+    color: var(--white);
+    font-size: .9rem;
+}
+#popUp #popupBox > div i{
+    color: #ffffffc5;
+    margin-right: 1rem;
+    cursor: var(--cursor);
+    font-size: 1.2rem; 
+}
+#popUp #popupBox .details{
+    flex-wrap: wrap;
+    height: max-content;
+    overflow-y: hidden;
+}
+#popUp #popupBox .details p{
+    opacity: .6;
+    color: white;
+
+}
+#popUp #popupBox > div:last-child{
+    padding: 0 1rem;
+    margin-top: auto;
+}
+#popUp #popupBox > div strong{
+    font-size: 1.3rem;
+}
+
+#popUp #popupBox > div small{
+    opacity: .3;
+}
+.number{
+    opacity: .5;
+}
+#popUp #popupBox > div span{
+    color: hsla(0, 0%, 100%, .7);
+    font-style: oblique;
+    font-size: small;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#backBtn:hover{
+  background-color: var(--btn-bg);
+  color: var(--white);
+}
+#popUp #popupBox > div span .liked{
+    color: var(--purple) !important;
 }
 /* cursor */
 .cursor {
@@ -151,6 +258,9 @@ body{
     color: hsla(0, 0%, 100%, .7);
     font-style: oblique;
     font-size: small;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .blogs .blog-box > div > div span i{
     color: var(--purple);
@@ -207,7 +317,26 @@ body{
     .blogs .blog-box > div{
         height: 200px;
     }
+
+    #popUp{
+        padding:0;
+    
     }
+    #backBtn{
+        height: 2rem;
+        width: 4rem;
+        border-radius: .8rem;
+    }
+    #popupBox{
+        width: 90%;
+        margin-top: .4rem;
+        height: max-content;
+    } 
+    #popUp #popupBox .details p{
+        font-size: .7rem;
+    
+    }  
+}
 @media  screen and ( max-width: 300px) {
     .blogs .blog-box{
         display: flex;
@@ -218,5 +347,8 @@ body{
         height: 300px;
         margin: 2rem 0.5rem;
     }
+    
+    
+
 
 }

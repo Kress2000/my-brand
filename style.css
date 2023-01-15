@@ -22,6 +22,7 @@
     --btmBorder: 10px solid #A40FFF;
     --ffamilyH1: 'Varela Round', sans-serif;
     --fsizeTitle: 4rem;
+    color: #2302fa03;
   }
 body{
     background: rgba(32, 41, 59, 0.992);
@@ -714,13 +715,13 @@ height: 100%;
     bottom: 1rem;
 }
 .bg .Demo{
-    border: 1px solid var(--white);
+    border: 1px solid var(--bg);
 }
-.otherProjectsBox .bg .Demo:hover{
-    background-color: var(--bg);
+.bg .Demo:hover{
+     background-color: var(--bg) !important;
 }
-.otherProjectsBox .nobg .Demo:hover{
-    background-color: var(--btn-bg);
+.nobg .Demo:hover{
+    background-color: var(--btn-bg) !important;
 }
 /* blogs page */
 
