@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs Admin page</title>
+    <link rel="stylesheet" href="./blogs.css">
+    <script src="https://kit.fontawesome.com/ba4ad2d87b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="cursor"><div class="point"></div></div>
+    <section class="blogs-Admin-page">
+        <div class="nav-box">
+            <div class="account">
+                <img src="../../../../img/josh scalla.png" alt="">
+                <strong>Admin</strong>
+            </div>
+            <div class="blogsActions">
+                <a href="#">Add a blog</a>
+                <a href="../ViewBlogs/blogs.html" id="viewBlogs">View blogs</a>
+            </div>
+        </div>
+        <div class="addBlogsBox">
+            <h3>Add a blog</h3>
+            <form class="formInput" id="formInput" action="POST">
+                <div class="blogsBox">
+                    <div class="textsInputs">
+                        <input type="text" id="title" placeholder="Title">
+                        <select name="category" id="category" for="category">
+                            <option value="">Choose category</option>
+                            <option value="Code">Code</option>
+                            <option value="Activities">Activities</option>
+                            <option value="Stories">Stories</option>
+                        </select>
+                        <textarea rows="4" cols="50" id="details" name="details"
+                        placeholder="Attract Audiences, Establish authority build Rapport and Engagement with your fellows..."></textarea>
+                    </div>
+                    <div class="uploadBox">
+                        <div class="tv">
+    
+                        </div>
+                        <button class="upload">Upload a cover</button>
+                    </div>
+                </div>
+                <button class="createBtn" id="createBtn">Create</button>
+            </form>
+        </div>
+    </section>
+    <section class="footer-section">
+        <footer>
+            <div class="footer-logo">
+                <a href="../../../../index.html"><img src="../../../../img/logo.png" alt="My Logo" class="logo"></a>
+            </div>
+            <div class="footer-link">
+                <span>
+                    <strong>&copy; <span class="year"></strong>.  All rights reserved
+                </span>
+                <span> made with 
+                    <i class="fa-sharp fa-solid fa-heart"></i> by 
+                    <a href="https://github.com/Kress2000">Nsanzimfura Eric</a>
+                </span>
+            </div>
+        </footer>
+    </section>
+
+    <script src="./blogs.js"></script>
+</body>
+</html>
