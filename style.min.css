@@ -221,18 +221,40 @@
 .exp2{
     padding: 0;
 }
-.exp2 >div {
+.exp2 .bigBoxOtherProj {
     flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    min-height: fit-content;
 }
-.exp2 >div .otherProjectsBox{
+.exp2 .bigBoxOtherProj .otherProjectsBox{
     display: flex;
     flex: 1 1 40%;
     overflow: hidden;
-    width: 100%;
+    width: 100vw;
     justify-content: center;
     align-items: center;
+    padding: 1rem;
 }
-.exp2 >div .otherProjectsBox >div{
+.otherProjectsBox  .bg{
+    background-color: var(--btn-bg);
+    position: relative;
+    left: -.5rem;
+}
+.otherProjectsBox .studio{
+    padding-right: auto;
+}
+
+.otherProjectsBox .nobg{
+    position: relative;
+    top: 0;
+    left: -.5rem;
+}
+
+.exp2 .bigBoxOtherProj .otherProjectsBox >div{
     display: flex;
     width: 90vw;
     height: 40vh;

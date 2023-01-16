@@ -121,7 +121,9 @@ copyRightYear.forEach(year=>{
     const timeYear = time.getFullYear();
     year.innerText= timeYear;
 })
-
-
+// Small devices
+window.addEventListener("resize", ()=>{
+    console.log(window.innerWidth)
+})
 
 

@@ -594,17 +594,22 @@ height: 100%;
     justify-content: center;
     transition: var(--transition);
     border-radius: .3rem;
-    border: 2px solid transparent;
-    padding: .5rem;
+    padding: .6rem;
+    cursor: var(--cursor) !important;
+}
+.show-project #btnShowProject{
+    cursor: pointer;
+}
+.show-project #btnShowProject:hover{
+    background-color: var(--bg);
+    border: 1px solid var(--btn-bg);
 }
 .btn a{
     color: var(--white);
     cursor: var(--cursor);
     text-decoration: none;
-}
-.btn:hover{
-    background-color: transparent;
-    border: 2px solid var(--btn-bg);
+    width: 100%;
+    height: 100%;
 }
 .projectBox .phoneRotate{
     padding: 0 2rem;
@@ -667,16 +672,24 @@ height: 100%;
     text-align: center;
     font-weight: bold;
 }
-.exp2 >div{
+.exp2 .bigBoxOtherProj{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
+    min-height: calc(32vh + 5rem);
 }
+
 .otherProjectsBox{
     width: 50%;
+    position: relative;
+    min-height: calc(32vh + 5rem);
     display: flex;
     overflow: hidden;
+    justify-content: center;
+    align-items: flex-end;
 }
-.exp2 >div .otherProjectsBox >div{
+.exp2 .bigBoxOtherProj .otherProjectsBox >div{
     border: 1px solid var(--btn-bg);
     margin: .3rem;
     border-radius: .9rem;
@@ -700,9 +713,24 @@ height: 100%;
 }
 .otherProjectsBox  .bg{
     background-color: var(--btn-bg);
+    position: absolute;
 }
+.otherProjectsBox .engineer{
+    justify-content: flex-end;
+    left: -5%;
+    padding-left: 5% !important;
+}
+
+.otherProjectsBox .studio{
+    right: -5%;
+    padding-right: 5%;
+}
+
 .otherProjectsBox .nobg{
     background-color: var(--bg);
+    position: absolute;
+    z-index: 30;
+    top: -5rem;
 }
 .Demo{
     background-color: transparent !important;
