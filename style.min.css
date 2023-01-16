@@ -25,6 +25,7 @@
         display: flex;
         justify-content: space-between;
         padding: 1rem 0;
+        padding: 1rem 1rem;
     }
     /* big */
  #nav-section,
@@ -295,18 +296,32 @@
     margin-left: 0rem;
 }
 
-@media  screen and ( max-width: 390px) {
+@media  screen and ( max-width: 380px) {
     .wrapper{
         overflow: hidden !important;
         width: 100vw !important;
     }
+    
+    .blogs-page{
+        width: 100% !important;
+    }
+    .blogs-page >div{
+        width: 95% !important;
+    }
+    .contact{
+        width: 100vw;
+    }
+    .contact .contact-card{
+        width: 95% !important;
+    }
+    
     .wrapper *{
         flex-shrink: 1;
     }
     .exp2 >div .otherProjectsBox{
         display: flex;
         flex-direction: column;
-    overflow: hidden;
+        overflow: hidden;
     }
 
     

@@ -122,8 +122,20 @@ copyRightYear.forEach(year=>{
     year.innerText= timeYear;
 })
 // Small devices
+const testWindowWidth = ()=>{
+    if(window.innerWidth<=600){
+        navATags.forEach(aTag=>{
+            aTag.addEventListener("click", ()=>{
+                navBar.style.display = "none";
+                smallNav.style.display= "flex";
+            });
+        })
+    
+    }
+}
+testWindowWidth();
 window.addEventListener("resize", ()=>{
-    console.log(window.innerWidth)
+    testWindowWidth();
 })
 
 
