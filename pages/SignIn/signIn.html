@@ -10,7 +10,8 @@
 </head>
 <body>
     <div class="cursor"><div class="point"></div></div>
-    <h1 class="pageTitle">Sign in with us</h1>
+    <section class="signin-section">
+        <h1 class="pageTitle">Sign in with us</h1>
         <form action="POST" id="form">
             <div>
                 <label for="name"></label>
@@ -24,28 +25,29 @@
                 <label for="passcode"></label>
                 <input type="text" id="passcode" placeholder="password" >
             </div>
-            <button>Sign in</button>
+            <button><a href="../blogs/AdminDashboard/ViewBlogs/blogs.html">Sign in</a></button>
             <div class="haveAcc">
                 <p>Don't an account?</p>
                 <a href="../SignUp/signUp.html"> Sign up</a>
             </div>
         </form>
-        <section class="footer-section">
-            <footer>
-                <div class="footer-logo">
-                    <a href="../../index.html"><img src="../../img/logo.png" alt="My Logo" class="logo"></a>
-                </div>
-                <div class="footer-link">
-                    <span>
-                        <strong>&copy; <span class="year"></strong>.  All rights reserved
-                    </span>
-                    <span> made with 
-                        <i class="fa-sharp fa-solid fa-heart"></i> by 
-                        <a href="https://github.com/Kress2000">Nsanzimfura Eric</a>
-                    </span>
-                </div>
-            </footer>
-        </section>
+    </section>
+    <section class="footer-section">
+        <footer>
+            <div class="footer-logo">
+                <a href="../../index.html"><img src="../../img/logo.png" alt="My Logo" class="logo"></a>
+            </div>
+            <div class="footer-link">
+                <span>
+                    <strong>&copy; <span class="year"></strong>.  All rights reserved
+                </span>
+                <span> made with 
+                    <i class="fa-sharp fa-solid fa-heart"></i> by 
+                    <a href="https://github.com/Kress2000">Nsanzimfura Eric</a>
+                </span>
+            </div>
+        </footer>
+    </section>
     <script src="./signIn.js"></script>
 </body>
 </html>

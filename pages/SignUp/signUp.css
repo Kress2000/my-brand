@@ -47,6 +47,9 @@ body{
     align-items: center;
     padding-top: 3rem;
 }
+.signup-section{
+    min-height: 100vh;
+}
 /* cursor */
 .cursor {
     width: 25px;

@@ -10,8 +10,9 @@
 </head>
 <body>
     <div class="cursor"><div class="point"></div></div>
-    <h1 class="pageTitle">Sign up page</h1>
-        <form action="POST" id="form">
+    <section class="signup-section">
+        <h1 class="pageTitle">Sign up page</h1>
+        <form action="POST" method="post" id="form">
             <div>
                 <label for="name"></label>
                 <input type="text" placeholder="Full name" id="name">
@@ -34,22 +35,24 @@
                 <a href="../SignIn/signIn.html"> Sign in</a>
             </div>
         </form>
-        <section class="footer-section">
-            <footer>
-                <div class="footer-logo">
-                    <a href="../../index.html"><img src="../../img/logo.png" alt="My Logo" class="logo"></a>
-                </div>
-                <div class="footer-link">
-                    <span>
-                        <strong>&copy; <span class="year"></strong>.  All rights reserved
-                    </span>
-                    <span> made with 
-                        <i class="fa-sharp fa-solid fa-heart"></i> by 
-                        <a href="https://github.com/Kress2000">Nsanzimfura Eric</a>
-                    </span>
-                </div>
-            </footer>
-        </section>
+
+    </section>
+    <section class="footer-section">
+        <footer>
+            <div class="footer-logo">
+                <a href="../../index.html"><img src="../../img/logo.png" alt="My Logo" class="logo"></a>
+            </div>
+            <div class="footer-link">
+                <span>
+                    <strong>&copy; <span class="year"></strong>.  All rights reserved
+                </span>
+                <span> made with 
+                    <i class="fa-sharp fa-solid fa-heart"></i> by 
+                    <a href="https://github.com/Kress2000">Nsanzimfura Eric</a>
+                </span>
+            </div>
+        </footer>
+    </section>
     <script src="./signUp.js"></script>
 </body>
 </html>
