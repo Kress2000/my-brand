@@ -815,13 +815,15 @@ height: 100%;
     display: flex;
     flex-direction: column;
     border-radius: 2rem;
-    border: 1px solid white;
+    border: 1px solid var(--whiteopc);
     padding: 1rem;
 }
 .greetings{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    flex: 2 1 40%;
+
 }
 .greetings span {
     display: flex;
@@ -888,10 +890,20 @@ height: 100%;
     color: var(--white);
 }
 
-.sent-mails{
+.contact-box .sent-mails{
     margin-left: 2rem;
+    padding: 0 !important;
+    width: fit-content !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.sent-mails> div .email{
+.mapouter{
+    position: absolute;
+    inset: 0;
+    border-radius: 2rem;
+}
+/* .sent-mails> div .email{
     display: flex;
     margin-bottom: 1rem;
     justify-content: flex-start;
@@ -917,7 +929,7 @@ height: 100%;
     display: flex;
     flex-shrink: 1;
     flex-wrap: wrap;
-}
+} */
 
 .way-to-footer{
     height: 5vh;
