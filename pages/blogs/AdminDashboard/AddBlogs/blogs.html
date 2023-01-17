@@ -23,7 +23,7 @@
         </div>
         <div class="addBlogsBox">
             <h3>Add a blog</h3>
-            <form class="formInput" id="formInput" action="POST">
+            <form class="formInput" id="formInput" action="" method="post">
                 <div class="blogsBox">
                     <div class="textsInputs">
                         <input type="text" id="title" placeholder="Title">
@@ -37,15 +37,15 @@
                         placeholder="Attract Audiences, Establish authority build Rapport and Engagement with your fellows..."></textarea>
                     </div>
                     <div class="uploadBox">
-                        <div class="tv">
-    
-                        </div>
-                        <button class="upload">Upload a cover</button>
+                        <div class="tv" id="tv"></div>
+                        <input class="upload" id="upload" type="file" accept="image/jpeg, image/png, image/jpg, image/gif" placeholder="Upload a cover">
                     </div>
                 </div>
                 <button class="createBtn" id="createBtn">Create</button>
             </form>
         </div>
+        <div id="messageAlert"><p>Missing fields!</p></div>
+        <div id="messageAlertSuccess"><p>Successfully Added to the list!</p></div>
     </section>
     <section class="footer-section">
         <footer>

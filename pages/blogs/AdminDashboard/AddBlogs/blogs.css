@@ -242,19 +242,18 @@ body{
     align-items: center;
 }
 .uploadBox .upload{
-    width: fit-content;
-    height: 3rem;
+    width: 70%;
+    height: fit-content;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     background-color: #1F2D47;
     border-radius: .5rem;
-    padding: 0 .5rem;
+    padding: .5rem .5rem;
     border: 1px solid var(--btn-bg);
     transition: var(--transition);
     margin-top: 1rem;
-    cursor: var(--cursor);
 }
 .uploadBox .upload:hover{
     background-color: var(--btn-bg);
@@ -284,7 +283,7 @@ body{
     height: calc(100% - 4rem);
     border: 1px solid var(--whiteOpacity);
     border-radius: 1rem;
-    width: 50%;
+    width: 70%;
 }
 .blogsBox > div{
     display: flex;
@@ -296,8 +295,37 @@ body{
     border-radius: 1rem;
     border: 1px solid var(--whiteOpacity);
 }
+/* message alert */
+#messageAlert{
+    position: fixed;
+    top: 50%;
+    left: 3rem;
+    right: 3rem;
+    height: fit-content;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: red;
+    color: white;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 30;
 
-
+}
+#messageAlertSuccess{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 3rem;
+    right: 3rem;
+    min-height: 20vh;
+    background-color: green;
+    color: white;
+    z-index: 30;
+    top: 50%;
+    border-radius: 1rem;
+}
 /* --- FOOTER SECTION ---*/
 .footer-section{
     background: #12121E;
