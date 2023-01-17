@@ -50,6 +50,19 @@ body{
 .signup-section{
     min-height: 100vh;
 }
+#alertMessage{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    background: red;
+    border-radius: 2rem;
+    color: white;
+    left: 2rem;
+    right: 2rem;
+    z-index: 30;
+    top: 50%;
+}
 /* cursor */
 .cursor {
     width: 25px;

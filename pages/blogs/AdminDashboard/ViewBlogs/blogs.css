@@ -112,6 +112,7 @@ body{
     padding: 1rem 2rem;
     position: fixed;
     min-height: 10vh;
+    z-index: 10;
 }
 .account{
     flex: 1 1 10%;
@@ -356,6 +357,8 @@ body{
     display: flex;
     align-items: flex-start;
     opacity: .3;
+    z-index: 1;
+    pointer-events: none;
 }
 .actionBox .edit{
     cursor: var(--cursor);

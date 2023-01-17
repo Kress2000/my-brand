@@ -12,29 +12,28 @@
     <div class="cursor"><div class="point"></div></div>
     <section class="signup-section">
         <h1 class="pageTitle">Sign up page</h1>
-        <form action="POST" method="post" id="form">
+        <form action="" method="post" id="form">
             <div>
-                <label for="name"></label>
-                <input type="text" placeholder="Full name" id="name">
+                <input type="text" placeholder="Full name" id="name" required>
             </div>
             <div>
-                <label for="email"></label>
-                <input type="text" placeholder="Email" id="email">
+                <input type="email" placeholder="Email" id="email" required>
             </div>
             <div>
-                <label for="passcode"></label>
-                <input type="text" placeholder="Choose password" id="passcode">
+                <input type="password" placeholder="Choose password" id="passcode" required>
             </div>
             <div>
-                <label for="passconfirm"></label>
-                <input type="text" id="passconfirm" placeholder="Confirm password">
+                <input type="password" id="passconfirm" placeholder="Confirm password" required>
             </div>
-            <button>Submit</button>
+            <button id="submitSignUpData">Submit</button>
             <div class="haveAcc">
                 <p>Have an account?</p>
                 <a href="../SignIn/signIn.html"> Sign in</a>
             </div>
         </form>
+        <div id="alertMessage">
+            <p>Fill the missing fields plz!</p>
+        </div>
 
     </section>
     <section class="footer-section">

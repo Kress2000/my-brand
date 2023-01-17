@@ -155,15 +155,25 @@ form button{
     margin-bottom: 1rem;
 
 }
-form button a{
-    text-decoration: none;
-    color: var(--white);
-}
 form button:hover{
     background: var(--bg);
     color: var(--white);
     border: 1px solid var(--white);
 
+}
+/* alert message on submit */
+#alertMessage{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    background: red;
+    border-radius: 2rem;
+    color: white;
+    left: 2rem;
+    right: 2rem;
+    z-index: 30;
+    top: 50%;
 }
 .haveAcc{
     display: flex;

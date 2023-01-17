@@ -295,7 +295,6 @@
 .sent-mails{
     margin-left: 0rem;
 }
-
 @media  screen and ( max-width: 380px) {
     .wrapper{
         overflow: hidden !important;

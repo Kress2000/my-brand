@@ -12,25 +12,25 @@
     <div class="cursor"><div class="point"></div></div>
     <section class="signin-section">
         <h1 class="pageTitle">Sign in with us</h1>
-        <form action="POST" id="form">
+        <form action="#" id="form" method="get">
             <div>
-                <label for="name"></label>
                 <input type="text" placeholder="Full name" id="name">
             </div>
             <div>
-                <label for="email"></label>
                 <input type="text" placeholder="Email" id="email">
             </div>
             <div>
-                <label for="passcode"></label>
-                <input type="text" id="passcode" placeholder="password" >
+                <input type="password" id="passcode" placeholder="password" >
             </div>
-            <button><a href="../blogs/AdminDashboard/ViewBlogs/blogs.html">Sign in</a></button>
+            <button id="submitSignUpData">Sign in</button>
             <div class="haveAcc">
                 <p>Don't an account?</p>
                 <a href="../SignUp/signUp.html"> Sign up</a>
             </div>
         </form>
+        <div id="alertMessage">
+            <p>Incorrect credentials!</p>
+        </div>
     </section>
     <section class="footer-section">
         <footer>
