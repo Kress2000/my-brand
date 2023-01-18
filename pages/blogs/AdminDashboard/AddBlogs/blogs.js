@@ -9,8 +9,6 @@ const title = document.getElementById("title");
 const category = document.getElementById("category");
 const details = document.getElementById("details");
 
-
-
 copyRightYear.forEach(year=>{
     const time = new Date()
     const timeYear = time.getFullYear();
@@ -27,7 +25,6 @@ document.addEventListener('click', () => {
         cursor.classList.remove("expand");
     }, 500)
 })
-
 // get uploaded img
 let image = []
 let imgUrl = ""
@@ -45,6 +42,7 @@ uploadImg.addEventListener("change", ()=>{
     displayImg();
 })
 // submit data to local storage
+localStorage.setItem("blogDataAdd", JSON.stringify([]));
 createBlogBtn.addEventListener("click", (e)=>{
     e.preventDefault();
     // create time when the blog is created
@@ -64,7 +62,9 @@ createBlogBtn.addEventListener("click", (e)=>{
         blogData.details &&
         blogData.img 
     ){
+        console.log(blogData)
         blogDataArray = JSON.parse(localStorage.getItem("blogDataAdd"));
+        console.log(blogDataArray)
         blogDataArray.push(blogData);
         localStorage.setItem("blogDataAdd", JSON.stringify(blogDataArray));
         messageAlertSuccess.style.display = "flex";
