@@ -45,20 +45,26 @@ uploadImg.addEventListener("change", ()=>{
     displayImg();
 })
 // submit data to local storage
-let blogDataArray=[]
 createBlogBtn.addEventListener("click", (e)=>{
     e.preventDefault();
+    // create time when the blog is created
+    const time = new Date();
+    const date = time.toDateString();
+    let blogDataArray=[]
     const blogData={
         title: title.value,
         category: category.value,
         details: details.value,
-        img: imgUrl
+        img: imgUrl,
+        time: date
     }
+    // blog data must not be empty
     if(blogData.title &&
         blogData.category &&
         blogData.details &&
         blogData.img 
     ){
+        blogDataArray = JSON.parse(localStorage.getItem("blogDataAdd"));
         blogDataArray.push(blogData);
         localStorage.setItem("blogDataAdd", JSON.stringify(blogDataArray));
         messageAlertSuccess.style.display = "flex";

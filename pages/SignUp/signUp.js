@@ -26,6 +26,9 @@ submitSignUpData.addEventListener("click", (e)=>{
     const email = document.getElementById("email")
     const passcode = document.getElementById("passcode")
     const passconfirm = document.getElementById("passconfirm")
+    const regexPatern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    var regExName = /^[a-z(0-9)?][a-z\s]*$/;
+
     const formData={
         name: name.value,
         email: email.value,
@@ -37,31 +40,52 @@ submitSignUpData.addEventListener("click", (e)=>{
         formData.passcode &&
         formData.confirmPass
      ){
-        if( formData.passcode ===formData.confirmPass){
-            localStorage.setItem("SignedInSuccessfully", JSON.stringify(formData));
-            alertMessage.innerHTML="<p>Success!</p>"
-            alertMessage.style.display = "flex";
-            alertMessage.style.backgroundColor = "green";
-        setTimeout(function () {
-            alertMessage.style.display = "none";
-            alertMessage.style.backgroundColor = "red";
-            alertMessage.innerHTML="<p>Fill the missing fields plz!</p>"
-         }, 2000); 
-         window.location.href= "../SignIn/signIn.html";
+        if(formData.name.match(regExName) && formData.email.match(regexPatern)){ //check for name and email validity
+            // password must be more than 5 chars
+            if( formData.passcode.length >=5){
+                // paaswords must be equal
+                if( formData.passcode ===formData.confirmPass){
+                    localStorage.setItem("SignedInSuccessfully", JSON.stringify(formData));
+                    alertMessage.innerHTML="<p>Success!</p>"
+                    alertMessage.style.display = "flex";
+                    alertMessage.style.backgroundColor = "green";
+                setTimeout(function () {
+                    alertMessage.style.display = "none";
+                    alertMessage.style.backgroundColor = "red";
+                    alertMessage.innerHTML="<p>Fill the missing fields plz!</p>"
+                }, 2000); 
+                window.location.href= "../SignIn/signIn.html";
+        
+                }
+                else{
+                alertMessage.style.display = "flex";
+                alertMessage.innerHTML="<p>Passwords do not match!</p>"
+                setTimeout(function () {
+                    alertMessage.style.display = "none";
+                    alertMessage.innerHTML="<p>Fill the missing fields plz!</p>"
+                }, 2000);  
+                }
+            }else{
+                alertMessage.style.display = "flex";
+                alertMessage.innerHTML="<p>Passwords must be 5 characters or more!</p>"
+                setTimeout(function () {
+                    alertMessage.style.display = "none";
+                    alertMessage.innerHTML="<p>Fill the missing fields plz!</p>"
+                }, 2000);  
+            }
 
+        }else{
+            alertMessage.style.display = "flex";
+            alertMessage.innerHTML="<p>Your name or Email are not valid!</p>"
+            setTimeout(function () {
+                alertMessage.style.display = "none";
+                alertMessage.innerHTML="<p>Fill the missing fields plz!</p>"
+            }, 2000); 
         }
-        else{
-        alertMessage.style.display = "flex";
-        alertMessage.innerHTML="<p>Passwords do not match!</p>"
-        setTimeout(function () {
-            alertMessage.style.display = "none";
-            alertMessage.innerHTML="<p>Fill the missing fields plz!</p>"
-         }, 2000);  
-        }
+        
     }else{
         alertMessage.style.display = "flex"
         setTimeout(function () {alertMessage.style.display = "none"; }, 2000);  
-
     }
     // const 
 })

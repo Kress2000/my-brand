@@ -396,7 +396,7 @@ body{
     background-color: #a30fff10;
 }
 
-.list-category #viewListBtn{
+.list-category .viewListBtn{
     height: 3rem;
     width: 6rem;
     margin-top: 1rem;
@@ -411,7 +411,7 @@ body{
     cursor: var(--cursor);
     transition: var(--transition);
 }
-.list-category #viewListBtn:hover{
+.list-category .viewListBtn:hover{
     background-color: var(--btn-bg);
 
 }

@@ -168,12 +168,14 @@ form button:hover{
     align-items: center;
     position: fixed;
     background: red;
-    border-radius: 2rem;
+    border-radius: 1rem;
+    padding: 2rem auto;
     color: white;
-    left: 2rem;
-    right: 2rem;
     z-index: 30;
-    top: 50%;
+    top: 40%;
+    left: 2rem;
+    min-height: 20vh;
+    right: 2rem;
 }
 .haveAcc{
     display: flex;

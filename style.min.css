@@ -280,6 +280,12 @@
     border-radius: 1.5rem;
     padding: .5rem;
 }
+.sent-mails{
+    margin-left: 0rem;
+    margin-top: 2rem;
+    padding: 0;
+    width: 95% !important;
+}
 .greetings .about-medias ul{
     display: flex;
     justify-content: space-between;
@@ -293,8 +299,19 @@
     font-size: 1.5rem;
 }
 .sent-mails{
-    margin-left: 0rem;
+    margin-left: -0rem !important;
+    width: 50vw !important;
 }
+.contact .contact-card{
+    width: 95% !important;
+    align-self: center;
+}
+
+/* end of medium media */
+
+}
+/* start of smaller media */
+
 @media  screen and ( max-width: 380px) {
     .wrapper{
         overflow: hidden !important;
@@ -310,6 +327,7 @@
     .contact{
         width: 100vw;
     }
+    
     .contact .contact-card{
         width: 95% !important;
     }
@@ -322,17 +340,4 @@
         flex-direction: column;
         overflow: hidden;
     }
-
-    
 }
-
-
-
-
-
-
-
-
-
-}
-
