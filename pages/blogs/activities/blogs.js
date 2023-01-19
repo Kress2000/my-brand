@@ -8,7 +8,6 @@ let numbers = document.querySelectorAll(".number")
 const blogsBox = document.getElementById("blogsBox"); //blogs box
 const listOfblogs = JSON.parse(localStorage.getItem("mixedCategories"));
 const codeBlogsList = listOfblogs.activity;
-console.log(codeBlogsList)
 copyRightYear.forEach(year=>{
     const time = new Date()
     const timeYear = time.getFullYear();

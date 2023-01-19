@@ -42,7 +42,10 @@ uploadImg.addEventListener("change", ()=>{
     displayImg();
 })
 // submit data to local storage
-localStorage.setItem("blogDataAdd", JSON.stringify([]));
+if(JSON.parse(localStorage.getItem("blogDataAdd"))===null){
+    localStorage.setItem("blogDataAdd", JSON.stringify([]));// to restore my key in LS
+}
+// console.log(localStorage.getItem("blogDataAdd"), "old data")// to be deleted later
 createBlogBtn.addEventListener("click", (e)=>{
     e.preventDefault();
     // create time when the blog is created
@@ -62,11 +65,11 @@ createBlogBtn.addEventListener("click", (e)=>{
         blogData.details &&
         blogData.img 
     ){
-        console.log(blogData)
-        blogDataArray = JSON.parse(localStorage.getItem("blogDataAdd"));
-        console.log(blogDataArray)
+        blogDataArray = JSON.parse(localStorage.getItem("blogDataAdd")); //get sample data array
         blogDataArray.push(blogData);
+        // console.log(blogDataArray, "after push")
         localStorage.setItem("blogDataAdd", JSON.stringify(blogDataArray));
+        // console.log(JSON.parse(localStorage.getItem("blogDataAdd")))
         messageAlertSuccess.style.display = "flex";
         setTimeout(()=>{
         messageAlertSuccess.style.display = "none";
@@ -75,7 +78,7 @@ createBlogBtn.addEventListener("click", (e)=>{
             category.value= "";
             details.value= "";
             tv.style.backgroundImage = ""
-        }, 2000)
+        }, 200)
     }else{
         messageAlert.style.display = "flex"
         setTimeout(()=>{

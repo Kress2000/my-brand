@@ -208,7 +208,6 @@ body{
     background: transparent;
     border-bottom: 1px solid var(--whiteOpacity);
     color: white;
-    cursor: var(--cursor);
     
 }
 .textsInputs select option{
