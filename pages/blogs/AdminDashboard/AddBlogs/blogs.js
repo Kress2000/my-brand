@@ -57,7 +57,8 @@ createBlogBtn.addEventListener("click", (e)=>{
         category: category.value,
         details: details.value,
         img: imgUrl,
-        time: date
+        time: date,
+        id: ""
     }
     // blog data must not be empty
     if(blogData.title &&
@@ -67,9 +68,18 @@ createBlogBtn.addEventListener("click", (e)=>{
     ){
         blogDataArray = JSON.parse(localStorage.getItem("blogDataAdd")); //get sample data array
         blogDataArray.push(blogData);
-        // console.log(blogDataArray, "after push")
+        for(let i=0; i<blogDataArray.length; i++){
+            blogDataArray[i]={ 
+                    title: blogDataArray[i].title,
+                    category: blogDataArray[i].category,
+                    details: blogDataArray[i].details,
+                    img: blogDataArray[i].img,
+                    time: blogDataArray[i].time,
+                    id: i + 1
+                }
+        }
+        console.log(blogDataArray);
         localStorage.setItem("blogDataAdd", JSON.stringify(blogDataArray));
-        // console.log(JSON.parse(localStorage.getItem("blogDataAdd")))
         messageAlertSuccess.style.display = "flex";
         setTimeout(()=>{
         messageAlertSuccess.style.display = "none";

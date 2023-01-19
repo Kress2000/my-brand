@@ -13,7 +13,9 @@
     <section class="blogs-Admin-page">
         <div class="nav-box">
             <div class="account">
-                <img src="../../../../img/blogs/img-admin.png" alt="">
+                <div>
+                    <i class="fa-solid fa-user"></i>
+                </div>
                 <strong>Admin</strong>
             </div>
             <div class="blogsActions">
@@ -36,6 +38,15 @@
                     </form>
                 </div>
                 <div id="messageSave"><p>Saved Successfully</p></div>
+                <div id="messageDelete">
+                    <div class="messageDelBox">
+                        <p>Are you sure, you want to delete this blog?</p>
+                        <div class="btnDelBox">
+                            <button id="NoBtn">No</button>
+                            <button id="YesBtn">Yes</button>
+                        </div>
+                    </div>
+                </div>
                 <div class="code-list list-category">
                     <h4>Code category</h4>
                     <div class="listbox" id="blogsCode"></div>

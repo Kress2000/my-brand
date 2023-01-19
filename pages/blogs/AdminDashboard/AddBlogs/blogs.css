@@ -121,11 +121,19 @@ body{
     align-items: center;
     width: fit-content;
 }
-.account img{
+.account >div{
     margin-right: 1rem;
     height: 5rem;
     width: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
     border-radius: 50%;
+}
+.account i{
+    font-size: 3rem;
+    color: var(--bg);
 }
 
 .blogsActions{

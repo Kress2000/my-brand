@@ -9,7 +9,7 @@ const blogsCode = document.getElementById("blogsCode");
 const blogsActivity = document.getElementById("blogsActivity");
 const blogsStory = document.getElementById("blogsStory");
 // access locatStoirage
-const getBlogsData = JSON.parse(localStorage.getItem("blogDataAdd"));
+const getBlogsData = JSON.parse(localStorage.getItem("blogDataAdd")); //access LS
 // view more btns
 const viewMoreCode = document.getElementById("viewListCode")
 const viewMoreActivity = document.getElementById("viewListActivity")
@@ -18,6 +18,10 @@ const viewMoreStory = document.getElementById("viewListStory")
 const viewLessCode = document.getElementById("viewLessCode");
 const viewLessActivity = document.getElementById("viewLessActivity");
 const viewLessStory = document.getElementById("viewLessStory");
+// message delete btns
+const messageDelete = document.getElementById("messageDelete");
+const NoBtn = document.getElementById("NoBtn");
+const YesBtn = document.getElementById("YesBtn");
 
 // cursor
 const cursor = document.querySelector('.cursor');
@@ -31,26 +35,55 @@ document.addEventListener('click', () => {
     }, 500)
 })
 
-// putting blogs in their order types
-let codeBlogsArray = []
-let activityBlogsArray = []
-let storyBlogsArray = []
+console.log(getBlogsData)
+let codeBlogsArray = [];
+let activityBlogsArray =[];
+let storyBlogsArray =[];
 getBlogsData.forEach(blog=>{
-    if(blog.category ==="Code"){
-        codeBlogsArray.push(blog)
-    }
-     if(blog.category ==="Stories")
-    {
-        storyBlogsArray.push(blog)
-    }
-    if(blog.category ==="Activities")
-    {
-        activityBlogsArray.push(blog)
-    } 
+            if(blog.category ==="Code"){
+                codeBlogsArray.push(blog)
+            }
+            if(blog.category ==="Activities"){
+                activityBlogsArray.push(blog)
+            } 
+            if(blog.category ==="Stories"){
+                storyBlogsArray.push(blog)
+            }
 })
+
+// JSON.parse(localStorage.getItem("codeBlogsArray"));
+//  JSON.parse(localStorage.getItem("activityBlogsArray"));
+//  JSON.parse(localStorage.getItem("storyBlogsArray"));
+// if(codeBlogsArray.length ===0){
+//     getBlogsData.forEach(blog=>{
+//         if(blog.category ==="Code"){
+//             codeBlogsArray.push(blog)
+//         }
+//     })
+// }
+// if( activityBlogsArray.length ===0){
+//     getBlogsData.forEach(blog=>{
+//         if(blog.category ==="Activities")
+//         {
+//             activityBlogsArray.push(blog)
+//         } 
+//     })
+// }
+// if(storyBlogsArray.length ===0){
+//     getBlogsData.forEach(blog=>{
+//          if(blog.category ==="Stories")
+//         {
+//             storyBlogsArray.push(blog)
+//         }
+//     })
+// }
 console.log(codeBlogsArray, "codes")
+// localStorage.setItem("codeBlogsArray", JSON.stringify(codeBlogsArray)); 
 console.log(activityBlogsArray, "actives")
+// localStorage.setItem("activityBlogsArray", JSON.stringify(activityBlogsArray)); 
 console.log(storyBlogsArray, "stories")
+// localStorage.setItem("storyBlogsArray", JSON.stringify(storyBlogsArray)); 
+
 // creating the blogs categories in html
 // code blogs 
 if(codeBlogsArray.length >=3){
@@ -386,14 +419,16 @@ const editBlogStory = (id)=>{
         }
     })
 }
-    // delete a blog 
+
+// YesBtn.addEventListener("click", ()=>{
+//     messageDelete.style.display = "none";
+//     });
+// delete a blog 
 const deleteBlogStory = (id)=>{
-    console.log(id, "story delete")
-    storyBlogsArray.forEach((blog, i)=>{
-        if(id===i){
-            console.log(blog, i)
-        }
-    })
+    // messageDelete.style.display = "flex";
+    storyBlogsArray.splice(id, 1);
+    console.log(storyBlogsArray, "removed one item from list")
+    // localStorage.setItem("storyBlogsArray", JSON.stringify(storyBlogsArray));
 }
 
 // keep my arrays categories in local storage again devided just to show them in respective categories
