@@ -13,10 +13,11 @@
     <section class="blogs-Admin-page">
         <div class="nav-box">
             <div class="account">
-                <div>
+                <div id="accountUser">
                     <i class="fa-solid fa-user"></i>
                 </div>
                 <strong>Admin</strong>
+                <a href="../../../SignIn/signIn.html" id="logout">Log out</a>
             </div>
             <div class="blogsActions">
                 <a href="../AddBlogs/blogs.html" id="addBlogsLink">Add a blog</a>
@@ -48,19 +49,31 @@
                     </div>
                 </div>
                 <div class="code-list list-category">
-                    <h4>Code category</h4>
+                    <div class="directionBox">
+                        <h4>Code category</h4>
+                        <a href="../../code/blogs.html">View</a>
+                    </div>
+                    <p id="emptyCode">No content</p>
                     <div class="listbox" id="blogsCode"></div>
                     <button id="viewListCode" class="viewListBtn">View all</button>
                     <button id="viewLessCode" class="viewListBtn">View less</button>
                 </div>
                 <div class="Activity-list list-category">
-                    <h4>Activities category</h4>
+                    <div class="directionBox">
+                        <h4>Activities category</h4>
+                        <a href="../../activities/blogs.html">View</a>
+                    </div>
+                    <p id="emptyAct">No content</p>
                     <div class="listbox" id="blogsActivity"></div>
                     <button id="viewListActivity" class="viewListBtn">View all</button>
                     <button id="viewLessActivity" class="viewListBtn">View less</button>
                 </div>
                 <div class="story-list list-category" >
-                    <h4>Stories category</h4>
+                    <div class="directionBox">
+                        <h4>Stories category</h4>
+                        <a href="../../stories/blogs.html">View</a>
+                    </div>
+                    <p id="emptyStory">No content</p>
                     <div class="listbox" id="blogsStory"></div>
                     <button id="viewListStory" class="viewListBtn">View all</button>
                     <button id="viewLessStory" class="viewListBtn">View less</button>

@@ -1,9 +1,9 @@
 const copyRightYear = document.querySelectorAll(".year");
 const mixListbox = document.getElementById("mix-listbox");
-const tvBarBlogEdit = document.getElementById("tvBarBlogEdit");
-const cancelEditAction = document.getElementById("cancelEditAction");
-const SaveEditAction = document.getElementById("saveEditAction");
 const blogsBoxFormEdit = document.getElementById("blogsBoxFormEdit");
+// user account
+const accountUser = document.getElementById("accountUser");
+const logout = document.getElementById("logout");
 // categories of blogs
 const blogsCode = document.getElementById("blogsCode");
 const blogsActivity = document.getElementById("blogsActivity");
@@ -22,7 +22,24 @@ const viewLessStory = document.getElementById("viewLessStory");
 const messageDelete = document.getElementById("messageDelete");
 const NoBtn = document.getElementById("NoBtn");
 const YesBtn = document.getElementById("YesBtn");
+// to tell someone that there EMPTY SPACE
+const emptyCode = document.getElementById("emptyCode")
+const emptyAct = document.getElementById("emptyAct")
+const emptyStory = document.getElementById("emptyStory")
+// edit blogs
+const tvBarBlogEdit = document.getElementById("tvBarBlogEdit");
+const cancelEditAction = document.getElementById("cancelEditAction");
+const SaveEditAction = document.getElementById("saveEditAction");
+// saving edited message
+const messageSave = document.getElementById("messageSave");
 
+// logout rights
+accountUser.addEventListener("click", ()=>{
+    logout.style.display = "flex";
+})
+logout.addEventListener("click", ()=>{
+    logout.style.display = "none";
+})
 // cursor
 const cursor = document.querySelector('.cursor');
 document.addEventListener('mousemove', e => {
@@ -35,7 +52,7 @@ document.addEventListener('click', () => {
     }, 500)
 })
 
-console.log(getBlogsData)
+// console.log(getBlogsData)
 let codeBlogsArray = [];
 let activityBlogsArray =[];
 let storyBlogsArray =[];
@@ -50,43 +67,13 @@ getBlogsData.forEach(blog=>{
                 storyBlogsArray.push(blog)
             }
 })
-
-// JSON.parse(localStorage.getItem("codeBlogsArray"));
-//  JSON.parse(localStorage.getItem("activityBlogsArray"));
-//  JSON.parse(localStorage.getItem("storyBlogsArray"));
-// if(codeBlogsArray.length ===0){
-//     getBlogsData.forEach(blog=>{
-//         if(blog.category ==="Code"){
-//             codeBlogsArray.push(blog)
-//         }
-//     })
-// }
-// if( activityBlogsArray.length ===0){
-//     getBlogsData.forEach(blog=>{
-//         if(blog.category ==="Activities")
-//         {
-//             activityBlogsArray.push(blog)
-//         } 
-//     })
-// }
-// if(storyBlogsArray.length ===0){
-//     getBlogsData.forEach(blog=>{
-//          if(blog.category ==="Stories")
-//         {
-//             storyBlogsArray.push(blog)
-//         }
-//     })
-// }
-console.log(codeBlogsArray, "codes")
-// localStorage.setItem("codeBlogsArray", JSON.stringify(codeBlogsArray)); 
-console.log(activityBlogsArray, "actives")
-// localStorage.setItem("activityBlogsArray", JSON.stringify(activityBlogsArray)); 
-console.log(storyBlogsArray, "stories")
-// localStorage.setItem("storyBlogsArray", JSON.stringify(storyBlogsArray)); 
+// console.log(codeBlogsArray, "codes")
+// console.log(activityBlogsArray, "actives")
+// console.log(storyBlogsArray, "stories")
 
 // creating the blogs categories in html
 // code blogs 
-if(codeBlogsArray.length >=3){
+if(codeBlogsArray.length >3){
     blogsCode.innerHTML =""
     for(let i=0; i<3; i++){
         blogsCode.innerHTML += `
@@ -94,10 +81,10 @@ if(codeBlogsArray.length >=3){
             <h1>${codeBlogsArray[i].title}</h1>
             <small>${codeBlogsArray[i].time}</small>
             <div class="actionBox">
-                <div class="edit" onclick="editBlogCode(${i})">
+                <div class="edit" onclick="editBlogCode(${codeBlogsArray[i].id})">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </div>
-                <div class="delete" onclick="deleteBlogCode(${i})">
+                <div class="delete" onclick="deleteBlogCode(${codeBlogsArray[i].id})">
                     <i class="fa-solid fa-trash"></i>
                 </div>
             </div>
@@ -113,10 +100,10 @@ viewMoreCode.addEventListener("click",()=>{
             <h1>${blog.title}</h1>
             <small>${blog.time}</small>
             <div class="actionBox">
-                <div class="edit" onclick="editBlogCode(${i})">
+                <div class="edit" onclick="editBlogCode(${codeBlogsArray[i].id})">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </div>
-                <div class="delete" onclick="deleteBlogCode(${i})">
+                <div class="delete" onclick="deleteBlogCode(${codeBlogsArray[i].id})">
                     <i class="fa-solid fa-trash"></i>
                 </div>
             </div>
@@ -137,10 +124,10 @@ viewLessCode.addEventListener("click", ()=>{
             <h1>${codeBlogsArray[i].title}</h1>
             <small>${codeBlogsArray[i].time}</small>
             <div class="actionBox">
-                <div class="edit" onclick="editBlogCode(${i})">
+                <div class="edit" onclick="editBlogCode(${codeBlogsArray[i].id})">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </div>
-                <div class="delete" onclick="deleteBlogCode(${i})">
+                <div class="delete" onclick="deleteBlogCode(${codeBlogsArray[i].id})">
                     <i class="fa-solid fa-trash"></i>
                 </div>
             </div>
@@ -150,16 +137,21 @@ viewLessCode.addEventListener("click", ()=>{
 });
 } else{
     viewMoreCode.style.display = "none"
+    if(codeBlogsArray.length ===0){
+        emptyCode.style.display = "flex";
+    }else{
+        emptyCode.style.display = "none";
+    }
     for(let i=0; i<=codeBlogsArray.length-1; i++){
             blogsCode.innerHTML += `
             <div class="bar">
                 <h1>${codeBlogsArray[i].title}</h1>
                 <small>${codeBlogsArray[i].time}</small>
                 <div class="actionBox">
-                    <div class="edit" onclick="editBlogCode(${i})">
+                    <div class="edit" onclick="editBlogCode(${codeBlogsArray[i].id})">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </div>
-                    <div class="delete" onclick="deleteBlogCode(${i})">
+                    <div class="delete" onclick="deleteBlogCode(${codeBlogsArray[i].id})">
                         <i class="fa-solid fa-trash"></i>
                     </div>
                 </div>
@@ -168,7 +160,7 @@ viewLessCode.addEventListener("click", ()=>{
     }
 }
 // activity blogs
-if(activityBlogsArray.length >=3){
+if(activityBlogsArray.length >3){
     blogsActivity.innerHTML = ""
     for(let i=0; i<3; i++){
         blogsActivity.innerHTML += `
@@ -176,16 +168,17 @@ if(activityBlogsArray.length >=3){
             <h1>${activityBlogsArray[i].title}</h1>
             <small>${activityBlogsArray[i].time}</small>
             <div class="actionBox">
-                <div class="edit" onclick="editBlogActivity(${i})">
+                <div class="edit" onclick="editBlogActivity(${activityBlogsArray[i].id})">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </div>
-                <div class="delete" onclick="deleteBlogActivity(${i})">
+                <div class="delete" onclick="deleteBlogActivity(${activityBlogsArray[i].id})">
                 <i class="fa-solid fa-trash"></i>
                 </div>
                 </div>
                 </div>
                 `   
     }
+    viewMoreActivity.style.display = "flex";
     // see more activity bars
     viewMoreActivity.addEventListener("click", ()=>{
         blogsActivity.innerHTML = "";
@@ -195,10 +188,10 @@ if(activityBlogsArray.length >=3){
             <h1>${blog.title}</h1>
             <small>${blog.time}</small>
             <div class="actionBox">
-            <div class="edit" onclick="editBlogActivity(${i})">
+            <div class="edit" onclick="editBlogActivity(${activityBlogsArray[i].id})">
             <i class="fa-solid fa-pen-to-square"></i>
             </div>
-            <div class="delete" onclick="deleteBlogActivity(${i})">
+            <div class="delete" onclick="deleteBlogActivity(${activityBlogsArray[i].id})">
             <i class="fa-solid fa-trash"></i>
             </div>
             </div>
@@ -219,10 +212,10 @@ if(activityBlogsArray.length >=3){
                 <h1>${activityBlogsArray[i].title}</h1>
                 <small>${activityBlogsArray[i].time}</small>
                 <div class="actionBox">
-                    <div class="edit" onclick="editBlogActivity(${i})">
+                    <div class="edit" onclick="editBlogActivity(${activityBlogsArray[i].id})">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </div>
-                    <div class="delete" onclick="deleteBlogActivity(${i})">
+                    <div class="delete" onclick="deleteBlogActivity(${activityBlogsArray[i].id})">
                     <i class="fa-solid fa-trash"></i>
                     </div>
                     </div>
@@ -231,26 +224,32 @@ if(activityBlogsArray.length >=3){
         }
     });
 } else{
-        for(let i=0; i<=activityBlogsArray.length - 1 ; i++){
-        viewMoreActivity.style.display = "none";
-        blogsActivity.innerHTML += `
-            <div class="bar">
-                <h1>${activityBlogsArray[i].title}</h1>
-                <small>${activityBlogsArray[i].time}</small>
-                <div class="actionBox">
-                    <div class="edit" onclick="editBlogActivity(${i})">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                    </div>
-                    <div class="delete" onclick="deleteBlogActivity(${i})">
-                        <i class="fa-solid fa-trash"></i>
-                    </div>
+    viewMoreActivity.style.display = "none";
+    // show that space is empty
+    if(activityBlogsArray.length ===0){
+        emptyAct.style.display = "flex";
+    }else{
+        emptyAct.style.display = "none";
+    }
+    for(let i=0; i<=activityBlogsArray.length - 1 ; i++){
+    blogsActivity.innerHTML += `
+        <div class="bar">
+            <h1>${activityBlogsArray[i].title}</h1>
+            <small>${activityBlogsArray[i].time}</small>
+            <div class="actionBox">
+                <div class="edit" onclick="editBlogActivity(${activityBlogsArray[i].id})">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </div>
+                <div class="delete" onclick="deleteBlogActivity(${activityBlogsArray[i].id})">
+                    <i class="fa-solid fa-trash"></i>
                 </div>
             </div>
-            `
+        </div>
+        `
     }
 }
 // story blogs
-if(storyBlogsArray.length >=3){
+if(storyBlogsArray.length >3){
     blogsStory.innerHTML = "";
     for(let i=0; i<3; i++){
         blogsStory.innerHTML += `
@@ -258,10 +257,10 @@ if(storyBlogsArray.length >=3){
             <h1>${storyBlogsArray[i].title}</h1>
             <small>${storyBlogsArray[i].time}</small>
             <div class="actionBox">
-                <div class="edit" onclick="editBlogStory(${i})">
+                <div class="edit" onclick="editBlogStory(${storyBlogsArray[i].id})">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </div>
-                <div class="delete" onclick="deleteBlogStory(${i})">
+                <div class="delete" onclick="deleteBlogStory(${storyBlogsArray[i].id})">
                     <i class="fa-solid fa-trash"></i>
                 </div>
             </div>
@@ -279,10 +278,10 @@ if(storyBlogsArray.length >=3){
                 <h1>${blog.title}</h1>
                 <small>${blog.time}</small>
                 <div class="actionBox">
-                    <div class="edit" onclick="editBlogStory(${i})">
+                    <div class="edit" onclick="editBlogStory(${storyBlogsArray[i].id})">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </div>
-                    <div class="delete" onclick="deleteBlogStory(${i})">
+                    <div class="delete" onclick="deleteBlogStory(${storyBlogsArray[i].id})">
                         <i class="fa-solid fa-trash"></i>
                     </div>
                 </div>
@@ -301,10 +300,10 @@ if(storyBlogsArray.length >=3){
                 <h1>${storyBlogsArray[i].title}</h1>
                 <small>${storyBlogsArray[i].time}</small>
                 <div class="actionBox">
-                    <div class="edit" onclick="editBlogStory(${i})">
+                    <div class="edit" onclick="editBlogStory(${storyBlogsArray[i].id})">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </div>
-                    <div class="delete" onclick="deleteBlogStory(${i})">
+                    <div class="delete" onclick="deleteBlogStory(${storyBlogsArray[i].id})">
                         <i class="fa-solid fa-trash"></i>
                     </div>
                 </div>
@@ -313,17 +312,22 @@ if(storyBlogsArray.length >=3){
         }
     });
 } else{
+    viewMoreStory.style.display = "none";
+    if(storyBlogsArray.length ===0){
+        emptyStory.style.display = "flex";
+    }else{
+        emptyStory.style.display = "none";
+    }
     for(let i= 0; i<=storyBlogsArray.length - 1; i++){
-        viewMoreStory.style.display = "none"
         blogsStory.innerHTML += `
             <div class="bar">
                 <h1>${storyBlogsArray[i].title}</h1>
                 <small>${storyBlogsArray[i].time}</small>
                 <div class="actionBox">
-                    <div class="edit" onclick="editBlogStory(${i})">
+                    <div class="edit" onclick="editBlogStory(${storyBlogsArray[i].id})">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </div>
-                    <div class="delete" onclick="deleteBlogStory(${i})">
+                    <div class="delete" onclick="deleteBlogStory(${storyBlogsArray[i].id})">
                         <i class="fa-solid fa-trash"></i>
                     </div>
                 </div>
@@ -335,101 +339,211 @@ if(storyBlogsArray.length >=3){
 // codes blogs -----------------------------
     // edit  a blog
 const editBlogCode =  (id)=>{
-    console.log(id, "code edit")
-    codeBlogsArray.forEach((blog, i)=>{
-        if(i===id){
-
-            console.log(blog, i)
+    codeBlogsArray.forEach((blog)=>{
+        if(blog.id===id){
+            tvBarBlogEdit.style.display = "flex";
+            blogsBoxFormEdit.innerHTML = `
+                <div class="textsInputs">
+                    <input type="text" name="text" id="titleEdited" value='${blog.title}' >
+                    <textarea rows="4" cols="50" id='editDetails' name="editDetails"></textarea>
+                </div>
+                <div class="uploadBox">
+                    <div class="tv" 
+                        style=" background-image: url('${blog.img}');
+                                background-position: cover;
+                                "
+                    > 
+                    </div>
+                </div>
+                `
+            const editDetails= document.getElementById("editDetails");
+            editDetails.value = blog.details;
+            // save data in blog to over write the old one
+            SaveEditAction.addEventListener("click", (e)=>{
+                e.preventDefault();
+                const titleEdited = document.getElementById("titleEdited").value;
+                const newValue = editDetails.value;
+                const timeEdited = new Date()
+                const newTime = timeEdited.toDateString();
+                // replace data into the blog 
+                blog.title = titleEdited;
+                blog.details = newValue;
+                blog.time = newTime;
+                getBlogsData.forEach(data=>{
+                    if(data.id===id){
+                        const index = getBlogsData.indexOf(data);
+                        getBlogsData.splice(index, 1, blog);
+                        localStorage.setItem("blogDataAdd", JSON.stringify(getBlogsData));
+                    }
+                })
+                tvBarBlogEdit.style.display = "none";
+                messageSave.style.display= "flex";
+                setTimeout(()=>{
+                    messageSave.style.display= "none";
+                }, 1000);
+            })
         }
     })
+    
 }
     //delete a blog
 const deleteBlogCode = (id)=>{
-    console.log(id, "code delete")
-    codeBlogsArray.forEach((blog, i)=>{
-        if(i===id){
-            console.log(blog, i)
+    messageDelete.style.display = "flex";
+    codeBlogsArray.forEach((blog)=>{
+        if(blog.id===id){
+            YesBtn.addEventListener("click", ()=>{
+                messageDelete.style.display = "none";
+                getBlogsData.forEach(data=>{
+                    if(data.id===id){
+                        const index = getBlogsData.indexOf(data);
+                        getBlogsData.splice(index, 1);
+                        localStorage.setItem("blogDataAdd", JSON.stringify(getBlogsData));
+                    }
+                })
+            });
         }
     })
 }
 // activity blogs ---------------------------------
     //edit a blog
 const editBlogActivity = (id)=>{
-    console.log(id, "acctivity edit")
-    activityBlogsArray.forEach((blog, i)=>{
-        if(id===i){
-            console.log(blog, i)
+    activityBlogsArray.forEach((blog)=>{
+        if(blog.id===id){
+            tvBarBlogEdit.style.display = "flex";
+            blogsBoxFormEdit.innerHTML = `
+                <div class="textsInputs">
+                    <input type="text" name="text" id="titleEdited" value='${blog.title}' >
+                    <textarea rows="4" cols="50" id='editDetails' name="editDetails"></textarea>
+                </div>
+                <div class="uploadBox">
+                    <div class="tv" 
+                        style=" background-image: url('${blog.img}');
+                                background-position: cover;
+                                "
+                    > 
+                    </div>
+                </div>
+                `
+            const editDetails= document.getElementById("editDetails");
+            editDetails.value = blog.details;
+            // save data in blog to over write the old one
+            SaveEditAction.addEventListener("click", (e)=>{
+                e.preventDefault();
+                const titleEdited = document.getElementById("titleEdited").value;
+                const newValue = editDetails.value;
+                const timeEdited = new Date()
+                const newTime = timeEdited.toDateString();
+                // replace data into the blog 
+                blog.title = titleEdited;
+                blog.details = newValue;
+                blog.time = newTime;
+                getBlogsData.forEach(data=>{
+                    if(data.id===id){
+                        const index = getBlogsData.indexOf(data);
+                        getBlogsData.splice(index, 1, blog);
+                        localStorage.setItem("blogDataAdd", JSON.stringify(getBlogsData));
+                    }
+                })
+                tvBarBlogEdit.style.display = "none";
+                messageSave.style.display= "flex";
+                setTimeout(()=>{
+                    messageSave.style.display= "none";
+                }, 1000);
+            })
         }
     })
+
 }
     // delete a blog
 const deleteBlogActivity = (id)=>{
-    console.log(id, "activity delete")
-    activityBlogsArray.forEach((blog, i)=>{
-        if(id===i){
-            console.log(blog, i)
+    messageDelete.style.display = "flex";
+    activityBlogsArray.forEach((blog)=>{
+        if(blog.id===id){
+            YesBtn.addEventListener("click", ()=>{
+                messageDelete.style.display = "none";
+                getBlogsData.forEach(data=>{
+                    if(data.id===id){
+                        const index = getBlogsData.indexOf(data);
+                        getBlogsData.splice(index, 1);
+                        localStorage.setItem("blogDataAdd", JSON.stringify(getBlogsData));
+                    }
+                })
+            });
         }
     })
 }
 // story blogs ------------------------------------
     //edit a blog
 const editBlogStory = (id)=>{
-    console.log(id, "story edit")
-    storyBlogsArray.forEach((blog, i)=>{
-        if(id===i){
-            console.log(blog, i)
+    storyBlogsArray.forEach((blog)=>{
+        if(blog.id===id){
             tvBarBlogEdit.style.display = "flex";
             blogsBoxFormEdit.innerHTML = `
-            <div class="textsInputs">
-                <input type="text" name="text" id="titleEdited" value='${blog.title}' >
-                <textarea rows="4" cols="50" id='editDetails' name="editDetails"></textarea>
-            </div>
-            <div class="uploadBox">
-                <div class="tv" 
-                    style=" background-image: url('${blog.img}');
-                            background-position: cover;
-                            "
-                > 
+                <div class="textsInputs">
+                    <input type="text" name="text" id="titleEdited" value='${blog.title}' >
+                    <textarea rows="4" cols="50" id='editDetails' name="editDetails"></textarea>
                 </div>
-            </div>
-        `
-        const editDetails= document.getElementById("editDetails");
-        editDetails.value = blog.details;
-        const messageSave = document.getElementById("messageSave");
-        // save data in blog to over write the old one
-        let count=0
-        SaveEditAction.addEventListener("click", (e)=>{
-            e.preventDefault();
-            count += 1
-            const titleEdited = document.getElementById("titleEdited").value;
-            const newValue = editDetails.value;
-            const timeEdited = new Date()
-            const newTime = timeEdited.toDateString()
-            // replace data into the blog 
-            blog.title = titleEdited;
-            blog.details = newValue;
-            blog.time = newTime;
-            tvBarBlogEdit.style.display = "none";
-            messageSave.style.display= "flex";
-            console.log(blog, count)
-            setTimeout(()=>{
-                messageSave.style.display= "none";
-            }, 1000);
-        })
+                <div class="uploadBox">
+                    <div class="tv" 
+                        style=" background-image: url('${blog.img}');
+                                background-position: cover;
+                                "
+                    > 
+                    </div>
+                </div>
+                `
+            const editDetails= document.getElementById("editDetails");
+            editDetails.value = blog.details;
+            // save data in blog to over write the old one
+            SaveEditAction.addEventListener("click", (e)=>{
+                e.preventDefault();
+                const titleEdited = document.getElementById("titleEdited").value;
+                const newValue = editDetails.value;
+                const timeEdited = new Date()
+                const newTime = timeEdited.toDateString();
+                // replace data into the blog 
+                blog.title = titleEdited;
+                blog.details = newValue;
+                blog.time = newTime;
+                getBlogsData.forEach(data=>{
+                    if(data.id===id){
+                        const index = getBlogsData.indexOf(data);
+                        getBlogsData.splice(index, 1, blog);
+                        localStorage.setItem("blogDataAdd", JSON.stringify(getBlogsData));
+                    }
+                })
+                tvBarBlogEdit.style.display = "none";
+                messageSave.style.display= "flex";
+                setTimeout(()=>{
+                    messageSave.style.display= "none";
+                }, 1000);
+            })
         }
     })
 }
 
-// YesBtn.addEventListener("click", ()=>{
-//     messageDelete.style.display = "none";
-//     });
 // delete a blog 
 const deleteBlogStory = (id)=>{
-    // messageDelete.style.display = "flex";
-    storyBlogsArray.splice(id, 1);
-    console.log(storyBlogsArray, "removed one item from list")
-    // localStorage.setItem("storyBlogsArray", JSON.stringify(storyBlogsArray));
+    messageDelete.style.display = "flex";
+    storyBlogsArray.forEach((blog)=>{
+        if(blog.id===id){
+            YesBtn.addEventListener("click", ()=>{
+                messageDelete.style.display = "none";
+                console.log("deleted blog: ", blog,  blog.id)
+                getBlogsData.forEach(data=>{
+                    if(data.id===id){
+                        const index = getBlogsData.indexOf(data);
+                        getBlogsData.splice(index, 1);
+                        localStorage.setItem("blogDataAdd", JSON.stringify(getBlogsData));
+                    }
+                })
+            });
+        }
+    })
 }
+NoBtn.addEventListener("click", ()=>{
+    messageDelete.style.display = "none"
+})
 
 // keep my arrays categories in local storage again devided just to show them in respective categories
 let mixedCategories = {

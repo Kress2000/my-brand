@@ -8,7 +8,19 @@ const messageAlertSuccess = document.getElementById("messageAlertSuccess");
 const title = document.getElementById("title");
 const category = document.getElementById("category");
 const details = document.getElementById("details");
+// user account
+const accountUser = document.getElementById("accountUser");
+const logout = document.getElementById("logout");
 
+
+
+// logout rights
+accountUser.addEventListener("click", ()=>{
+    logout.style.display = "flex";
+})
+logout.addEventListener("click", ()=>{
+    logout.style.display = "none";
+})
 copyRightYear.forEach(year=>{
     const time = new Date()
     const timeYear = time.getFullYear();
@@ -48,6 +60,7 @@ if(JSON.parse(localStorage.getItem("blogDataAdd"))===null){
 // console.log(localStorage.getItem("blogDataAdd"), "old data")// to be deleted later
 createBlogBtn.addEventListener("click", (e)=>{
     e.preventDefault();
+    var regExName = /[a-z][a-z\s]?[0-9]?/gmi;
     // create time when the blog is created
     const time = new Date();
     const date = time.toDateString();
@@ -64,7 +77,9 @@ createBlogBtn.addEventListener("click", (e)=>{
     if(blogData.title &&
         blogData.category &&
         blogData.details &&
-        blogData.img 
+        blogData.img &&
+        blogData.title.match(regExName)&&
+        blogData.details.match(regExName)
     ){
         blogDataArray = JSON.parse(localStorage.getItem("blogDataAdd")); //get sample data array
         blogDataArray.push(blogData);
@@ -78,7 +93,7 @@ createBlogBtn.addEventListener("click", (e)=>{
                     id: i + 1
                 }
         }
-        console.log(blogDataArray);
+        // console.log(blogDataArray);
         localStorage.setItem("blogDataAdd", JSON.stringify(blogDataArray));
         messageAlertSuccess.style.display = "flex";
         setTimeout(()=>{
@@ -88,12 +103,11 @@ createBlogBtn.addEventListener("click", (e)=>{
             category.value= "";
             details.value= "";
             tv.style.backgroundImage = ""
-        }, 200)
+        }, 2000)
     }else{
         messageAlert.style.display = "flex"
         setTimeout(()=>{
             messageAlert.style.display = "none"
         }, 2000)
-
     }
 })

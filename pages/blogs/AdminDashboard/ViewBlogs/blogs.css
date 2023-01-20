@@ -112,7 +112,10 @@ body{
     padding: 1rem 2rem;
     position: fixed;
     min-height: 10vh;
-    z-index: 10;
+    z-index: 100;
+}
+#accountUser{
+    cursor: var(--cursor);
 }
 .account{
     flex: 1 1 10%;
@@ -131,6 +134,29 @@ body{
     background-color: white;
     border-radius: 50%;
 }
+
+#logout{
+    color: var(--bg);
+    position: absolute;
+    font-size: .8rem;
+    left: 1rem;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 30;
+    cursor: var(--cursor);
+    background-color: white;
+    padding: 1rem;
+    transition: var(--transition);
+    bottom: 0;
+    border-radius: .5rem;
+    text-decoration: none;
+}
+#logout:hover{
+    color: red;
+    text-decoration: underline;
+    text-decoration-color: var(--cursor-bg);
+}
 .account i{
     font-size: 3rem;
     color: var(--bg);
@@ -146,7 +172,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 4rem;
+    height: 3rem;
     width: max-content;
     border-radius: 1rem;
     cursor: var(--cursor);
@@ -154,6 +180,7 @@ body{
     color: white;
     padding:  0 1rem;
     transition: var(--transition);
+    font-size: 1rem;
 }
 .blogsActions a:first-child{
     border: 1px solid black;
@@ -315,8 +342,9 @@ body{
 }
 /* view blogs blox */
 .viewBlogsBox h3{
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     font-weight: bolder;
+    margin-top: 1rem;
 }
 .mix-listbox{
     width: 100%;
@@ -350,7 +378,7 @@ body{
 }
 .list-category .listbox .bar h1{
     flex: 1 1 30%;
-    font-size: 1.4rem;
+    font-size: 1rem;
 }
 .list-category .listbox .bar .actionBox{
     display: flex;
@@ -367,6 +395,7 @@ body{
     opacity: .3;
     z-index: 1;
     pointer-events: none;
+    font-size: .7rem;
 }
 .actionBox .edit{
     cursor: var(--cursor);
@@ -438,6 +467,22 @@ body{
     border: 1px solid yellow;
     color: yellow;
 }
+.directionBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.directionBox a{
+    color: var(--purple);
+    font-weight: bolder;
+    text-decoration: none;
+    margin-left: 2rem;
+    cursor: var(--cursor);
+    transition: var(--transition);
+}
+.directionBox a:hover{
+    color: var(--btn-bg);
+}
 #messageSave{
     position: fixed;
     display: none;
@@ -484,6 +529,15 @@ body{
 .btnDelBox button:hover{
     color: red;
     background: black;
+}
+#emptyCode, #emptyAct, #emptyStory{
+    padding: 2rem;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-style: oblique;
+    font-size: .8rem;
 }
 /* --- FOOTER SECTION ---*/
 .footer-section{
@@ -553,11 +607,11 @@ body{
     }
     .list-category .listbox .bar h1{
         flex-shrink: 2;
-        font-size: .6rem;
+        font-size: .6rem !important;
     }
     .list-category .listbox .bar small{
         flex-shrink: 2;
-        font-size: .5rem;
+        font-size: .4rem;
     }
     .tvBarBlogEdit{
         padding: 1rem;

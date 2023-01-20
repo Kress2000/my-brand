@@ -135,6 +135,31 @@ body{
     font-size: 3rem;
     color: var(--bg);
 }
+#accountUser{
+    cursor: var(--cursor);
+}
+#logout{
+    color: var(--bg);
+    position: absolute;
+    font-size: .8rem;
+    left: 1rem;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 30;
+    cursor: var(--cursor);
+    background-color: white;
+    padding: 1rem;
+    transition: var(--transition);
+    bottom: 0;
+    border-radius: .5rem;
+    text-decoration: none;
+}
+#logout:hover{
+    color: red;
+    text-decoration: underline;
+    text-decoration-color: var(--cursor-bg);
+}
 
 .blogsActions{
     flex: 2 2 50%;
@@ -146,13 +171,14 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 4rem;
+    height: 3rem;
     width: max-content;
     border-radius: 1rem;
     cursor: var(--cursor);
     text-decoration: none;
     color: white;
     padding:  0 1rem;
+    font-size: 1rem;
     transition: var(--transition);
 }
 .blogsActions a:last-child{
