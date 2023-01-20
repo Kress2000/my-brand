@@ -49,6 +49,7 @@ body{
     padding-top: 1rem;
     cursor: url(../../../img/cursor.svg), auto;
 }
+
 #popUp{
     position: fixed;
     inset: 0 0 0 0;
@@ -56,7 +57,7 @@ body{
     z-index: 20;
     display: none;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     padding: 2rem;
     overflow-y: hidden;
@@ -83,12 +84,15 @@ body{
     flex-direction: column;
     align-items: flex-start;
     border-radius: 1rem;
-    height: max-content;
     overflow-y: auto;
+    height: fit-content !important;
 } 
-#popUp #popupBox img{
+.box >div{
+    flex: 1 1 20%;
+}
+ #popupBox .img{
     width: 100%;
-    height: 40%;
+    flex: 2 2 40%;
     margin-bottom: .2rem;
 }
 #popUp #popupBox > div{
@@ -98,11 +102,13 @@ body{
     padding: 0 1rem;
     margin-bottom: .5rem;
     width: 100%;
-    height: 5rem;
+    background-color: #00D1FF;
+    height: fit-content;
+    padding: 0 1rem;
 }
 
  .blogs .blog-box .details{
-    display: none;
+    display: flex;
     flex-wrap: wrap;
     flex-shrink: 1;
     padding: 0 1rem;
@@ -266,6 +272,16 @@ body{
     color: var(--purple);
     margin-right: .5rem;
 }
+#messageEmpty{
+    color: var(--white);
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    align-self: center;
+    font-style: oblique;
+    font-size: .8rem;
+    display: none;
+}
 /* --- FOOTER SECTION ---*/
 .footer-section{
     background: #12121E;
@@ -347,8 +363,5 @@ body{
         height: 300px;
         margin: 2rem 0.5rem;
     }
-    
-    
-
 
 }

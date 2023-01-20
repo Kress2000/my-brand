@@ -67,10 +67,6 @@ getBlogsData.forEach(blog=>{
                 storyBlogsArray.push(blog)
             }
 })
-// console.log(codeBlogsArray, "codes")
-// console.log(activityBlogsArray, "actives")
-// console.log(storyBlogsArray, "stories")
-
 // creating the blogs categories in html
 // code blogs 
 if(codeBlogsArray.length >3){
@@ -253,14 +249,14 @@ if(storyBlogsArray.length >3){
     blogsStory.innerHTML = "";
     for(let i=0; i<3; i++){
         blogsStory.innerHTML += `
-        <div class="bar">
+        <div class="bar" id="${this}">
             <h1>${storyBlogsArray[i].title}</h1>
             <small>${storyBlogsArray[i].time}</small>
             <div class="actionBox">
                 <div class="edit" onclick="editBlogStory(${storyBlogsArray[i].id})">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </div>
-                <div class="delete" onclick="deleteBlogStory(${storyBlogsArray[i].id})">
+                <div class="delete" onclick="deleteBlogStory(${this, storyBlogsArray[i].id})">
                     <i class="fa-solid fa-trash"></i>
                 </div>
             </div>
