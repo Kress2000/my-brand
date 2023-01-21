@@ -5,10 +5,14 @@ const nameUser = document.getElementById("name")
 const email = document.getElementById("email")
 const passcode = document.getElementById("passcode")
 const getFormData = JSON.parse(localStorage.getItem("SignedInSuccessfully"));
+// const credentialsAdmin = JSON.parse(localStorage.getItem("credentialsAdmin"));
 // changing Sign in input data
-email.value = getFormData.email;
-passcode.value = getFormData.passcode;
-nameUser.value = getFormData.name;
+getFormData.forEach(data=>{
+
+})
+// email.value = getFormData[getFormData.length-1].email;
+// passcode.value = getFormData[getFormData.length-1].passcode;
+// nameUser.value = getFormData[getFormData.length-1].name;
 
 copyRightYear.forEach(year=>{
     const time = new Date()
@@ -27,6 +31,7 @@ document.addEventListener('click', () => {
         cursor.classList.remove("expand");
     }, 500)
 })
+
 // get form data from local storage
 submitSignInData.addEventListener("click", (e)=>{
     e.preventDefault();
@@ -35,16 +40,25 @@ submitSignInData.addEventListener("click", (e)=>{
         email: email.value,
         passcode: passcode.value,
     }
-    if(formData.name === getFormData.name &&
-        formData.email === getFormData.email&&
-        formData.passcode === getFormData.passcode 
-     ){
-        window.location.href= "../blogs/AdminDashboard/ViewBlogs/blogs.html";
+    //admin dashboard
+    if(formData.name.toLowerCase() === "nsanzimfura eric" &&
+        formData.email.toLowerCase() === "erickykress1@gmail.com" &&
+        formData.passcode.toLowerCase() === "kress123")
+    {
+    window.location.href= "../blogs/AdminDashboard/ViewBlogs/blogs.html"; 
         
-    }else{
-        window.location.href= "#";
-        alertMessage.style.display = "flex"
-        setTimeout(function () {alertMessage.style.display = "none"; }, 2000); 
+    }//user Daashboard
+    else{
+        //check if this email is already registered
+       const user =  getFormData.filter(user=>user.email.toLowerCase() === formData.email.toLowerCase() && user.name.toLowerCase() === formData.name.toLowerCase() && user.passcode === formData.passcode?user:null)
+        if(user.length !==0){
+            // get him in 
+            localStorage.setItem("user", JSON.stringify(user)); //to be displayed in blogs dashboard
+            window.location.href= "../blogs/code/blogs.html";
+        }
+        else{ //edited credentials wrong, can't go in
+            alertMessage.style.display = "flex"
+            setTimeout(function () {alertMessage.style.display = "none"; }, 2000); 
+        }
     }
-    // const 
 })

@@ -49,6 +49,113 @@ body{
     padding-top: 1rem;
     cursor: url(../../../img/cursor.svg), auto;
 }
+/* navbar user  */
+.nav{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 15vh;
+    background-color: rgba(31, 37, 49, 0.992);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav>div{
+    flex: 1 1 50%;
+}
+.UserBox{
+    display: flex;
+}
+.UserBox >div{
+    display: flex;
+    flex-direction: column;
+    margin-right: 2rem;
+    padding: 1rem 0 0 0;
+}
+.UserBox #logo{
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    height: 4rem;
+    width: 4rem;
+    cursor: var(--cursor);
+    transition: var(--transition);
+}
+#logo i{
+    font-size: 2rem;
+    color: var(--bg);
+}
+#logout{
+    position: fixed;
+    z-index: 30;
+    cursor: var(--cursor);
+    transition: var(--transition);
+    background-color: var(--bg);
+    color: var(--white);
+    text-decoration: none;
+    left: 2rem;
+    margin-top: 2rem;
+    border-radius: .5rem;
+    padding: .5rem;
+    display: none;
+}
+#logout:hover{
+    text-decoration: underline;
+    text-decoration-line: var(--cursor-bg);
+    color: red;
+}
+.code-page{
+    margin-top: 15vh;
+}
+#credentialsUser{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+#userEmail{
+    font-style: oblique;
+    font-size: .7rem;
+    position: absolute;
+    top: 1rem;
+    left: 10%;
+    z-index: 30;
+    display: none;
+    transition: var(--transition);
+}
+#userName{
+    cursor: var(--cursor);
+    transition: var(--transition);
+}
+#userName:hover{
+    color: var(--btn-bg);
+}
+.blogsBox{
+    height: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    display: flex;
+}
+.blogsBox a{
+    margin-left: 2rem;
+    text-decoration: none;
+    color: var(--white);
+    border: 1px solid white;
+    padding: .5rem;
+    border-radius: .5rem;
+    transition: var(--transition);
+    cursor: var(--cursor);
+}
+.blogsBox a:hover{
+    background-color: var(--btn-bg);
+}
+.web{
+    background-color: var(--btn-bg);
+}
 
 #popUp{
     position: fixed;

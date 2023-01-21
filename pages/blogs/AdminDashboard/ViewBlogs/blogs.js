@@ -256,7 +256,7 @@ if(storyBlogsArray.length >3){
                 <div class="edit" onclick="editBlogStory(${storyBlogsArray[i].id})">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </div>
-                <div class="delete" onclick="deleteBlogStory(${this, storyBlogsArray[i].id})">
+                <div class="delete" onclick="deleteBlogStory(${storyBlogsArray[i].id})">
                     <i class="fa-solid fa-trash"></i>
                 </div>
             </div>
@@ -517,7 +517,6 @@ const editBlogStory = (id)=>{
         }
     })
 }
-
 // delete a blog 
 const deleteBlogStory = (id)=>{
     messageDelete.style.display = "flex";
@@ -525,7 +524,6 @@ const deleteBlogStory = (id)=>{
         if(blog.id===id){
             YesBtn.addEventListener("click", ()=>{
                 messageDelete.style.display = "none";
-                console.log("deleted blog: ", blog,  blog.id)
                 getBlogsData.forEach(data=>{
                     if(data.id===id){
                         const index = getBlogsData.indexOf(data);

@@ -176,6 +176,19 @@ form button:hover{
     border: 1px solid var(--white);
 
 }
+#alreadyThere{
+    position: fixed;
+    z-index: 50;
+    color: white;
+    background-color: red;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 30vw;
+    left: 55vw;
+    top: 35vh;
+    border-radius: .5rem;
+}
 .haveAcc{
     display: flex;
     justify-content: flex-start;
