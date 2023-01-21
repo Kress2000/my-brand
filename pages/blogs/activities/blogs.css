@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;1,900&display=swap'); 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;1,900&family=Varela+Round&display=swap');
 
@@ -61,6 +62,7 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    overflow: hidden;
 }
 .nav>div{
     flex: 1 1 50%;
@@ -121,19 +123,19 @@ body{
     font-style: oblique;
     font-size: .7rem;
     position: absolute;
-    top: 1rem;
-    left: 10%;
+    transition: var(--transition);
+    top: 1.5rem;
+    left: 15%;
     z-index: 30;
     display: none;
     transition: var(--transition);
+    color: #A40FFF;
 }
 #userName{
     cursor: var(--cursor);
     transition: var(--transition);
 }
-#userName:hover{
-    color: var(--btn-bg);
-}
+
 .blogsBox{
     height: 100%;
     align-items: center;
@@ -153,10 +155,10 @@ body{
 .blogsBox a:hover{
     background-color: var(--btn-bg);
 }
+
 .act{
     background-color: var(--btn-bg);
 }
-
 #popUp{
     position: fixed;
     inset: 0 0 0 0;
@@ -164,12 +166,11 @@ body{
     z-index: 20;
     display: none;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     padding: 2rem;
     overflow-y: hidden;
     cursor: url(../../../img/cursor.svg) ,auto;
-
 }
 #backBtn{
     height: 3rem;
@@ -191,33 +192,40 @@ body{
     flex-direction: column;
     align-items: flex-start;
     border-radius: 1rem;
-    height: max-content;
     overflow-y: auto;
+    height: fit-content !important;
+    padding: 1rem;
+    min-height: 50vh;
 } 
-#popUp #popupBox img{
+
+.box >div{
+    flex: 1 1 20%;
+    height: fit-content;
+}
+ #popupBox .img{
     width: 100%;
-    height: 40%;
+    flex: 2 2 40%;
     margin-bottom: .2rem;
 }
-#popUp #popupBox > div{
+ #popupBox > div{
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 1rem;
     margin-bottom: .5rem;
     width: 100%;
-    height: 5rem;
+    height: fit-content;
+    padding: 0 1rem;
 }
 
  .blogs .blog-box .details{
-    display: none;
+    display: flex;
     flex-wrap: wrap;
     flex-shrink: 1;
-    padding: 0 1rem;
     color: var(--white);
     font-size: .9rem;
 }
-#popUp #popupBox > div i{
+#popupBox > div i{
     color: #ffffffc5;
     margin-right: 1rem;
     cursor: var(--cursor);
@@ -231,35 +239,32 @@ body{
 #popUp #popupBox .details p{
     opacity: .6;
     color: white;
+    font-size: .8rem;
 
 }
-#popUp #popupBox > div:last-child{
-    padding: 0 1rem;
-    margin-top: auto;
+.userDecision{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+
 #popUp #popupBox > div strong{
-    font-size: 1.3rem;
+    font-size: 1rem;
+    text-transform: uppercase;
 }
-
 #popUp #popupBox > div small{
     opacity: .3;
 }
-.number{
+.userBox .number{
     opacity: .5;
+    font-size: .7rem;
 }
-#popUp #popupBox > div span{
-    color: hsla(0, 0%, 100%, .7);
-    font-style: oblique;
-    font-size: small;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+
 #backBtn:hover{
   background-color: var(--btn-bg);
   color: var(--white);
 }
-#popUp #popupBox > div span .liked{
+#popUp #popupBox > div .userBox  .liked i{
     color: var(--purple) !important;
 }
 /* cursor */
@@ -312,6 +317,7 @@ body{
         opacity: 0;
     }
 }
+
 .pageTitle{
     font-family: var(--ffamilyH1);
     font-size: 2rem;
@@ -321,13 +327,15 @@ body{
     text-align: center;
     margin-bottom: 2rem;
 }
-.blogs .blog-box{
+
+ .blogs .blog-box{
     display: flex;
     flex-wrap: wrap;
     padding: 2rem;
+    gap: 1rem;
 }
-.blogs .blog-box > div{
-    margin: 1rem 0;
+
+.box{
     border:  1px solid var(--btn-bg);
     border-radius: 1rem;
     display: flex;
@@ -336,43 +344,62 @@ body{
     height: 300px;
     width: 300px;
     cursor: var(--cursor);
-    margin-right: 1rem;
     transition: var(--transition);
+    padding: .5rem;
+    transition: all .5s ease-in-out;
 }
 .blogs .blog-box > div img{
     border-radius: 1rem;
     height: 50%;
     margin-bottom: 1rem;
 }
-.blogs .blog-box > div:hover{
+
+.blogs .blog-box .box:hover{
     background-color: rgba(31, 45, 71, 0.992);
     border: 1px solid var(--white);
 }
-.blogs .blog-box > div > div{
+.box >div{
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 5px;
-    margin-top: auto;
+    align-items: flex-start;
+    flex: 1 1 20%;
+    padding: 0;
+    margin: 0;
 }
-.blogs .blog-box > div > div strong{
-    font-size: small;
+.box >div strong{
+    margin-top: .1rem;
+    text-transform: uppercase;
+    font-size: 1rem;
 }
-.blogs .blog-box > div > div small{
-    font-size: x-small;
-    color: hsla(0, 0%, 100%, .3);
+.box >div small{
+    margin-top: .1rem;
+
+    opacity: .3;
+    font-size: .6rem;
 }
-.blogs .blog-box > div > div span{
-    color: hsla(0, 0%, 100%, .7);
-    font-style: oblique;
-    font-size: small;
-    display: flex;
-    align-items: center;
+.box .img{
+    flex: 2 2 50%;
+    background-color: #a30fff83;
+}
+.box .details p{
+    font-size: .9rem;
+    opacity: .5;
+    margin-top: 0rem;
+}
+
+.userDecision >div{
+    transition: var(--transition);
+    cursor: var(--cursor);
+}
+#messageEmpty{
+    color: var(--white);
     justify-content: center;
-}
-.blogs .blog-box > div > div span i{
-    color: var(--purple);
-    margin-right: .5rem;
+    align-items: center;
+    font-weight: bold;
+    align-self: center;
+    font-style: oblique;
+    font-size: .8rem;
+    display: none;
 }
 /* --- FOOTER SECTION ---*/
 .footer-section{
@@ -455,8 +482,5 @@ body{
         height: 300px;
         margin: 2rem 0.5rem;
     }
-    
-    
-
 
 }

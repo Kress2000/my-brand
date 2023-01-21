@@ -10,7 +10,28 @@ const listOfblogs = JSON.parse(localStorage.getItem("mixedCategories"));
 const codeBlogsList = listOfblogs.code;
 // message empty
 const messageEmpty = document.getElementById("messageEmpty");
+// users
+const logo = document.getElementById("logo");
+const logout = document.getElementById("logout");
+//credentials
+const userName =document.getElementById("userName") 
+const userEmail =document.getElementById("userEmail") 
 
+logo.addEventListener("mouseover", ()=>{
+    logout.style.display = "flex";
+    userEmail.style.transition= "all .5s ease-in-out";
+});
+logo.addEventListener("mouseleave", ()=>{
+    logout.style.display = "none";
+});
+//creedentials ...
+userName.addEventListener("mouseover", ()=>{
+    userEmail.style.display = "flex";
+    userEmail.style.transition= "all .5s ease-in-out";
+});
+userName.addEventListener("mouseleave", ()=>{
+    userEmail.style.display = "none";
+});
 copyRightYear.forEach(year=>{
     const time = new Date()
     const timeYear = time.getFullYear();
@@ -20,13 +41,15 @@ copyRightYear.forEach(year=>{
 const cursor = document.querySelector('.cursor');
 document.addEventListener('mousemove', e => {
     cursor.setAttribute("style", "top: "+(e.pageY - 10)+"px; left: "+(e.pageX - 10)+"px;")
-})
+});
 document.addEventListener('click', () => {
     cursor.classList.add("expand");
     setTimeout(() => {
         cursor.classList.remove("expand");
     }, 500)
-})
+});
+//nav box
+
 // select box
 if(codeBlogsList.length ===0){
     messageEmpty.style.display = "flex";
@@ -75,8 +98,6 @@ if(codeBlogsList.length ===0){
             let shortDetailsArrayResume = shortDetailsArray.splice(0, 5)
             const shortDetailsArrayNeeded = shortDetailsArrayResume.join(" ") + "...";
             shortDetails.innerText = shortDetailsArrayNeeded;
-
-
             // likes
             const numberOfLikes = box.querySelector(".eyeNumber");
             const heart = box.querySelector(".fa-heart");
@@ -94,6 +115,7 @@ if(codeBlogsList.length ===0){
             box.addEventListener("click", ()=>{
                 popUp.style.display = "flex";
                 popupTvBox.innerHTML= box.innerHTML;
+                console.log(box.innerHTML)
                 numberOfViews.innerText = countViews++
                 // incease or decrease likes
                 heart.addEventListener("click", ()=>{
