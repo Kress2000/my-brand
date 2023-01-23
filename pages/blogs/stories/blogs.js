@@ -8,6 +8,7 @@ let numbers = document.querySelectorAll(".number")
 const blogsBox = document.getElementById("blogsBox"); //blogs box
 const listOfblogs = JSON.parse(localStorage.getItem("mixedCategories"));
 const codeBlogsList = listOfblogs.story;
+const messageEmpty = document.getElementById("messageEmpty");
 // users
 const logo = document.getElementById("logo");
 const logout = document.getElementById("logout");
@@ -49,14 +50,16 @@ document.addEventListener('click', () => {
     }, 500)
 })
 // select box
+if(codeBlogsList.length ===0){
+    messageEmpty.style.display = "flex";
+}else{
+    messageEmpty.style.display = "none";
 
 codeBlogsList.forEach((blog, index)=>{
-    console.log(blog)
     blogsBox.innerHTML += `
     <div class="box">
-    <div class="img">
-        <img src='${blog.img}' alt="Blog cover">
-    </div>
+        <div class="img" style="background-image: url('${blog.img}'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+        </div>
     <div>
         <strong>${blog.title}</strong>
         <small>${blog.time}</small>
@@ -88,42 +91,46 @@ codeBlogsList.forEach((blog, index)=>{
     `
     const boxes = document.querySelectorAll(".box")
     boxes.forEach(box=>{
-
-        // likes
-        const numberOfLikes = box.querySelector(".eyeNumber");
-        const heart = box.querySelector(".fa-heart");
-        // comments
-        const comment = box.querySelector(".fa-comment");
-        const commentNumber = box.querySelector(".commentNumber");
-        // views
-        const numberOfViews = box.querySelector(".eyeNumber");
-        const eye = box.querySelector(".fa-eye");
-        // count    
-        let countViews = 100;
-        let countlikes = 100;
-        let countcomments = 100;
-        
-        box.addEventListener("click", ()=>{
-            popUp.style.display = "flex";
-            popupTvBox.innerHTML= box.innerHTML;
-            numberOfViews.innerText = countViews++
-            // incease or decrease likes
-            heart.addEventListener("click", ()=>{
-                heart.classList.toggle("liked");
-                if(heart.classList.contains("liked")){
-                    numberOfLikes.innerText = countlikes++
-                }
-                else{
-                    numberOfLikes.innerText = countlikes--
-                }
+        const shortDetails = box.querySelector(".shortDetails");
+            let shortDetailsArray =shortDetails.innerText.split(" ");
+            let shortDetailsArrayResume = shortDetailsArray.splice(0, 5)
+            const shortDetailsArrayNeeded = shortDetailsArrayResume.join(" ") + "...";
+            shortDetails.innerText = shortDetailsArrayNeeded;
+            // likes
+            const numberOfLikes = box.querySelector(".eyeNumber");
+            const heart = box.querySelector(".fa-heart");
+            // comments
+            const comment = box.querySelector(".fa-comment");
+            const commentNumber = box.querySelector(".commentNumber");
+            // views
+            const numberOfViews = box.querySelector(".eyeNumber");
+            const eye = box.querySelector(".fa-eye");
+            // count    
+            let countViews = 100;
+            let countlikes = 100;
+            
+            box.addEventListener("click", ()=>{
+                popUp.style.display = "flex";
+                popupTvBox.innerHTML= box.innerHTML;
+                numberOfViews.innerText = countViews++
+                // incease or decrease likes
+                heart.addEventListener("click", ()=>{
+                    heart.classList.toggle("liked");
+                    if(heart.classList.contains("liked")){
+                        numberOfLikes.innerText = countlikes++
+                    }
+                    else{
+                        numberOfLikes.innerText = countlikes--
+                    }
+                })
             })
-        })
-        backBtn.addEventListener("click", ()=>{
-            popUp.style.display = "none";
-            popupTvBox.innerHTML= "";
-        })
+            backBtn.addEventListener("click", ()=>{
+                popUp.style.display = "none";
+                popupTvBox.innerHTML= "";
+            })
     })
 });
+}
 // increase likeds and comments
 // numbers on icons
 numbers.forEach(number=>{

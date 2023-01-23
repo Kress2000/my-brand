@@ -48,7 +48,6 @@ document.addEventListener('click', () => {
         cursor.classList.remove("expand");
     }, 500)
 });
-//nav box
 
 // select box
 if(codeBlogsList.length ===0){
@@ -59,8 +58,7 @@ if(codeBlogsList.length ===0){
     codeBlogsList.forEach((blog, index)=>{
         blogsBox.innerHTML += `
         <div class="box">
-            <div class="img">
-                <img src='${blog.img}' alt="Blog cover">
+            <div class="img" style="background-image: url('${blog.img}'); background-repeat: no-repeat; background-size: cover; background-position: center;">
             </div>
             <div>
                 <strong>${blog.title}</strong>
@@ -93,9 +91,10 @@ if(codeBlogsList.length ===0){
         `
         const boxes = document.querySelectorAll(".box")
         boxes.forEach(box=>{
+
             const shortDetails = box.querySelector(".shortDetails");
             let shortDetailsArray =shortDetails.innerText.split(" ");
-            let shortDetailsArrayResume = shortDetailsArray.splice(0, 5)
+            let shortDetailsArrayResume = shortDetailsArray.splice(0, 4)
             const shortDetailsArrayNeeded = shortDetailsArrayResume.join(" ") + "...";
             shortDetails.innerText = shortDetailsArrayNeeded;
             // likes
@@ -115,7 +114,6 @@ if(codeBlogsList.length ===0){
             box.addEventListener("click", ()=>{
                 popUp.style.display = "flex";
                 popupTvBox.innerHTML= box.innerHTML;
-                console.log(box.innerHTML)
                 numberOfViews.innerText = countViews++
                 // incease or decrease likes
                 heart.addEventListener("click", ()=>{

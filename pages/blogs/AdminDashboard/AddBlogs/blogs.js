@@ -15,10 +15,16 @@ const logout = document.getElementById("logout");
 
 
 // logout rights
-accountUser.addEventListener("click", ()=>{
+accountUser.addEventListener("mouseover", ()=>{
+    logout.style.display = "flex";
+})
+logout.addEventListener("mouseover", ()=>{
     logout.style.display = "flex";
 })
 logout.addEventListener("click", ()=>{
+    logout.style.display = "none";
+})
+logout.addEventListener("mouseleave", ()=>{
     logout.style.display = "none";
 })
 copyRightYear.forEach(year=>{
@@ -38,26 +44,23 @@ document.addEventListener('click', () => {
     }, 500)
 })
 // get uploaded img
-let image = []
 let imgUrl = ""
-uploadImg.addEventListener("change", ()=>{
-    const filechosen=  uploadImg.files;
-    image = [filechosen[0]];
-    const displayImg = ()=>{
-        image.forEach((img) => {
-            const url = `url('${URL.createObjectURL(img)}')`
-            tv.style.backgroundImage = url;
-            tv.style.backgroundRepeat = "no-repeat";
-            imgUrl =URL.createObjectURL(img);
-        })
-    }
-    displayImg();
+uploadImg.addEventListener("change", (e)=>{
+    e.preventDefault();
+    const reader = new FileReader();
+    reader.readAsDataURL(uploadImg.files[0]);
+    reader.addEventListener("load", ()=>{
+        const url = reader.result;
+        tv.style.backgroundImage = `url('${url}')`;
+        tv.style.backgroundRepeat = "no-repeat";
+        imgUrl = url;
+
+    })
 })
 // submit data to local storage
 if(JSON.parse(localStorage.getItem("blogDataAdd"))===null){
     localStorage.setItem("blogDataAdd", JSON.stringify([]));// to restore my key in LS
 }
-// console.log(localStorage.getItem("blogDataAdd"), "old data")// to be deleted later
 createBlogBtn.addEventListener("click", (e)=>{
     e.preventDefault();
     var regExName = /[a-z][a-z\s]?[0-9]?/gmi;
@@ -65,6 +68,7 @@ createBlogBtn.addEventListener("click", (e)=>{
     const time = new Date();
     const date = time.toDateString();
     let blogDataArray=[]
+    // console.log(imgUrl)
     const blogData={
         title: title.value,
         category: category.value,
@@ -83,6 +87,7 @@ createBlogBtn.addEventListener("click", (e)=>{
     ){
         blogDataArray = JSON.parse(localStorage.getItem("blogDataAdd")); //get sample data array
         blogDataArray.push(blogData);
+        // give every blog an id 
         for(let i=0; i<blogDataArray.length; i++){
             blogDataArray[i]={ 
                     title: blogDataArray[i].title,
@@ -93,9 +98,9 @@ createBlogBtn.addEventListener("click", (e)=>{
                     id: i + 1
                 }
         }
-        // console.log(blogDataArray);
         localStorage.setItem("blogDataAdd", JSON.stringify(blogDataArray));
         messageAlertSuccess.style.display = "flex";
+        // console.log(JSON.parse(localStorage.getItem("blogDataAdd")))
         setTimeout(()=>{
         messageAlertSuccess.style.display = "none";
         // clean fields

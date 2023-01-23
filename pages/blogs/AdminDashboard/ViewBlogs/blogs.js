@@ -10,6 +10,7 @@ const blogsActivity = document.getElementById("blogsActivity");
 const blogsStory = document.getElementById("blogsStory");
 // access locatStoirage
 const getBlogsData = JSON.parse(localStorage.getItem("blogDataAdd")); //access LS
+console.log(getBlogsData)
 // view more btns
 const viewMoreCode = document.getElementById("viewListCode")
 const viewMoreActivity = document.getElementById("viewListActivity")
@@ -34,10 +35,17 @@ const SaveEditAction = document.getElementById("saveEditAction");
 const messageSave = document.getElementById("messageSave");
 
 // logout rights
-accountUser.addEventListener("click", ()=>{
+
+accountUser.addEventListener("mouseover", ()=>{
+    logout.style.display = "flex";
+})
+logout.addEventListener("mouseover", ()=>{
     logout.style.display = "flex";
 })
 logout.addEventListener("click", ()=>{
+    logout.style.display = "none";
+})
+logout.addEventListener("mouseleave", ()=>{
     logout.style.display = "none";
 })
 // cursor

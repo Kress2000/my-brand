@@ -224,6 +224,7 @@ body{
     flex-shrink: 1;
     color: var(--white);
     font-size: .9rem;
+    overflow: hidden;
 }
 #popupBox > div i{
     color: #ffffffc5;
@@ -379,12 +380,14 @@ body{
 }
 .box .img{
     flex: 2 2 50%;
-    background-color: #a30fff83;
+    background-color: var(--whiteopc);
+
 }
 .box .details p{
     font-size: .9rem;
     opacity: .5;
     margin-top: 0rem;
+    overflow: hidden;
 }
 
 .userDecision >div{
