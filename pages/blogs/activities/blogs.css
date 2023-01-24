@@ -256,7 +256,15 @@ body{
 #popUp #popupBox > div small{
     opacity: .3;
 }
-.userBox .number{
+.subBox{
+    height: 3rem;
+    width: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.subBox .number{
     opacity: .5;
     font-size: .7rem;
 }
@@ -265,7 +273,7 @@ body{
   background-color: var(--btn-bg);
   color: var(--white);
 }
-#popUp #popupBox > div .userBox  .liked i{
+#popUp #popupBox > div .subBox .liked i{
     color: var(--purple) !important;
 }
 /* cursor */

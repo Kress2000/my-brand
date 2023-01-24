@@ -14,7 +14,13 @@ const logo = document.getElementById("logo");
 const logout = document.getElementById("logout");
 //credentials
 const userName =document.getElementById("userName") 
-const userEmail =document.getElementById("userEmail") 
+const userEmail =document.getElementById("userEmail");
+// user loggedin 
+const user = JSON.parse(localStorage.getItem("user"));
+
+//users infor:
+userName.innerText= user[0].name;
+userEmail.innerText = user[0].email;
 
 logo.addEventListener("mouseover", ()=>{
     logout.style.display = "flex";
@@ -58,36 +64,36 @@ codeBlogsList.forEach((blog, index)=>{
     // console.log(blog)
     blogsBox.innerHTML += `
     <div class="box">
-        <div class="img" style="background-image: url('${blog.img}'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+    <div class="img" style="background-image: url('${blog.img}'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+    </div>
+<div>
+    <strong>${blog.title}</strong>
+    <small>${blog.time}</small>
+</div>
+<div class="details">
+    <p class="shortDetails">${blog.details}</p>
+</div>
+<div class="userDecision">
+    <div class="subBox">
+        <div class="likes">
+             <i class="fa-solid fa-heart"></i>  
         </div>
-        <div>
-            <strong>${blog.title}</strong>
-            <small>${blog.time}</small>
+        <div class="number heartNumber" >150</div>
+    </div>
+    <div class="subBox">
+        <div class="views">
+            <i class="fa-solid fa-eye"></i>
         </div>
-        <div class="details">
-            <p class="shortDetails">${blog.details}</p>
+        <div class="number eyeNumber" >150</div>
+    </div>
+    <div class="subBox">
+        <div class="comments">
+            <i class="fa-solid fa-comment"></i>
         </div>
-        <div class="userDecision">
-            <div class="userBox">
-                <div class="likes">
-                    <i class="fa-solclass fa-heart"></i>
-                </div>
-                <div class="number heartNumber" >150</div>
-            </div>
-            <div class="userBox">
-                <div class="views">
-                    <i class="fa-solclass fa-eye"></i>
-                </div>
-                <div class="number eyeNumber" >150</div>
-            </div>
-            <div class="userBox">
-                <div class="comments">
-                    <i class="fa-solclass fa-comment"></i>
-                </div>
-                <div class="number commentNumber">122</div>
-            </div>
-        </div>
-        </div>
+        <div class="number commentNumber">122</div>
+    </div>
+</div>
+</div>
     `
     const boxes = document.querySelectorAll(".box")
     boxes.forEach(box=>{
@@ -112,7 +118,38 @@ codeBlogsList.forEach((blog, index)=>{
             
             box.addEventListener("click", ()=>{
                 popUp.style.display = "flex";
-                popupTvBox.innerHTML= box.innerHTML;
+                popupTvBox.innerHTML= `
+                <div class="img">
+                    <img src="${blog.img}" alt="Image cover">
+                </div>
+                <div>
+                    <strong>${blog.title}</strong>
+                    <small>${blog.time}</small>
+                </div>
+                <div class="details">
+                    <p class="shortDetails">${blog.details}</p>
+                </div>
+                <div class="userDecision">
+                    <div class="subBox">
+                        <div class="likes">
+                             <i class="fa-solid fa-heart"></i>  
+                        </div>
+                        <div class="number heartNumber" >150</div>
+                    </div>
+                    <div class="subBox">
+                        <div class="views">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
+                        <div class="number eyeNumber" >100</div>
+                    </div>
+                    <div class="subBox">
+                        <div class="comments">
+                            <i class="fa-solid fa-comment"></i>
+                        </div>
+                        <div class="number commentNumber">122</div>
+                    </div>
+                </div>
+                `;
                 numberOfViews.innerText = countViews++
                 // incease or decrease likes
                 heart.addEventListener("click", ()=>{

@@ -50,7 +50,7 @@ submitSignInData.addEventListener("click", (e)=>{
     }//user Daashboard
     else{
         //check if this email is already registered
-       const user =  getFormData.filter(user=>user.email.toLowerCase() === formData.email.toLowerCase() && user.name.toLowerCase() === formData.name.toLowerCase() && user.passcode === formData.passcode?user:null)
+       const user =  getFormData.filter(user=>user.email.toLowerCase() === formData.email.toLowerCase() && user.passcode === formData.passcode?user:null)
         if(user.length !==0){
             // get him in 
             localStorage.setItem("user", JSON.stringify(user)); //to be displayed in blogs dashboard
