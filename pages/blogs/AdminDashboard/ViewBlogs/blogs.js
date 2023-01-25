@@ -10,7 +10,6 @@ const blogsActivity = document.getElementById("blogsActivity");
 const blogsStory = document.getElementById("blogsStory");
 // access locatStoirage
 const getBlogsData = JSON.parse(localStorage.getItem("blogDataAdd")); //access LS
-console.log(getBlogsData)
 // view more btns
 const viewMoreCode = document.getElementById("viewListCode")
 const viewMoreActivity = document.getElementById("viewListActivity")
@@ -353,13 +352,32 @@ const editBlogCode =  (id)=>{
                 </div>
                 <div class="uploadBox">
                     <div class="tv" 
+                        id="tv"
                         style=" background-image: url('${blog.img}');
-                                background-position: cover;
+                                background-position: center;
+                                background-repeat: no-repeat;
                                 "
                     > 
                     </div>
+                    <input class="upload" id="upload" type="file" accept="image/jpeg, image/png, image/jpg, image/gif" >
                 </div>
                 `
+                // get uploaded img
+                const uploadImg = document.getElementById("upload");
+                const tv = document.getElementById("tv")
+                let imgUrl = ""
+                uploadImg.addEventListener("change", (e)=>{
+                    e.preventDefault();
+                    const reader = new FileReader();
+                    reader.readAsDataURL(uploadImg.files[0]);
+                    reader.addEventListener("load", ()=>{
+                        const url = reader.result;
+                        tv.style.backgroundImage = `url('${url}')`;
+                        tv.style.backgroundRepeat = "no-repeat";
+                        imgUrl = url;
+
+                    })
+                })
             const editDetails= document.getElementById("editDetails");
             editDetails.value = blog.details;
             // save data in blog to over write the old one
@@ -373,6 +391,7 @@ const editBlogCode =  (id)=>{
                 blog.title = titleEdited;
                 blog.details = newValue;
                 blog.time = newTime;
+                blog.img = imgUrl;
                 getBlogsData.forEach(data=>{
                     if(data.id===id){
                         const index = getBlogsData.indexOf(data);
@@ -421,13 +440,33 @@ const editBlogActivity = (id)=>{
                 </div>
                 <div class="uploadBox">
                     <div class="tv" 
+                        id="tv"
                         style=" background-image: url('${blog.img}');
-                                background-position: cover;
+                                background-position: center;
+                                background-repeat: no-repeat;
                                 "
+                                
                     > 
+                    <input class="upload" id="upload" type="file" accept="image/jpeg, image/png, image/jpg, image/gif">
                     </div>
                 </div>
                 `
+                // get uploaded img
+                const uploadImg = document.getElementById("upload");
+                const tv = document.getElementById("tv")
+                let imgUrl = ""
+                uploadImg.addEventListener("change", (e)=>{
+                    e.preventDefault();
+                    const reader = new FileReader();
+                    reader.readAsDataURL(uploadImg.files[0]);
+                    reader.addEventListener("load", ()=>{
+                        const url = reader.result;
+                        tv.style.backgroundImage = `url('${url}')`;
+                        tv.style.backgroundRepeat = "no-repeat";
+                        imgUrl = url;
+
+                    })
+                })
             const editDetails= document.getElementById("editDetails");
             editDetails.value = blog.details;
             // save data in blog to over write the old one
@@ -441,6 +480,7 @@ const editBlogActivity = (id)=>{
                 blog.title = titleEdited;
                 blog.details = newValue;
                 blog.time = newTime;
+                blog.img = imgUrl;
                 getBlogsData.forEach(data=>{
                     if(data.id===id){
                         const index = getBlogsData.indexOf(data);
@@ -489,13 +529,31 @@ const editBlogStory = (id)=>{
                 </div>
                 <div class="uploadBox">
                     <div class="tv" 
-                        style=" background-image: url('${blog.img}');
-                                background-position: cover;
-                                "
+                    id="tv"
+                    style=" background-image: url('${blog.img}');
+                            background-position: center;
+                            background-repeat: no-repeat;
+                            "
                     > 
+                    <input class="upload" id="upload" type="file" accept="image/jpeg, image/png, image/jpg, image/gif">
                     </div>
                 </div>
                 `
+                // get uploaded img
+                const uploadImg = document.getElementById("upload");
+                const tv = document.getElementById("tv")
+                let imgUrl = ""
+                uploadImg.addEventListener("change", (e)=>{
+                    e.preventDefault();
+                    const reader = new FileReader();
+                    reader.readAsDataURL(uploadImg.files[0]);
+                    reader.addEventListener("load", ()=>{
+                        const url = reader.result;
+                        tv.style.backgroundImage = `url('${url}')`;
+                        tv.style.backgroundRepeat = "no-repeat";
+                        imgUrl = url;
+                    })
+                })
             const editDetails= document.getElementById("editDetails");
             editDetails.value = blog.details;
             // save data in blog to over write the old one
@@ -509,6 +567,7 @@ const editBlogStory = (id)=>{
                 blog.title = titleEdited;
                 blog.details = newValue;
                 blog.time = newTime;
+                blog.img = imgUrl;
                 getBlogsData.forEach(data=>{
                     if(data.id===id){
                         const index = getBlogsData.indexOf(data);

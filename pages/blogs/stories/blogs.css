@@ -62,6 +62,9 @@ body{
     align-items: center;
     overflow: hidden;
 }
+.nav *{
+    overflow: hidden;
+}
 .nav>div{
     flex: 1 1 50%;
 }
@@ -160,7 +163,7 @@ body{
 #popUp{
     position: fixed;
     inset: 0 0 0 0;
-    background-color: #12121ed1;
+    background-color: #12121e;
     z-index: 20;
     display: none;
     flex-direction: column;
@@ -170,6 +173,7 @@ body{
     overflow-y: hidden;
     cursor: url(../../../img/cursor.svg) ,auto;
 }
+
 #backBtn{
     height: 3rem;
     width: 5rem;
@@ -193,9 +197,107 @@ body{
     overflow-y: auto;
     height: fit-content !important;
     padding: 1rem;
-    min-height: 50vh;
+    min-height: fit-content;
+    border: none;
+    overflow-y: auto;
 } 
+#popupBox .likes{
+    display: flex;
+    justify-content: center;
+    transition: var(--transition);
+    align-items: center;
+    border-radius: .1rem;
+}
+#popupBox .comments{
+    display: flex;
+    justify-content: center;
+    transition: var(--transition);
+    align-items: center;
+    border-radius: .1rem;
+}
+#commentPart{
+    position: fixed;
+    transition: var(--transition);
+    inset: 5vw;
+    z-index: 100;
+    background-color: var(--bg);
+    border-radius: .5rem;
+    padding: 10vw;
+    display: none;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+#commentPart *{
+    overflow: hidden;
+}
+#commentPart form{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+#commentPart form textarea{
+    padding: 1rem;
+    flex: 2 2 90%;
+}
 
+#commentPart form button{
+    color: var(--bg);
+    transition: var(--transition);
+    cursor: var(--cursor);
+    border: 1px solid transparent;
+    border-radius: 1rem; 
+    font-weight: bolder;
+
+}
+#commentPart form button:hover{
+    color: var(--white);
+    background-color: transparent;
+    border: 1px solid var(--white);
+}
+#popupBox .comments:hover{
+    background-color: var(--whiteopc);
+}
+#popupBox .likes:hover{
+    background-color: var(--whiteopc);
+}
+#closeComment{
+    display: flex;
+    justify-content: flex-end;
+}
+#closeComment i{
+    color: red;
+    font-size: 1.5rem;
+    cursor: var(--cursor);
+}
+#closeComment i:hover{
+    color: #ff00ae;
+}
+
+#commentsContainer{
+    display: flex;
+    flex-direction: column;
+}
+#userCommentsposted{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: fit-content;
+}
+#userCommentsposted>div{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+
+}
+#userCommentsposted p, #userCommentsposted small{
+    display: flex;
+    flex: 1 1 50%;
+    margin: 0;
+    padding: 0;
+    justify-content: flex-start;
+}
 .box >div{
     flex: 1 1 20%;
     height: fit-content;
@@ -205,17 +307,26 @@ body{
     flex: 2 2 40%;
     margin-bottom: .2rem;
 }
- #popupBox > div{
+#popUp #popupBox > div{
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 1rem;
     margin-bottom: .5rem;
-    width: 100%;
+    width: 100% !important;
     height: fit-content;
     padding: 0 1rem;
 }
-
+.titleBox{
+    width: 100%;
+    margin-top: 1rem !important;
+}
+ #popUp .userDecision{
+    width: 100%;
+ }
+ #popUp .details{
+    width: 100%;
+ }
  .blogs .blog-box .details{
     display: flex;
     flex-wrap: wrap;
@@ -254,6 +365,9 @@ body{
 }
 #popUp #popupBox > div small{
     opacity: .3;
+}
+#popUp #popupBox *{
+    overflow: hidden;
 }
 .subBox{
     height: 3rem;

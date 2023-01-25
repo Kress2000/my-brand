@@ -1,18 +1,12 @@
 const copyRightYear = document.querySelectorAll(".year");
 const submitSignInData = document.getElementById("submitSignUpData");
 const alertMessage = document.getElementById("alertMessage");
-const nameUser = document.getElementById("name")
 const email = document.getElementById("email")
 const passcode = document.getElementById("passcode")
 const getFormData = JSON.parse(localStorage.getItem("SignedInSuccessfully"));
-// const credentialsAdmin = JSON.parse(localStorage.getItem("credentialsAdmin"));
-// changing Sign in input data
 getFormData.forEach(data=>{
 
 })
-// email.value = getFormData[getFormData.length-1].email;
-// passcode.value = getFormData[getFormData.length-1].passcode;
-// nameUser.value = getFormData[getFormData.length-1].name;
 
 copyRightYear.forEach(year=>{
     const time = new Date()
@@ -36,13 +30,11 @@ document.addEventListener('click', () => {
 submitSignInData.addEventListener("click", (e)=>{
     e.preventDefault();
     const formData={
-        name: nameUser.value,
         email: email.value,
         passcode: passcode.value,
     }
     //admin dashboard
-    if(formData.name.toLowerCase() === "nsanzimfura eric" &&
-        formData.email.toLowerCase() === "erickykress1@gmail.com" &&
+    if(formData.email.toLowerCase() === "erickykress1@gmail.com" &&
         formData.passcode.toLowerCase() === "kress123")
     {
     window.location.href= "../blogs/AdminDashboard/ViewBlogs/blogs.html"; 
