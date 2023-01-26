@@ -75,7 +75,12 @@ createBlogBtn.addEventListener("click", (e)=>{
         details: details.value,
         img: imgUrl,
         time: date,
-        id: ""
+        id: "",
+        userActions: {
+            views: 100,
+            likes: 50,
+            comments: []
+        }
     }
     // blog data must not be empty
     if(blogData.title &&
@@ -95,7 +100,8 @@ createBlogBtn.addEventListener("click", (e)=>{
                     details: blogDataArray[i].details,
                     img: blogDataArray[i].img,
                     time: blogDataArray[i].time,
-                    id: i + 1
+                    id: i + 1,
+                    userActions: blogDataArray[i].userActions
                 }
         }
         localStorage.setItem("blogDataAdd", JSON.stringify(blogDataArray));
