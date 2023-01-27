@@ -21,9 +21,9 @@ document.addEventListener('click', () => {
         cursor.classList.remove("expand");
     }, 500)
 })
-if(JSON.parse(localStorage.getItem("SignedInSuccessfully"))===null){
+// if(JSON.parse(localStorage.getItem("SignedInSuccessfully"))===null){
     localStorage.setItem("SignedInSuccessfully",JSON.stringify([]));
-}
+// }
 console.log(JSON.parse(localStorage.getItem("SignedInSuccessfully")))
 // get form data
 submitSignUpData.addEventListener("click", (e)=>{

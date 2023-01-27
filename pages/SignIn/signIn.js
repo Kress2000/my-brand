@@ -4,9 +4,7 @@ const alertMessage = document.getElementById("alertMessage");
 const email = document.getElementById("email")
 const passcode = document.getElementById("passcode")
 const getFormData = JSON.parse(localStorage.getItem("SignedInSuccessfully"));
-// getFormData.forEach(data=>{
 
-// })
 
 copyRightYear.forEach(year=>{
     const time = new Date()
