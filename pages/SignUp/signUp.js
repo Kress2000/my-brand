@@ -24,7 +24,6 @@ document.addEventListener('click', () => {
 if(JSON.parse(localStorage.getItem("SignedInSuccessfully"))===null){
     localStorage.setItem("SignedInSuccessfully",JSON.stringify([]));
 }
-console.log(JSON.parse(localStorage.getItem("SignedInSuccessfully")))
 // get form data
 submitSignUpData.addEventListener("click", (e)=>{
     e.preventDefault()
@@ -50,7 +49,7 @@ submitSignUpData.addEventListener("click", (e)=>{
             if(formData.passcode.length >=5){
                 // passwords must be equal
                 if(formData.passcode === formData.confirmPass){
-                    let users = JSON.parse(localStorage.getItem("SignedInSuccessfully"));
+                    let users = JSON.parse(localStorage.getItem([]));
                     // when we have the email already
                     if(users){
                         users.forEach(user=>{
@@ -64,7 +63,6 @@ submitSignUpData.addEventListener("click", (e)=>{
                             }
                         })
                     }
-                    console.log("whta's  up")
                     if(formData !==null){
                         users.push(formData);
                         localStorage.setItem("SignedInSuccessfully", JSON.stringify(users));
