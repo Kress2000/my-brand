@@ -9,7 +9,7 @@ const blogsBox = document.getElementById("blogsBox"); //blogs box
 // Access LS
 const blogDataAdd = JSON.parse(localStorage.getItem("blogDataAdd"));
 
-const storyblogsList = blogDataAdd.filter(blog=>blog.category==="Activities"? blog:null)
+const storyblogsList = blogDataAdd.filter(blog=>blog.category==="Code"? blog:null)
 const messageEmpty = document.getElementById("messageEmpty");
 // user loggedin 
 const user = JSON.parse(localStorage.getItem("user"));
