@@ -363,7 +363,7 @@ width: 50% !important;
 {
     flex: 2 2 40%;
     background: var(--btn-bg);
-    /* border-radius: 2rem; */
+    border-radius: .5rem;
     padding: 1rem;
     transition: var(--transition);
 }
