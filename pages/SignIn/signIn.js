@@ -46,6 +46,29 @@ submitSignInData.addEventListener("click", (e)=>{
         if(user.length !==0){
             // get him in 
             localStorage.setItem("user", JSON.stringify(user)); //to be displayed in blogs dashboard
+            //getting user Locations
+            if(JSON.parse(localStorage.getItem("locateUser"))===null){
+                localStorage.setItem("locateUser". JSON.stringify([]));
+            }
+            if('geolocation' in navigator ){
+                navigator.geolocation.getCurrentPosition(position=>{
+                    let lng = position.coords.longitude;
+                    let lat = position.coords.latitude;
+                    let locateUser={
+                        user: user,
+                        location: {
+                            latitude: lat,
+                            longitude: lng
+                        }
+                    }
+                    localStorage.setItem("locateUser". JSON.stringify(locateUser));
+                    const locate = JSON.parse(localStorage.getItem("locateUser"))
+                    alert(locate)
+                    
+                }, error=>{
+                    alert(error.code)
+                })
+    }
             window.location.href= "../blogs/code/blogs.html";
         }
         else{ //edited credentials wrong, can't go in
