@@ -268,22 +268,39 @@ body{
     display: flex;
     flex-direction: column;
     min-height: fit-content;
+    padding-top: .5rem;
 }
-#userCommentsposted>div{
+#userCommentsposted .commentline{
     width: 100%;
     display: flex;
     justify-content: space-between;
-    margin-top: 1rem;
-
+    align-items: center;
+    margin-top: .5rem;
+}
+#userCommentsposted .commentline >div{
+    width: 100%;
+    display: flex;
+    flex: 1 1 90%;
+    justify-content: space-between;
+    align-items: center;
+}
+#userCommentsposted .commentline >div:last-child{
+    flex: 1 1 10% !important;
+    display: flex;
+    justify-content: flex-end;
+}
+#userCommentsposted .commentline p{
+    font-size: .6rem;
+}
+#userCommentsposted small{
+    font-size: .5rem;
 }
 #userCommentsposted p, #userCommentsposted small{
     display: flex;
-    flex: 1 1 50%;
     margin: 0;
     padding: 0;
     justify-content: flex-start;
 }
-
 #popupBox .box{
     padding: 0;
     display: flex;
@@ -379,6 +396,7 @@ body{
 }
 .deleteComent:hover{
     color: red !important;
+    transform: scale(1.2);
 }
 #popupBox .img img{
     height: 70% !important;

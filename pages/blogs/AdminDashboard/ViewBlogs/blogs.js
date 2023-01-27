@@ -393,7 +393,6 @@ const editBlog =  (id)=>{
                 })
             })
         const editDetails= document.getElementById("editDetails");
-        // editDetails.value = blogData.details;
         // save data in blog to over write the old one
         SaveEditAction.addEventListener("click", (e)=>{
             e.preventDefault();
@@ -433,16 +432,6 @@ const deleteBlog = (id)=>{
         });
     }
 }
-// keep my arrays categories in local storage again devided just to show them in respective categories
-let mixedCategories = {
-    code: codeBlogsArray,
-    activity: activityBlogsArray,
-    story: storyBlogsArray
-}
-localStorage.setItem("mixedCategories", JSON.stringify(mixedCategories)); //now go to any categore and get item there from LS
-//cancel  edit action
-
-
 // copyright year in footer
 copyRightYear.forEach(year=>{
     const time = new Date()

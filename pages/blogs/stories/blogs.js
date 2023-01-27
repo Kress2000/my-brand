@@ -1,4 +1,4 @@
-const body = document.getElementById("body")
+// const body = document.getElementById("body")
 const copyRightYear = document.querySelectorAll(".year");
 const popUp = document.getElementById("popUp");
 const backBtn = document.getElementById("backBtn");
@@ -8,12 +8,12 @@ let numbers = document.querySelectorAll(".number")
 const blogsBox = document.getElementById("blogsBox"); //blogs box
 // Access LS
 const blogDataAdd = JSON.parse(localStorage.getItem("blogDataAdd"));
-const listOfblogs = JSON.parse(localStorage.getItem("mixedCategories"));
-const storyblogsList = listOfblogs.story;
+
+const storyblogsList = blogDataAdd.filter(blog=>blog.category==="Stories"? blog:null)
 const messageEmpty = document.getElementById("messageEmpty");
 // user loggedin 
 const user = JSON.parse(localStorage.getItem("user"));
-// users
+// users credentials
 const logo = document.getElementById("logo");
 const logout = document.getElementById("logout");
 //credentials
@@ -24,8 +24,6 @@ const commentPart = document.getElementById("commentPart");
 const closeComment = document.getElementById("closeComment")
 const formComment = document.getElementById("formComment");
 const commentedText = document.getElementById("comment-area");
-console.log(user)
-body.style.overflow= "auto";
 //users infor:
 userName.innerText= user[0].name;
 userEmail.innerText = user[0].email;
@@ -62,7 +60,7 @@ if(storyblogsList.length ===0){
 }else{
     messageEmpty.style.display = "none";
 }
-console.log(storyblogsList);
+// console.log(storyblogsList);
 storyblogsList.forEach(blog=>{
         blogsBox.innerHTML += `
         <div class="box" onclick="clickedBox(${blog.id})">
@@ -99,13 +97,19 @@ storyblogsList.forEach(blog=>{
         `
     }
 )
-function clickedBox (id){
-    body.style.overflow = "hidden";
+
+function clickedBox (id){ 
    const blog= storyblogsList.filter(blog=>blog.id===id? blog: null);
     if(blog){
         let blogData = blog[0]
-        let index= blogDataAdd.indexOf(blogData); // its index from teh whole blogs
+        const blogfromAllArr= blogDataAdd.filter(blogfromAll=>blogfromAll.id===blogData.id? blogfromAll: null);
+        const blogfromAll = blogfromAllArr[0];
+        let index= blogDataAdd.indexOf(blogfromAll); // its index from teh whole blogs
+        //increase view the blog is viewed
         blogData.userActions.views++
+        blogData.userActions.views=blogData.userActions.views;
+        blogDataAdd.splice(index, 1, blogData);
+        localStorage.setItem("blogDataAdd", JSON.stringify(blogDataAdd)) //save to LS with new views
         popUp.style.display = "flex";
         popupTvBox.innerHTML =`
             <div class="box">
@@ -157,28 +161,38 @@ function clickedBox (id){
         comment.addEventListener("click", ()=>{
             commentPart.style.display = "flex";
         })
+        //list comments--
         let newcommentsArr = blogData.userActions.comments;
-        const userCommentsposted = document.getElementById("userCommentsposted")
+        const userCommentsposted = document.getElementById("userCommentsposted");
+        userCommentsposted.innerHTML =""  
         newcommentsArr.forEach((comment, commentId)=>{
+            const wholecommentId = commentId+1
+            const data = {
+                blog: blogData,
+                comId: wholecommentId,
+                indexOfBlogData: index,
+                indexOfComment: commentId
+            }
             userCommentsposted.innerHTML +=`
-            <div class="commentline" id="${commentId}">
-                <small>${comment.user}</small>
-                <p>${comment.comment}</p>
+            <div class="commentline" id="${wholecommentId}">
                 <div>
+                    <small>${comment.user}</small>
+                    <p>${comment.comment}</p>
                 </div>
-                <i class="fa-solid fa-trash deleteComent" onclick="deleteComent(${blogData.id, commentId})" id="${commentId}"></i>
+                <div>
+                    <i class="fa-solid fa-trash deleteComent" onclick='deleteComent(${JSON.stringify(data)})' id="${commentId}"></i>
+                </div>
             </div>
                 `
             // allow only the poster tio delete his comments 
-            const deleteComent = document.querySelectorAll(".deleteComent");
-            deleteComent.forEach(commentofUser=>{
-                if(comment.user===user[0].email){
-                    commentofUser.style.display = "flex"; //allow to delete
+            let deleteComentBtn = document.getElementById(`${commentId}`);
+                if(comment.user===user[0].email ||user[0].email==="erickykress1@gmail.com"){
+                    deleteComentBtn.style.display = "flex"; //allow to delete
                 }else{
-                    commentofUser.style.display = "none"; //can not able to delete
+                    deleteComentBtn.style.display = "none"; //can not able to delete
                 }
-            })
         });
+        //add comment
         formComment.onsubmit=(e)=>{
             e.preventDefault();
             if(commentedText.value){
@@ -191,7 +205,19 @@ function clickedBox (id){
                 commentNumber.innerText = newcommentsArr.length;
                 blogData.userActions.comments = newcommentsArr; //now bklogData changes
                 blogDataAdd.splice(index, 1, blogData);
+                localStorage.setItem("blogDataAdd", JSON.stringify(blogDataAdd))
                 commentPart.style.display = "none";
+                userCommentsposted.innerHTML +=`
+                <div class="commentline">
+                    <div>
+                        <small>${commentObj.user}</small>
+                        <p>${commentObj.comment}</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-trash deleteComent"></i>
+                    </div>
+                </div>
+                    `
                 commentedText.value = "";
             }else{
                 alert("Empty comment!")
@@ -210,69 +236,39 @@ function clickedBox (id){
             commentPart.style.display = "none";
         })
         // likes increase or decrease
-        // let newLikesNumber = blogData.userActions.likes
         const heart = document.getElementById("likes"); 
+        const likesNumber = document.getElementById("heartNumber")
         heart.addEventListener("click", ()=>{
+            let likes = blogData.userActions.likes;
             heart.classList.toggle("liked");
             if(heart.classList.contains('liked')){
-                blogData.userActions.likes++
+                likes++
+                
             }else{
-                blogData.userActions.likes--
+                likes--
             }
+            blogData.userActions.likes =likes;
+                blogDataAdd.splice(index, 1, blogData)
+                localStorage.setItem("blogDataAdd", JSON.stringify(blogDataAdd))
+            likesNumber.innerText = blogData.userActions.likes;
         })
-        console.log("Likes: ", blogData.userActions.likes)
-        
-        // let blogDataLikes={
-        //          title: blogData.title,
-        //          time: blogData.time,
-        //          details: blogData.details,
-        //          img: blogData.img,
-        //          id:  blogData.id,
-        //          category: blogData.category,
-        //          userActions: {
-        //              views: blogData.userActions.views,
-        //              likes: blogData.userActions.likes,
-        //              comments: blogData.userActions.comments
-        //          }
-        //  }
-        //  blogDataAdd.splice(index, 1, blogDataLikes);
+        // if()
         // Cancel view blog popUp 
         backBtn.addEventListener("click", ()=>{
             popUp.style.display = "none";
             popupTvBox.innerHTML= "";
-            console.log("clicked")
         }) 
     }
-    
-    
 }
 // delete a comment
-function deleteComent(blogId, commentId){
-    console.log(commentId)
-    const deleteId = document.getElementById(`${commentId}`);
-    deleteId.style.display="none";
+function deleteComent({blog, comId, indexOfBlogData, indexOfComment}){
+    //change blog
+    blog.userActions.comments.splice(indexOfComment, 1);
+    blogDataAdd.splice(indexOfBlogData, 1, blog);
+    localStorage.setItem("blogDataAdd", JSON.stringify(blogDataAdd))
+    const deleteCommFromDom = document.getElementById(`${comId}`);
+    deleteCommFromDom.style.display="none";
 }
-
-// const boxes = blogsBox.querySelectorAll(".box")
-// // console.log(boxes)
-// boxes.forEach(box=>{
-//     // likes
-//     const heart = box.querySelector(".likes .fa-heart");
-//     const numberOfLikes = box.querySelector(".heartNumber");
-//     // comments
-//     const comment = box.querySelector(".comments .fa-comment");
-//     const commentNumber = box.querySelector(".commentNumber");
-//     // views
-//     const numberOfViews = box.querySelector(".eyeNumber");
-//     const eye = box.querySelector(".views .fa-eye");
-//     // count    
-//     let countViews = +numberOfViews.innerText;
-//     let countlikes = +numberOfLikes.innerText;
-//     box.addEventListener("click", ()=>{
-//         countViews++
-//         numberOfViews.innerText = countViews;
-//     });
-// })
 // footer
 copyRightYear.forEach(year=>{
     const time = new Date()
