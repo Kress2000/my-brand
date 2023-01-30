@@ -29,7 +29,6 @@ if(JSON.parse(localStorage.getItem("SignedInSuccessfully"))===null){
 }
 // get form data
 let users = JSON.parse(localStorage.getItem("SignedInSuccessfully")); //accesss LS
-console.log(users)
 submitSignUpData.addEventListener("click", (e)=>{
     e.preventDefault()
     let formData={
@@ -44,14 +43,12 @@ submitSignUpData.addEventListener("click", (e)=>{
         formData.confirmPass
         ){
             if(formData.name.match(regExName) && formData.email.match(regexPatern)){ //check for name and email validity
-                console.log(formData)
             // password must be more than 5 chars
             if(formData.passcode.length >=5){
                 // passwords must be equal
                 if(formData.passcode === formData.confirmPass){
                     // when we have the email already
-                    if(users && users.length !==0){
-                        console.log(users);
+                    if(users.length !==0){
                         users.forEach(user=>{
                             if(user.email.toLowerCase()===formData.email.toLowerCase()){
                                 alreadyThere.style.display = "flex";

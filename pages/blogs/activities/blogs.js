@@ -7,9 +7,12 @@ const detail = document.querySelectorAll(".details");
 let numbers = document.querySelectorAll(".number")
 const blogsBox = document.getElementById("blogsBox"); //blogs box
 // Access LS
-const blogDataAdd = JSON.parse(localStorage.getItem("blogDataAdd"));
-
-const storyblogsList = blogDataAdd.filter(blog=>blog.category==="Activities"? blog:null)
+let blogDataAdd =[];
+let storyblogsList =[];
+if(blogDataAdd){
+    blogDataAdd = JSON.parse(localStorage.getItem("blogDataAdd"));
+    storyblogsList = blogDataAdd.filter(blog=>blog.category==="Activities"? blog:null)
+}
 const messageEmpty = document.getElementById("messageEmpty");
 // user loggedin 
 const user = JSON.parse(localStorage.getItem("user"));
