@@ -25,8 +25,10 @@ const closeComment = document.getElementById("closeComment")
 const formComment = document.getElementById("formComment");
 const commentedText = document.getElementById("comment-area");
 //users infor:
-userName.innerText= user[0].name;
-userEmail.innerText = user[0].email;
+if(user){
+    userName.innerText= user.name;
+    userEmail.innerText = user.email;
+}
 logo.addEventListener("click", ()=>{
     logout.style.display = "flex";
     userEmail.style.transition= "all .5s ease-in-out";

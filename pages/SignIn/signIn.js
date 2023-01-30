@@ -5,7 +5,7 @@ const email = document.getElementById("email")
 const passcode = document.getElementById("passcode")
 //  users fron LS
 const getFormData = JSON.parse(localStorage.getItem("SignedInSuccessfully"));
-
+let lastUser= getFormData.filter(user=> user===getFormData[getFormData.length -1])
 // cursor
 const cursor = document.querySelector('.cursor');
 document.addEventListener('mousemove', e => {
@@ -17,12 +17,12 @@ document.addEventListener('click', () => {
         cursor.classList.remove("expand");
     }, 500)
 })
-
+email.value = lastUser[0].email;
+passcode.value = lastUser[0].passcode;
 const formData={
     email: email.value,
     passcode: passcode.value,
 }
-
 // get form data from local storage
 submitSignInData.addEventListener("click", (e)=>{
     e.preventDefault();
@@ -33,9 +33,10 @@ submitSignInData.addEventListener("click", (e)=>{
         window.location.href= "../blogs/AdminDashboard/ViewBlogs/blogs.html"; 
     }//user Daashboard
     else{
-        //check if this email is already registered
+        //check if this email is already registered first
        getFormData.forEach(user=>{
             if(user.email.toLowerCase() === formData.email.toLowerCase() && user.passcode === formData.passcode){
+                alertMessage.style.display = "none";
                 //getting user Locations
                 if('geolocation' in navigator ){
                     navigator.geolocation.getCurrentPosition(position=>{
@@ -44,26 +45,21 @@ submitSignInData.addEventListener("click", (e)=>{
                         let locateUser={
                             user: user,
                             location: {
-                                lat,
-                                lng
+                                lat: lat,
+                                lng: lng
                             }
                         }
                         localStorage.setItem("locateUser". JSON.stringify(locateUser));
-                        const locate = JSON.parse(localStorage.getItem("locateUser"))
-                        console.log(locate)
-                        
                     }, error=>{
-                        alert(error.code);
+                        localStorage.setItem("locateUser". JSON.stringify(error));
                     })
                 }
                 localStorage.setItem("user", JSON.stringify(user)); //to be displayed in blogs dashboard
                 window.location.href= "../blogs/code/blogs.html";
             }else{//edited credentials wrong, can't go in
-                alertMessage.style.display = "flex"
+                alertMessage.style.display = "flex";
                 setTimeout(function () {alertMessage.style.display = "none"; }, 2000); 
             }
-       
-            
         })
     }
 })
