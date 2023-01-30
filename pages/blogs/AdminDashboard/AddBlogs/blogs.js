@@ -13,9 +13,9 @@ const accountUser = document.getElementById("accountUser");
 const logout = document.getElementById("logout");
 
 
-// if(JSON.parse(localStorage.getItem("blogDataAdd"))===null){
+if(JSON.parse(localStorage.getItem("blogDataAdd"))===null){
     localStorage.setItem("blogDataAdd", JSON.stringify([]));// to restore my key in LS
-// }
+}
 // logout rights
 accountUser.addEventListener("mouseover", ()=>{
     logout.style.display = "flex";
