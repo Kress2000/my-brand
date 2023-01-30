@@ -17,8 +17,10 @@ document.addEventListener('click', () => {
         cursor.classList.remove("expand");
     }, 500)
 })
-email.value = lastUser[0].email;
-passcode.value = lastUser[0].passcode;
+if(lastUser){
+    email.value = lastUser[0].email;
+    passcode.value = lastUser[0].passcode;
+}
 const formData={
     email: email.value,
     passcode: passcode.value,
