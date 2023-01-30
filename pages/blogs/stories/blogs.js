@@ -8,7 +8,7 @@ let numbers = document.querySelectorAll(".number")
 const blogsBox = document.getElementById("blogsBox"); //blogs box
 // Access LS
 const blogDataAdd = JSON.parse(localStorage.getItem("blogDataAdd"));
-
+console.log(blogDataAdd);
 const storyblogsList = blogDataAdd.filter(blog=>blog.category==="Stories"? blog:null)
 const messageEmpty = document.getElementById("messageEmpty");
 // user loggedin 
@@ -62,7 +62,6 @@ if(storyblogsList.length ===0){
 }else{
     messageEmpty.style.display = "none";
 }
-// console.log(storyblogsList);
 storyblogsList.forEach(blog=>{
         blogsBox.innerHTML += `
         <div class="box" onclick="clickedBox(${blog.id})">

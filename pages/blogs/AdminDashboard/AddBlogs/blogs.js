@@ -13,7 +13,9 @@ const accountUser = document.getElementById("accountUser");
 const logout = document.getElementById("logout");
 
 
-
+// if(JSON.parse(localStorage.getItem("blogDataAdd"))===null){
+    localStorage.setItem("blogDataAdd", JSON.stringify([]));// to restore my key in LS
+// }
 // logout rights
 accountUser.addEventListener("mouseover", ()=>{
     logout.style.display = "flex";
@@ -58,9 +60,7 @@ uploadImg.addEventListener("change", (e)=>{
     })
 })
 // submit data to local storage
-if(JSON.parse(localStorage.getItem("blogDataAdd"))===null){
-    localStorage.setItem("blogDataAdd", JSON.stringify([]));// to restore my key in LS
-}
+
 createBlogBtn.addEventListener("click", (e)=>{
     e.preventDefault();
     var regExName = /[a-z][a-z\s]?[0-9]?/gmi;

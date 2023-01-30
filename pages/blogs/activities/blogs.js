@@ -99,7 +99,6 @@ storyblogsList.forEach(blog=>{
         `
     }
 )
-
 function clickedBox (id){ 
    const blog= storyblogsList.filter(blog=>blog.id===id? blog: null);
     if(blog){
