@@ -49,40 +49,27 @@ submitSignUpData.addEventListener("click", (e)=>{
                 // passwords must be equal
                 if(formData.passcode === formData.confirmPass){
                     // when we have the email already
-                    if(users.length !==0){
+                    if(users && users.length !==0){
                         users.forEach(user=>{
                             if(user.email.toLowerCase()===formData.email.toLowerCase()){
                                 alreadyThere.style.display = "flex";
                                 setTimeout(()=>{
                                     alreadyThere.style.display = "none";
                                 }, 2000);
-                            }else{
-                                users.push(formData);
-                                localStorage.setItem("SignedInSuccessfully", JSON.stringify(users));
-                                alertMessage.innerHTML="<p>Success!</p>"
-                                alertMessage.style.display = "flex";
-                                alertMessage.style.backgroundColor = "green";
-                                setTimeout(function () {
-                                    alertMessage.style.display = "none";
-                                    alertMessage.style.backgroundColor = "red";
-                                    alertMessage.innerHTML="<p>Fill the missing fields plz!</p>"
-                                }, 2000); 
-                                window.location.href= "../SignIn/signIn.html";
                             }
                         })
-                    }else if(users.length ===0){
-                        users.push(formData);
-                        localStorage.setItem("SignedInSuccessfully", JSON.stringify(users));
-                        alertMessage.innerHTML="<p>Success!</p>"
-                        alertMessage.style.display = "flex";
-                        alertMessage.style.backgroundColor = "green";
-                        setTimeout(function () {
-                            alertMessage.style.display = "none";
-                            alertMessage.style.backgroundColor = "red";
-                            alertMessage.innerHTML="<p>Fill the missing fields plz!</p>"
-                        }, 2000); 
-                        window.location.href= "../SignIn/signIn.html";
                     }
+                    users.push(formData);
+                    localStorage.setItem("SignedInSuccessfully", JSON.stringify(users));
+                    alertMessage.innerHTML="<p>Success!</p>"
+                    alertMessage.style.display = "flex";
+                    alertMessage.style.backgroundColor = "green";
+                    setTimeout(function () {
+                        alertMessage.style.display = "none";
+                        alertMessage.style.backgroundColor = "red";
+                        alertMessage.innerHTML="<p>Fill the missing fields plz!</p>"
+                    }, 2000); 
+                    window.location.href= "../SignIn/signIn.html";
                 }
                 else{
                 alertMessage.style.display = "flex";
