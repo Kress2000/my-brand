@@ -29,6 +29,7 @@ if(JSON.parse(localStorage.getItem("SignedInSuccessfully"))===null){
 }
 // get form data
 let users = JSON.parse(localStorage.getItem("SignedInSuccessfully")); //accesss LS
+console.log(users)
 submitSignUpData.addEventListener("click", (e)=>{
     e.preventDefault()
     let formData={
@@ -50,6 +51,7 @@ submitSignUpData.addEventListener("click", (e)=>{
                 if(formData.passcode === formData.confirmPass){
                     // when we have the email already
                     if(users && users.length !==0){
+                        console.log(users);
                         users.forEach(user=>{
                             if(user.email.toLowerCase()===formData.email.toLowerCase()){
                                 alreadyThere.style.display = "flex";
