@@ -24,9 +24,9 @@ document.addEventListener('click', () => {
         cursor.classList.remove("expand");
     }, 500)
 })
-// if(JSON.parse(localStorage.getItem("SignedInSuccessfully"))===null){
+if(JSON.parse(localStorage.getItem("SignedInSuccessfully"))===null){
     localStorage.setItem("SignedInSuccessfully",JSON.stringify([]));
-// }
+}
 // get form data
 let users = JSON.parse(localStorage.getItem("SignedInSuccessfully")); //accesss LS
 submitSignUpData.addEventListener("click", (e)=>{
@@ -57,7 +57,7 @@ submitSignUpData.addEventListener("click", (e)=>{
                                     alreadyThere.style.display = "none";
                                 }, 2000);
                             }else{
-                                // users.push(formData);
+                                users.push(formData);
                                 localStorage.setItem("SignedInSuccessfully", JSON.stringify(users));
                                 alertMessage.innerHTML="<p>Success!</p>"
                                 alertMessage.style.display = "flex";
