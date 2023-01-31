@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up Page</title>
+    <link rel="stylesheet" href="./signUp.css">
+    <script src="https://kit.fontawesome.com/ba4ad2d87b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="cursor"><div class="point"></div></div>
+    <section class="signup-section">
+        <h1 class="pageTitle">Sign up page</h1>
+        <form action="" method="post" id="form">
+            <div>
+                <input type="text" placeholder="Full name" id="name" required>
+            </div>
+            <div class="emailcheck">
+                <input type="email" placeholder="Email" id="email" required>
+                <p id="alreadyThere">This email already exists!</p>
+            </div>
+            <div>
+                <input type="password" placeholder="Choose password" id="passcode" required>
+            </div>
+            <div>
+                <input type="password" id="passconfirm" placeholder="Confirm password" required>
+            </div>
+            <button id="submitSignUpData">Submit</button>
+            <div class="haveAcc">
+                <p>Have an account?</p>
+                <a href="../SignIn/signIn.html"> Sign in</a>
+            </div>
+        </form>
+        <div id="alertMessage">
+            <p>Fill the missing fields plz!</p>
+        </div>
+
+    </section>
+    <section class="footer-section">
+        <footer>
+            <div class="footer-logo">
+                <a href="../../index.html"><img src="../../img/logo.png" alt="My Logo" class="logo"></a>
+            </div>
+            <div class="footer-link">
+                <span>
+                    <strong>&copy; <span class="year"></strong>.  All rights reserved
+                </span>
+                <span> made with 
+                    <i class="fa-sharp fa-solid fa-heart"></i> by 
+                    <a href="https://github.com/Kress2000">Nsanzimfura Eric</a>
+                </span>
+            </div>
+        </footer>
+    </section>
+    <script src="./signUp.js"></script>
+</body>
+</html>

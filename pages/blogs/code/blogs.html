@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs page</title>
+    <link rel="stylesheet" href="./blogs.css">
+    <script src="https://kit.fontawesome.com/ba4ad2d87b.js" crossorigin="anonymous"></script>
+</head>
+<body id="body">
+    <div class="cursor"><div class="point"></div></div>
+    <section class="nav">
+        <div class="UserBox">
+            <div id="logo">
+                <i class="fa-solid fa-user"></i>
+                <a href="../../SignIn/signIn.html" id="logout">Logout</a>
+            </div>
+            <div id="credentialsUser">
+                <p id="userName"></p>
+                <p id="userEmail"></p>
+            </div>
+        </div>
+        <div class="blogsBoxLinks">
+            <a href="#" class="story">Web dev</a>
+            <a href="../activities/blogs.html" class="act">activities</a>
+            <a href="../stories/blogs.html" >stories</a>
+        </div>
+    </section>
+    <section class="code-page">
+        <div id="popUp">
+            <button id="backBtn">Back</button>
+            <div id="popupBox">
+            </div>
+            <div id="commentPart">
+                <div id="closeComment">
+                    <i class="fa-solid fa-rectangle-xmark"></i>
+                </div>
+                <form action="#" method="POST" id="formComment">
+                    <textarea name="comment-area" id="comment-area" cols="30" rows="10" placeholder="write your comment here..."></textarea>
+                    <button type="submit" >Post</button>
+                </form>
+            </div>
+        </div>
+        <div class="blogs code" id="code">
+            <h1 class="pageTitle">Web development Blogs</h1>
+            <div class="blogsBox" id="blogsBox">
+                <p id="messageEmpty">No blogs posted yet!</p>
+            </div>
+        </div>
+    </section>
+    <section class="footer-section">
+        <footer>
+            <div class="footer-logo">
+                <a href="../../../index.html"><img src="../../../img/logo.png" alt="My Logo" class="logo"></a>
+            </div>
+            <div class="footer-link">
+                <span>
+                    <strong>&copy; <span class="year"></strong>.  All rights reserved
+                </span>
+                <span> made with 
+                    <i class="fa-sharp fa-solid fa-heart"></i> by 
+                    <a href="https://github.com/Kress2000">Nsanzimfura Eric</a>
+                </span>
+            </div>
+        </footer>
+    </section>
+    <script src="blogs.js"></script>
+</body>
+</html>

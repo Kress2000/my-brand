@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;1,900&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;1,900&family=Varela+Round&display=swap');
+
+*{
+    box-sizing: border-box;
+    list-style: none;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: .4rem;
+}
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 2px rgb(0, 255, 255); 
+    border-radius: .5rem;
+}
+  ::-webkit-scrollbar-thumb {
+      background: var(--btn-bg); 
+      border-radius: .5rem;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--purple); 
+    transition: var(--transition);
+}
+:root {
+    --purple: #ff00ae;
+    --white: #ffffff;
+    --pale-white: hsla(0, 0%, 100%, .6);
+    --btn-bg: #A40FFF;
+    --cursor-bg: #00D1FF;
+    --btn-bgopacity: hsla(277, 100%, 53%, .3);
+    --bg: rgba(32, 41, 59, 0.992);
+    --whiteopc: hsla(0, 0%, 100%, .5);
+    --transition: all .5s ease-in-out;
+    --cursor: url("../../img/cursorPointer.svg"), auto;
+    --btmBorder: 10px solid #A40FFF;
+    --ffamilyH1: 'Varela Round', sans-serif;
+    --fsizeTitle: 4rem;
+  }
+body{
+    background: var(--bg);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 3rem;
+}
+.signup-section{
+    min-height: 100vh;
+}
+#alertMessage{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    background: red;
+    border-radius: 1rem;
+    padding: 2rem auto;
+    color: white;
+    z-index: 30;
+    top: 40%;
+    left: 2rem;
+    min-height: 20vh;
+    right: 2rem;
+}
+/* cursor */
+.cursor {
+    width: 25px;
+    height: 25px;
+    border: 1px solid var(--cursor-bg);
+    border-radius: 50%;
+    position: absolute;
+    transition-duration: 200ms;
+    transition-timing-function: ease-out;
+    animation: cursorAnim .5s infinite alternate;
+    pointer-events: none;
+    z-index: 99000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.point{
+    width: 5px;
+    height: 5px;
+    background-color: var(--cursor-bg);
+    border-radius: 50%;
+}
+@keyframes cursorAnim {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(.7);
+    }
+}
+.expand {
+    animation: cursorAnim3 .5s forwards;
+    border: 1px solid var(--cursor-bg);
+}
+@keyframes cursorAnim3 {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(2);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+.pageTitle{
+    font-family: var(--ffamilyH1);
+    font-size: 3rem;
+    padding: 1rem 0  0 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+form{
+    height: max-content;
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 2rem;
+    border: 1px solid var(--white);
+    padding: 2rem;
+}
+form >div{
+    min-height: 7vh;
+    width: 100%;
+    overflow: hidden;
+}
+form >div input{
+    width: 100%;
+    padding: .5rem;
+    border-radius: 1rem;
+    background: hsla(0, 0%, 100%, .5);
+    padding-left: 1rem;
+    box-shadow: none;
+
+    border: 1px solid transparent;
+}
+form >div input::placeholder{
+    color: var(--bg)
+}
+form >div input:focus{
+    box-shadow: none;
+    border: 1px solid var(--btn-bg);
+    color: var(--btn-bg);
+    font-weight: bold;
+}
+form button{
+    padding: .5rem;
+    background-color: var(--btn-bg);
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: .5rem; 
+    border: 1px solid transparent;  
+    cursor: var(--cursor);
+    margin-top: 2rem;
+    transition: var(--transition);
+    margin-bottom: 1rem;
+
+}
+form button:hover{
+    background: var(--bg);
+    color: var(--white);
+    border: 1px solid var(--white);
+
+}
+#alreadyThere{
+    position: fixed;
+    z-index: 50;
+    color: white;
+    background-color: red;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 30vw;
+    left: 55vw;
+    top: 35vh;
+    border-radius: .5rem;
+}
+.haveAcc{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
+    font-size: small;
+}
+.haveAcc a{
+    cursor: var(--cursor);
+    margin-left: .5rem;
+    color: var(--btn-bg);
+    text-decoration: none;
+    transition: var(--transition);
+}
+.haveAcc a:hover{
+    text-decoration: underline;
+    text-decoration-color: #00D1FF;
+}
+
+/* --- FOOTER SECTION ---*/
+ .footer-section{
+    background: #12121E;
+    margin: 0;
+    width: 100%;
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+}
+.footer-logo a{
+    cursor: var(--cursor);
+}
+.footer-section footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+.footer-section footer .footer-link{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+.footer-section footer .footer-link a{
+    cursor: var(--cursor);
+    color: var(--cursor-bg);
+    text-decoration: none;
+}
+.footer-section footer .footer-link a:hover{
+    text-decoration: underline;
+    text-decoration-color: #A40FFF;
+}
+.fa-sharp{
+    color: #00D1FF;
+}
+.footer-section{
+    width: 100vw;
+}
+
+@media  screen and ( max-width: 600px) {
+    body{
+        overflow: hidden;
+    }
+    .pageTitle{
+        font-size: 2rem;
+        width: 80vw;
+    }
+    form{
+        width: 90vw;
+        margin: calc(100vw - 90vw);
+    }
+    body{
+        padding: 0 1rem;
+        padding-top: 2rem;
+    }
+  
+    }
+
+    

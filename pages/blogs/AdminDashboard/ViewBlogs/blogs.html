@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs Admin page</title>
+    <link rel="stylesheet" href="./blogs.css">
+    <script src="https://kit.fontawesome.com/ba4ad2d87b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="cursor"><div class="point"></div></div>
+    <section class="blogs-Admin-page">
+        <div class="nav-box">
+            <div class="account">
+                <div id="accountUser">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <strong>Admin</strong>
+                <a href="../../../SignIn/signIn.html" id="logout">Log out</a>
+            </div>
+            <div class="blogsActions">
+                <a href="../AddBlogs/blogs.html" id="addBlogsLink">Add a blog</a>
+                <a href="#">View blogs</a>
+            </div>
+        </div>
+        <div class="viewBlogsBox">
+            <h3>Uploaded blogs</h3>
+            <div class="mix-listbox" id="mix-listbox">
+                <div id="tvBarBlogEdit" class="tvBarBlogEdit">
+                    <form action="" method="get" class="formEditable" id="formEditable">
+                        <div class="blogsBox" id="blogsBoxFormEdit">
+                           
+                        </div>
+                        <div class="editActiionsForm">
+                            <button id="cancelEditAction">Cancel</button>
+                            <button id="saveEditAction">Save</button>
+                        </div>
+                    </form>
+                </div>
+                <div id="messageSave"><p>Saved Successfully</p></div>
+                <div id="messageDelete">
+                    <div class="messageDelBox">
+                        <p>Are you sure, you want to delete this blog?</p>
+                        <div class="btnDelBox">
+                            <button id="NoBtn">No</button>
+                            <button id="YesBtn">Yes</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="code-list list-category">
+                    <div class="directionBox">
+                        <h4>Code category</h4>
+                        <a href="../../code/blogs.html" class="viewdisplay">View</a>
+                    </div>
+                    <p id="emptyCode">No content</p>
+                    <div class="listbox" id="blogsCode"></div>
+                    <button id="viewListCode" class="viewListBtn">View all</button>
+                    <button id="viewLessCode" class="viewListBtn">View less</button>
+                </div>
+                <div class="Activity-list list-category">
+                    <div class="directionBox">
+                        <h4>Activities category</h4>
+                        <a href="../../activities/blogs.html" class="viewdisplay">View</a>
+                    </div>
+                    <p id="emptyAct">No content</p>
+                    <div class="listbox" id="blogsActivity"></div>
+                    <button id="viewListActivity" class="viewListBtn">View all</button>
+                    <button id="viewLessActivity" class="viewListBtn">View less</button>
+                </div>
+                <div class="story-list list-category" >
+                    <div class="directionBox">
+                        <h4>Stories category</h4>
+                        <a href="../../stories/blogs.html" class="viewdisplay">View</a>
+                    </div>
+                    <p id="emptyStory">No content</p>
+                    <div class="listbox" id="blogsStory"></div>
+                    <button id="viewListStory" class="viewListBtn">View all</button>
+                    <button id="viewLessStory" class="viewListBtn">View less</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section class="footer-section">
+        <footer>
+            <div class="footer-logo">
+                <a href="../../../../index.html"><img src="../../../../img/logo.png" alt="My Logo" class="logo"></a>
+            </div>
+            <div class="footer-link">
+                <span>
+                    <strong>&copy; <span class="year"></strong>.  All rights reserved
+                </span>
+                <span> made with 
+                    <i class="fa-sharp fa-solid fa-heart"></i> by 
+                    <a href="https://github.com/Kress2000">Nsanzimfura Eric</a>
+                </span>
+            </div>
+        </footer>
+    </section>
+
+    <script src="./blogs.js"></script>
+</body>
+</html>
