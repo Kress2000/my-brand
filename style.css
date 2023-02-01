@@ -18,7 +18,7 @@
     --bg: rgba(32, 41, 59, 0.992);
     --whiteopc: hsla(0, 0%, 100%, .5);
     --transition: all .5s ease-in-out;
-    --cursor: url("./img/cursorPointer.svg"), auto;
+    --cursor: url("./UI/img/cursorPointer.svg"), auto;
     --btmBorder: 10px solid #A40FFF;
     --ffamilyH1: 'Varela Round', sans-serif;
     --fsizeTitle: 4rem;
@@ -27,7 +27,7 @@
 body{
     background: rgba(32, 41, 59, 0.992);
     color: var(--white);
-    cursor: url("./img/cursor.svg"), auto;
+    cursor: url("./UI/img/cursor.svg"), auto;
 }
 /* cursor */
 .cursor {
@@ -242,7 +242,7 @@ body{
     width: 20vh;
     border-radius: 50%;
     margin: 0 0 0 15%;
-    background:  url("./img/bg-glow.svg") no-repeat;
+    background:  url("/UI/img/bg-glow.svg") no-repeat;
     background-size: cover;
 }
 .homepage-boxes .glowing-box .glowing{
@@ -903,33 +903,6 @@ height: 100%;
     inset: 0;
     border-radius: 2rem;
 }
-/* .sent-mails> div .email{
-    display: flex;
-    margin-bottom: 1rem;
-    justify-content: flex-start;
-    align-items: flex-end;
-    width: fit-content;
-    border-radius: 1rem;
-    padding: .2rem;
-    border-bottom: 1px solid hsla(0, 0%, 100%, .3);
-}
-.sent-mails> div .email strong{
-    font-weight: bolder;
-    opacity: .6;
-}
-.sent-mails> div .email img{
-    width: 4rem;
-    height: 4rem;
-    border-radius: 50%;
-    border: 1px solid var(--btn-bg);
-    margin-right: 1rem;
-}
-.sent-mails> div p{
-    opacity: .3;
-    display: flex;
-    flex-shrink: 1;
-    flex-wrap: wrap;
-} */
 
 .way-to-footer{
     height: 5vh;

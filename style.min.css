@@ -9,7 +9,7 @@
         --bg: rgba(32, 41, 59, 0.992);
         --whiteopc: hsla(0, 0%, 100%, .5);
         --transition: all .5s ease-in-out;
-        --cursor: url("./img/cursorPointer.svg"), auto;
+        --cursor: url("./UI/img/cursorPointer.svg"), auto;
         --fsizeTitleMini: 2rem;
       }
       
