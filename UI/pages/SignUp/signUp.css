@@ -46,6 +46,7 @@ body{
     justify-content: flex-start;
     align-items: center;
     padding-top: 3rem;
+    cursor: url("../../img/cursor.svg"), auto;
 }
 .signup-section{
     min-height: 100vh;

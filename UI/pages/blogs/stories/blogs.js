@@ -190,18 +190,19 @@ function clickedBox (id){
                 `
             // allow only the poster tio delete his comments 
             let deleteComentBtn = document.getElementById(`${commentId}`);
-                if(comment.user===user[0].email ||user[0].email==="erickykress1@gmail.com"){
+                if(comment.user===user.email ||user.email==="erickykress1@gmail.com"){
                     deleteComentBtn.style.display = "flex"; //allow to delete
                 }else{
                     deleteComentBtn.style.display = "none"; //can not able to delete
                 }
         });
+        console.log(user)
         //add comment
         formComment.onsubmit=(e)=>{
             e.preventDefault();
             if(commentedText.value){
                 const commentObj={
-                    user: user[0].email,
+                    user: user.email,
                     comment: commentedText.value
                 }
                 //bring LS bloga data and change comments
