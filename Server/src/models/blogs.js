@@ -18,20 +18,17 @@ const blog =  mongoose.model("blogs",
             required: true
         },
         time: {
-            type: String,
-            required: true
+            type: Date,
+            default: Date.now
         },
         comments: {
-            type: String,
-            required: true
+            type: Array,
         },
         likes: {
             type: Number,
-            required: true
         },
         views: {
             type: Number,
-            required: true
         }
     }
 )

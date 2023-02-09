@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
-const url = 'mongodb+srv://my-brand:kress123@cluster0.638azsu.mongodb.net/my-brand';
+// const url = 'mongodb+srv://my-brand:kress123@cluster0.638azsu.mongodb.net/my-brand';
+const db= require('./keys').mongoUri;
 const connectToDb = async ()=>{
     try{
-        const conn = await mongoose.connect(url, {
+        const conn = await mongoose.connect(db, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
