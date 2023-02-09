@@ -18,6 +18,7 @@ module.exports.users_get = (req, res)=>{
             console.log(err)
         }
     })
+    // res.render('/login')
 }
 //save the users as they sign in
 module.exports.users_add= (req, res)=>{
