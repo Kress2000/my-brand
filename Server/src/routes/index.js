@@ -14,6 +14,6 @@ router.get('/blogs', ensureAuthenticated, (req, res) =>
   //   user: req.user
   // })
   res.status(200).json({message: "Dashboard"})
-);
+);``
 
 module.exports = router;

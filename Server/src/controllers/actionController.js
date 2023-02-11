@@ -53,7 +53,6 @@
 //         res.status(500).send('Error! Something went wrong');
 //     }
 // }
-
 require("dotenv").config();
 const express = require("express");
 const app = express();
@@ -67,7 +66,7 @@ const passport = require("passport");
 const { user } = require("../models/users");
 const User = user;
 const jwt = require("jsonwebtoken");
-const e = require("connect-flash");
+// const e = require("connect-flash");
 app.use(bodyParser.json());
 
 // Register
@@ -114,13 +113,6 @@ module.exports.signup_post = async (req, res) => {
                                     password: harshedpassword,
                                     email: email
                                 })
-        //  new User({
-        //   name,
-        //   email,
-        //   password: harshedpassword,
-        // });
-
-
         const token = await jwt.sign(
           { email: newUser.email, id: newUser._id },
           ACCESS_TOKEN_SECRET,
@@ -146,6 +138,9 @@ module.exports.login_post = async (req, res, next) => {
   if (existingUser) {
     const matchPassords = await bcrypt.compare(password, existingUser.password);
     if (matchPassords) {
+      req.body.email = existingUser.email;
+      console.log(req.body.email)
+
       if(email.toLowerCase() === 'erickykress1@gmail.com'){
         const token = await jwt.sign(
           { email: existingUser.email, id: existingUser._id },
