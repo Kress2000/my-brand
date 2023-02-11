@@ -6,7 +6,6 @@ app.use(express.json());
 const bodyParser = require('body-parser');
 app.use(express.urlencoded());
 app.use(bodyParser.json());
-const jwt = require('jsonwebtoken');
 app.use(express.json());
 
 // getting all users api
@@ -20,27 +19,6 @@ module.exports.users_get = (req, res)=>{
     })
     // res.render('/login')
 }
-//save the users as they sign in
-module.exports.users_add= (req, res)=>{
-    // const pss = req.body.password;
-    // const tkn = jwt.sign(pss, process.env.ACCESS_TOKEN_SECRET, {expiresIn: "30min"})
-    // const userPass= res.json(tkn);
-    // console.log(userPass)
-    
-    const newUser = new user({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-        location: req.body.location
-    })
-    newUser.save((err, data)=>{
-        res.status(201).json({
-            code: 201, 
-            message: "Account created", 
-            newUser: data
-        })
-    })
-}
 //get single user basing on his id
 module.exports.users_getOne= (req, res)=>{
     user.findById(req.params.id, (err, data)=>{
@@ -49,7 +27,6 @@ module.exports.users_getOne= (req, res)=>{
 }
 //Update single user basing on his id
 module.exports.users_update= (req, res)=>{
-    
     const updatedUser={
         name: req.body.name,
         email: req.body.email,

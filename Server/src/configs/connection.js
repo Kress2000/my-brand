@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-// const url = 'mongodb+srv://my-brand:kress123@cluster0.638azsu.mongodb.net/my-brand';
 const db= require('./keys').mongoUri;
 const connectToDb = async ()=>{
     try{
