@@ -1,5 +1,3 @@
-require('./blogSwagger')
-
 require("dotenv").config();
 const express = require("express");
 const router = express.Router();
@@ -27,7 +25,6 @@ const storage = multer.diskStorage({
 });
 
 // authAdmin(["erickykress1@gmail.com"]) //check if yuo are admin
-// authUser // check to see if you have signed in;
 // const upload = multer({dest: '../../uploadedImg'});
 const upload = multer({ storage: storage });
 // Login Page

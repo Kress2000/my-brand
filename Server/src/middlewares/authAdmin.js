@@ -19,6 +19,7 @@ const authAdmin = (Permissions) => {
       next();
     } else {
       res.status(401).json({ Error: "Not authorized! Only Admin" });
+      // next();
     }
   };
 };

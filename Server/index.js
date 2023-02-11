@@ -1,7 +1,7 @@
 require("dotenv").config();
 const connectToDb = require("./src/configs/connection");
 const express = require("express");
-const router = require("./src/routes/blogs");
+const router = require("./src/routes/routers");
 const app = express();
 app.use(express.json());
 const expressLayouts = require("express-ejs-layouts");
@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 const path = require("path");
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
+swaggerDocument = require('./swagger.json');
 
 //port
 const PORT = process.env.PORT || 3000;
@@ -32,13 +33,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 // Passport Config
 require("./src/configs/passport")(passport);
-//middlewares
-// app.use('/css', express.static(__dirname + '/UI'));
-// app.use('/js', express.static(__dirname + '/UI'));
-// app.use('/img', express.static(__dirname + '/UI'));
-// app.use('/pages', express.static(__dirname + '/UI'));
-// //set static engines
-
 app.use(expressLayouts);
 app.set("view engine", "ejs");
 //bodyParser --
@@ -65,46 +59,10 @@ app.use(function (req, res, next) {
   res.locals.error = req.flash("error");
   next();
 });
-const options = {
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "LogRocket Express API with Swagger",
-      version: "0.1.0",
-      description:
-        "This is a simple CRUD API application made with Express and documented with Swagger",
-      license: {
-        name: "MIT",
-        url: "https://spdx.org/licenses/MIT.html",
-      },
-      contact: {
-        name: "LogRocket",
-        url: "https://logrocket.com",
-        email: "info@email.com",
-      },
-    },
-    servers: [
-      {
-        url: "http://localhost:3000",
-      },
-    ],
-  },
-  apis: ["./routes/*.js"],
-};
-const specs = swaggerJsdoc(options);
 app.use(
-  "/api-docs",
-  swaggerUi.serve,
-  swaggerUi.setup(specs, { explorer: true })
-);
-app.use(
-  "/api-docs",
-  swaggerUi.serve,
-  swaggerUi.setup(specs, {
-    explorer: true,
-    customCssUrl:
-      "https://cdn.jsdelivr.net/npm/swagger-ui-themes@3.0.0/themes/3.x/theme-newspaper.css",
-  })
+  '/api-docs',
+  swaggerUi.serve, 
+  swaggerUi.setup(swaggerDocument)
 );
 app.listen(PORT, () => console.log("connected!"));
 module.exports = app;

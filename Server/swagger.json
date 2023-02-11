@@ -1,0 +1,294 @@
+{
+  "swagger": "3.0.0",
+  "openapi": "3.0.0",
+  "info": {
+    "title": "My brand's Express API with Swagger",
+    "version": "0.1.0",
+    "description": "Swagger documentstion of my-brand CRUD API app",
+    "license": {
+      "name": "MIT",
+      "url": "https://spdx.org/licenses/MIT.html"
+    },
+    "contact": {
+      "name": "Nsanzimfura Eric",
+      "url": "https://kress2000.github.io/my-brand/",
+      "email": "erickykress1@email.com",
+      "tel": "0780088171"
+    }
+  },
+  "apis": ["./src/routes/*.js"],
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "API for users in the DB"
+    },
+    {
+      "name": "blogs",
+      "description": "API for blogs Posted"
+    }
+  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+
+  "paths": {
+    "/mybrand/signup": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Create new account/User in system",
+        "description": "Create new account/User in system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/mybrand/api/users": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get all users in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Users"
+            }
+          }
+        }
+      }
+    },
+    "/mybrand/api/users/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of user that we want to find",
+          "type": "string"
+        }
+      ],
+      "delete": {
+        "summary": "Delete user with given ID",
+        "tags": ["Users"],
+        "responses": {
+          "200": {
+            "description": "User is deleted",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update user with give ID",
+        "tags": ["Users"],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/updateUser"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Changes accepted",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/mybrand/api/blogs/add": {
+      "post": {
+        "tags": ["blogs"],
+        "summary": "Create new blog in DB",
+        "description": "Create new blog in DB",
+        "parameters": [
+          {
+            "title": "blog",
+            "in": "body",
+            "description": "blog that we want to create",
+            "schema": {
+              "$ref": "#/definitions/blog"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "New blog is created",
+            "schema": {
+              "$ref": "#/definitions/blog"
+            }
+          }
+        }
+      }
+    },
+    "/mybrand/api/blogs": {
+      "get": {
+        "tags": ["blogs"],
+        "summary": "Get all blogs in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/blogs"
+            }
+          }
+        }
+      }
+    },
+    "/mybrand/api/blogs/{id}": {
+      "parameters": [
+        {
+          "title": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of blog that we want to find",
+          "type": "string"
+        }
+      ],
+      "delete": {
+        "summary": "Delete blog with given ID",
+        "tags": ["blogs"],
+        "responses": {
+          "200": {
+            "description": "Blog is deleted",
+            "schema": {
+              "$ref": "#/definitions/blog"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update blog with give ID",
+        "tags": ["blogs"],
+        "parameters": [
+          {
+            "title": "blog",
+            "in": "body",
+            "description": "blog with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/updateBlog"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Changes accepted",
+            "schema": {
+              "$ref": "#/definitions/blog"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "required": ["name", "email", "password", "confirmPass", "_id"],
+      "properties": {
+        "_id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "isPublic": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "confirmPass": {
+          "type": "string"
+        }
+      }
+    },
+    "updateUser": {
+      "required": ["name", "email"],
+      "properties": {
+        "isPublic": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "Users": {
+      "type": "array",
+      "$ref": "#/definitions/User"
+    },
+    "blog": {
+      "required": ["title", "description", "img", "_id"],
+      "properties": {
+        "_id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "isPublic": {
+          "type": "boolean"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "img": {
+          "type": "file"
+        }
+      }
+    },
+    "updateBlog": {
+      "required": ["title", "description", "img"],
+      "properties": {
+        "isPublic": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "img": {
+          "type": "file"
+        }
+      }
+    },
+    "blogs": {
+      "type": "array",
+      "$ref": "#/definitions/blog"
+    }
+  }
+}

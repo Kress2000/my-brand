@@ -79,10 +79,9 @@ module.exports.signup_post = async (req, res) => {
   if (password != confirmPass) {
     errors.push({ msgNotMatch: "Passwords do not match" });
   }
-  if (password.length < 6) {
+  if (password && password.length < 6) {
     errors.push({ msgShort: "Password must be at least 6 characters" });
   }
-
   if (errors.length > 0) {
     res.status(500).json({error: errors});
     // return res.render("signup", {
