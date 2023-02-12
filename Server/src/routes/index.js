@@ -5,7 +5,7 @@ const { ensureAuthenticated, forwardAuthenticated } = require('../configs/auth')
 // Welcome Page
 router.get('/', forwardAuthenticated, (req, res) => {
   res.status(200).send({"message": "Welcome home!"});
-  // return res.render('index.ejs')
+  // return res.render('index')
 });
 
 // Dashboard
