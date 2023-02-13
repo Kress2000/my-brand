@@ -1,3 +1,5 @@
+
+
 require("dotenv").config();
 process.env.DB_URL = "test";
 const app = require("../../index");
@@ -7,13 +9,75 @@ var chaiHttp = require("chai-http");
 const request = require("supertest");
 chai.use(chaiHttp);
 let should = chai.should();
-const authAdmin = require("../middlewares/authAdmin");
-let userAdmin = {
-  email: "erickress1@gmail.com",
-  password: "kress123",
-};
+const router = require("../routes/routers");
 
-//testing Routes -------
+describe("users API", () => {
+  it("should Register user, login user, check token and delete a todo on /api/<id> DELETE", function (done) {
+    chai
+      .request(app)
+      // register request
+      .post("/mybrand/signup")
+      // send user registration details
+      .send({
+        name: "nsanzimfura erick",
+        email: "erickykress1@gmail.com",
+        password: "kress123",
+        confirmPass: "kress123",
+      })
+      .end((err, res) => {
+        res.should.have.status(201);
+        // follow up with login
+        chai
+          .request(app)
+          .post("/mybrand/login")
+          // send user login details
+          .send({
+            email: "erickykress1@gmail.com",
+            password: "kress123",
+          })
+          .end((err, res) => {
+            res.body.should.have.property("token");
+            var token = res.body.token;
+            // follow up with requesting user protected page
+            chai
+              .request(app)
+              .get("/mybrand/api/users")
+              .end(function (err, res) {
+                res.body.should.have.property("message"); //get all users
+                res.should.have.status(200);
+                res.should.be.a("array");
+                chai
+                  .request(app)
+                  .delete(`/${res.body[0]._id}`) //DEELEETE user
+                  .set("Authorization", "JWT " + token)
+                  .end(function (error, resonse) {
+                    resonse.should.have.status(200);
+                    resonse.body.should.have.property("message");
+                    done();
+                  })
+                  .put(`/${res.body[1]._id}`) //UPDATE USER
+                  // we set the auth header with our token
+                  .set("Authorization", "JWT " + token)
+                  .end(function (error, resonse) {
+                    resonse.should.have.status(202);
+                    resonse.body.should.have.property("message");
+                    done();
+                  })
+                  .get(`/${res.body[1]._id}`) //get one USER
+                  .set("Authorization", "JWT " + token)
+                  .end(function (error, resonse) {
+                    resonse.should.have.status(200);
+                    resonse.body.should.have.property("message");
+                    resonse.body.should.be.a("object");
+                    done();
+                  });
+              });
+            done();
+          });
+      });
+    done();
+  });
+});
 describe("Users Routes test", () => {
   it("should let admin get all users when authorized and signes in", (done) => {
     chai
@@ -71,3 +135,4 @@ describe("Users Routes test", () => {
       });
   });
 });
+

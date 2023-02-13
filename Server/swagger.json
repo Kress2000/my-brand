@@ -37,19 +37,28 @@
     "/mybrand/signup": {
       "post": {
         "tags": ["Users"],
+        "requestBody":[
+          {
+            "required": true,
+              "name":  "Trillian",
+              "email": "Tricia",
+              "password":  "McMillan",
+              "confirmPass":  "McMillan"
+          }
+        ],
         "summary": "Create new account/User in system",
         "description": "Create new account/User in system",
         "parameters": [
           {
-            "name": "user",
+            "name": "User",
             "in": "body",
             "description": "User that we want to create",
             "schema": {
+              "type": "object",
               "$ref": "#/definitions/User"
             }
           }
         ],
-        "produces": ["application/json"],
         "responses": {
           "201": {
             "description": "New user is created",
@@ -60,10 +69,38 @@
         }
       }
     },
+    "/mybrand/login": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Log into the system",
+        "description": "Be an active user in system",
+        "parameters": [
+          {
+            "name": "User",
+            "in": "body",
+            "description": "active user",
+            "schema": {
+              "$ref": "#/definitions/login"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Logged in successfully",
+            "schema": {
+              "$ref": "#/definitions/login"
+            }
+          },
+          "404": {
+            "description": "No user found"
+          }
+        }
+      }
+    },
     "/mybrand/api/users": {
       "get": {
         "tags": ["Users"],
-        "summary": "Get all users in system",
+        "summary": "Get all users from DB",
         "responses": {
           "200": {
             "description": "OK",
@@ -82,9 +119,22 @@
           "required": true,
           "description": "ID of user that we want to find",
           "type": "string"
+        },
+        {
+          "name": "name",
+          "in": "body",
+          "description": "Sign in Fist",
+          "schema": {
+            "$ref": "#/definitions/User"
+          }
         }
       ],
       "delete": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Delete user with given ID",
         "tags": ["Users"],
         "responses": {
@@ -93,10 +143,18 @@
             "schema": {
               "$ref": "#/definitions/User"
             }
+          },
+          "404": {
+            "description": "Not found"
           }
         }
       },
       "put": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Update user with give ID",
         "tags": ["Users"],
         "parameters": [
@@ -115,12 +173,20 @@
             "schema": {
               "$ref": "#/definitions/User"
             }
+          },
+          "404": {
+            "description": "Not found"
           }
         }
       }
     },
     "/mybrand/api/blogs/add": {
       "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "tags": ["blogs"],
         "summary": "Create new blog in DB",
         "description": "Create new blog in DB",
@@ -147,6 +213,11 @@
     },
     "/mybrand/api/blogs": {
       "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "tags": ["blogs"],
         "summary": "Get all blogs in system",
         "responses": {
@@ -170,6 +241,11 @@
         }
       ],
       "delete": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Delete blog with given ID",
         "tags": ["blogs"],
         "responses": {
@@ -178,10 +254,18 @@
             "schema": {
               "$ref": "#/definitions/blog"
             }
+          },
+          "404": {
+            "description": "Not found"
           }
         }
       },
       "put": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Update blog with give ID",
         "tags": ["blogs"],
         "parameters": [
@@ -200,22 +284,40 @@
             "schema": {
               "$ref": "#/definitions/blog"
             }
+          },
+          "404": {
+            "description": "Not found"
           }
         }
       }
     }
   },
+
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  
   "definitions": {
-    "User": {
-      "required": ["name", "email", "password", "confirmPass", "_id"],
+    "login": {
+      "required": ["email", "password"],
       "properties": {
-        "_id": {
-          "type": "string",
-          "uniqueItems": true
+        "email": {
+          "type": "string"
         },
-        "isPublic": {
-          "type": "boolean"
-        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "User": {
+      "required": ["name", "email", "password", "confirmPass"],
+      "properties": {
         "name": {
           "type": "string"
         },

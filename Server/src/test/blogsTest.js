@@ -9,158 +9,77 @@ chai.use(chaiHttp);
 let should = chai.should();
 const router = require("../routes/routers");
 
-
-//testing Routes -------
-describe("Routes test", () => {
-  it("should let admin get all blogs when authorized", (done) => {
+describe("Blogs API", () => {
+  it("should Register user, login user, check token and delete a todo on /api/<id> DELETE", function (done) {
     chai
       .request(app)
-      .get("/mybrand/api/blogs")
+      // register request
+      .post("/mybrand/signup")
+      // send user registration details
+      .send({
+        name: "nsanzimfura erick",
+        email: "erickykress1@gmail.com",
+        password: "kress123",
+        confirmPass: "kress123",
+      })
       .end((err, res) => {
-        if (res.status === 401) {
-          res.should.have.status(401); //not authorized
-          res.body.should.be.a("object");
-        } else {
-          res.should.have.status(200); //authorize and successful
-          res.body.should.be.a("array");
-        }
-        done();
+        res.should.have.status(201);
+        // follow up with login
+        chai
+          .request(app)
+          .post("/mybrand/login")
+          // send user login details
+          .send({
+            email: "erickykress1@gmail.com",
+            password: "kress123",
+          })
+          .end((err, res) => {
+            res.body.should.have.property("token");
+            var token = res.body.token;
+            // follow up with requesting user protected page
+            chai
+              .request(app)
+              .get("/mybrand/api/blogs")
+              .end(function (err, res) {
+                res.body.should.have.property("message"); //get all blogs
+                res.should.have.status(200);
+                res.should.be.a('array');
+                chai
+                  .request(app)
+                  .delete(`/${res.body[0]._id}`) //DEELEETE
+                  .set("Authorization", "JWT " + token)
+                  .end(function (error, resonse) {
+                    resonse.should.have.status(200);
+                    resonse.body.should.have.property("message");
+                    done();
+                  })
+                  .put(`/${res.body[1]._id}`)  //UPDATE
+                  // we set the auth header with our token
+                  .set("Authorization", "JWT " + token)
+                  .end(function (error, resonse) {
+                    resonse.should.have.status(202);
+                    resonse.body.should.have.property("message");
+                    done();
+                  })
+                  .post("/add")  //ADD NEW
+                  // we set the auth header with our token
+                  .set("Accept", "application/json")
+                  .send({
+                    title: "Blog title",
+                    description: "Blog Description",
+                    img: "url",
+                    category: "category",
+                  })
+                  .end(function (error, resonse) {
+                    if(err) throw err;
+                    resonse.should.have.status(201);
+                    resonse.body.should.have.property("message");
+                    done();
+                  });
+              });
+            done();
+          });
       });
+    done();
   });
-  it("it Should delete a blog", (done) => {
-    request(app)
-      .delete("/mybrand/api/blogs/:id")
-      .end((err, res) => {
-        if (res.status === 401) {
-          res.should.have.status(401); //not authorized
-          res.body.should.be.a("object");
-        } else {
-          if(res.body){
-            res.should.have.status(202); //authorize and successful
-            res.body.should.be.a("object");
-          }
-        }
-        done();
-      });
-  });
-
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//test libraries
-
-//Our parent block
-// describe('Books', () => {
-//     beforeEach((done) => { //Before each test we empty the database
-//         user.remove({}, (err) => {
-//            done();
-//         });
-//     });
-// /*
-//   * Test the /GET route
-//   */
-//   describe('/GET user', () => {
-//       it('it should GET all the users', (done) => {
-//         request(userController)
-//             .get('/api/users')
-//             .end((err, res) => {
-//                   res.should.have.status(200);
-//                   res.body.email.should.be.a('string');
-//                 //   res.body.length.should.be.eql(0);
-//                 done();
-//               });
-//       });
-//   });
-
-// });
-
-// // API tests
-// describe("POST /api/blogs/add", function () {
-//   it("Adds a blog", function (done) {
-//     request(blogsController)
-//       .post("api/blogs/add")
-//       .set("Accept", "application/json")
-//       .send({
-//         title: "Blog title",
-//         description: "Blog Description",
-//         img: "url",
-//         category: "category",
-//       })
-//       .expect(201)
-//       .end((err, res) => {
-//         if (err) throw err;
-//         done();
-//       });
-//   });
-// });
-// //get all blogs
-// describe("GET /api/blogs", function () {
-//   it("List all blogs", function (done) {
-//     request(blogsController)
-//       .get("/api/blogs")
-//       .set("Accept", "application/json")
-//       .expect(200)
-//       .end((err, res) => {
-//         if (err) throw err;
-//         done();
-//       });
-//   });
-// });
-// //get single blog
-// describe("GET /api/blogs/:id", function () {
-//   it("Gets a particular blog", function (done) {
-//     request(blogsController)
-//       .get("/api/blogs/:id")
-//       .set("Accept", "application/json")
-//       .expect(200)
-//       .end((err, res) => {
-//         if (err) throw err;
-//         done();
-//       });
-//   });
-// });
-// //update a blog
-// describe("PUT /api/blogs/:id", function () {
-//   it("Updates a particular a blog", function (done) {
-//     request(blogsController)
-//       .put("/api/blogs/:id")
-//       .set("Accept", "application/json")
-//       .send({
-//         title: "Blog title",
-//         description: "Blog Description",
-//         img: "url",
-//         category: "category",
-//       })
-//       .expect(200)
-//       .end((err, res) => {
-//         if (err) throw err;
-//         done();
-//       });
-//   });
-// });
-// // delete a blog
-// describe("DELETE /api/blogs/:id", function () {
-//   it("Deletes a particular blog", function (done) {
-//     request(blogsController)
-//       .delete("/api/blogs/:id")
-//       .expect(200)
-//       .end((err, res) => {
-//         if (err) throw err;
-//         done();
-//       });
-//   });
-// });

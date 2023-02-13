@@ -1,3 +1,4 @@
+"use strict";
 require("dotenv").config();
 const express = require("express");
 const router = express.Router();
@@ -55,17 +56,13 @@ router.get(
 router.put("/api/users/:id", userController.users_update); //updated one
 router.delete("/api/users/:id", userController.users_delete); // delete one
 //blogs
-router.get(
-  "/api/blogs",
-  authAdmin(["erickykress1@gmail.com"]),
-  blogsController.blog_get
-); //get all
-router.get(
+router.get("/api/blogs", blogsController.blog_get); //get all
+router.get("/api/blogs/:id", blogsController.blog_getOne); //get single
+router.put(
   "/api/blogs/:id",
   authAdmin(["erickykress1@gmail.com"]),
-  blogsController.blog_getOne
-); //get single
-router.put("/api/blogs/:id", blogsController.blog_update); //updated one
+  blogsController.blog_update
+); //updated one
 router.delete(
   "/api/blogs/:id",
   authAdmin(["erickykress1@gmail.com"]),
@@ -76,14 +73,14 @@ router.post(
   "/api/blogs/add",
   upload.single("image"),
   async (req, res, next) => {
-    console.log(req.file);
     const { title, description, category } = req.body;
+    console.log(res.body.img, req.files, "got the shite");
     try {
       const newBlog = await blog.create({
         title,
         description,
         category,
-        img: req.file.path,
+        img: res.body.img,
         time: new Date().toISOString(),
       });
       console.log(newBlog, "created");
