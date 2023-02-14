@@ -100,11 +100,11 @@ const options = {
   checkAgainstReadme: args['--check-against-readme']
 }
 const envOptions = {
-  // token: process.env.GITHUB_TOKEN,
+  token: process.env.GITHUB_TOKEN,
   repository: process.env.GITHUB_REPOSITORY,
   // allow overriding the commit SHA, useful in pull requests
   // where we want a merged commit SHA from GH event
-  // sha: process.env.GH_SHA || process.env.GITHUB_SHA
+  sha: process.env.GH_SHA || process.env.GITHUB_SHA
 }
 setGitHubCommitStatus(options, envOptions).catch(e => {
   console.error(e)

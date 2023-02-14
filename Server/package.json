@@ -32,6 +32,9 @@
     "utility",
     "nyc"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Nsanzimfura eric <erickykress1@gmail.com>",
   "license": "ISC",
   "bugs": {
