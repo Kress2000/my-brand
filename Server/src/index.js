@@ -1,5 +1,3 @@
-// @ts-check
-
 const path = require('path')
 const fs = require('fs')
 const debug = require('debug')('check-code-coverage')
