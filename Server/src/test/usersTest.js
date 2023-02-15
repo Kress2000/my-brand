@@ -32,6 +32,17 @@ describe('users API', () => {
         expect(res.body.password).to.eql(res.body.confirmPass)
         resonse.body.should.have.property('message')
         // follow up with login
+        chai.request(app)
+        .get('/mybrand/signup')
+        .end((req, res)=>{
+          res.body.should.have.property('message')
+        })
+        chai.request(app)
+        .get('/mybrand/login')
+        .end((req, res)=>{
+          res.body.should.have.property('message')
+
+        })
         chai
           .request(app)
           .post('/mybrand/login')

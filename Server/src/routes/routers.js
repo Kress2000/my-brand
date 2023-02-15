@@ -56,6 +56,7 @@ router.get(
 router.put("/api/users/:id", userController.users_update); //updated one
 router.delete("/api/users/:id", userController.users_delete); // delete one
 //blogs
+router.post("/api/blogs/add", upload.single("image"), blogsController.blog_post); //get all
 router.get("/api/blogs", blogsController.blog_get); //get all
 router.get("/api/blogs/:id", blogsController.blog_getOne); //get single
 router.put(
@@ -68,26 +69,5 @@ router.delete(
   authAdmin(["erickykress1@gmail.com"]),
   blogsController.blog_delete
 ); // delete one
-//save the blogs as they admin add the blogs
-router.post(
-  "/api/blogs/add",
-  upload.single("image"),
-  async (req, res, next) => {
-    const { title, description, category } = req.body;
-    console.log(res.body.img, req.files, "got the shite");
-    try {
-      const newBlog = await blog.create({
-        title,
-        description,
-        category,
-        img: res.body.img,
-        time: new Date().toISOString(),
-      });
-      console.log(newBlog, "created");
-      res.status(201).json({ message: "Blog created", blog: newBlog });
-    } catch (err) {
-      console.log(err);
-    }
-  }
-);
+
 module.exports = router;
