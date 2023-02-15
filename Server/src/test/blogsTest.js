@@ -73,6 +73,7 @@ describe("Blogs API", () => {
                   .end(function (error, resonse) {
                     if(err) throw err;
                     resonse.should.have.status(201);
+                    resonse.should.be.a('object');
                     resonse.body.should.have.property("message");
                     done();
                   });

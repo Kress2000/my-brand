@@ -29,7 +29,7 @@
       "description": "API for blogs Posted"
     }
   ],
-  "schemes": ["http"],
+  "schemes": ["https", "http"],
   "consumes": ["application/json"],
   "produces": ["application/json"],
 
@@ -37,24 +37,28 @@
     "/mybrand/signup": {
       "post": {
         "tags": ["Users"],
-        "requestBody":[
-          {
-            "required": true,
-              "name":  "Trillian",
-              "email": "Tricia",
-              "password":  "McMillan",
-              "confirmPass":  "McMillan"
-          }
-        ],
         "summary": "Create new account/User in system",
         "description": "Create new account/User in system",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "requestBody": [
+          {
+            "description": "Optional description in *Markdown*",
+            "required": true,
+            "content": ["application/json"],
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
         "parameters": [
           {
-            "name": "User",
             "in": "body",
-            "description": "User that we want to create",
+            "name": "body",
+            "description": "Sign as Admin to get acceess to the dashboard",
+            "required": true,
+            "type": "object",
             "schema": {
-              "type": "object",
               "$ref": "#/definitions/User"
             }
           }
@@ -62,6 +66,15 @@
         "responses": {
           "201": {
             "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "User exists"
+          },
+          "500": {
+            "description": "Bad resquest",
             "schema": {
               "$ref": "#/definitions/User"
             }
@@ -74,11 +87,14 @@
         "tags": ["Users"],
         "summary": "Log into the system",
         "description": "Be an active user in system",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
         "parameters": [
           {
-            "name": "User",
+            "name": "body",
             "in": "body",
             "description": "active user",
+            "required": true,
             "schema": {
               "$ref": "#/definitions/login"
             }
@@ -190,6 +206,7 @@
         "tags": ["blogs"],
         "summary": "Create new blog in DB",
         "description": "Create new blog in DB",
+        "produces": ["application/json"],
         "parameters": [
           {
             "title": "blog",
@@ -200,7 +217,6 @@
             }
           }
         ],
-        "produces": ["application/json"],
         "responses": {
           "201": {
             "description": "New blog is created",
@@ -302,7 +318,9 @@
       }
     }
   },
-  
+  "security": {
+    "bearerAuth": []
+  },
   "definitions": {
     "login": {
       "required": ["email", "password"],

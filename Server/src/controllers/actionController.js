@@ -83,8 +83,6 @@ module.exports.login_post = async (req, res, next) => {
     const matchPassords = await bcrypt.compare(password, existingUser.password);
     if (matchPassords) {
       req.body.email = existingUser.email;
-      console.log(req.body.email)
-
       if(email.toLowerCase() === 'erickykress1@gmail.com'){
         const token = await jwt.sign(
           { email: existingUser.email, id: existingUser._id },

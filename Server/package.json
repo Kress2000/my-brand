@@ -20,7 +20,11 @@
     "test": "mocha src/test/  --recursive --exit",
     "coverage:badge": "coverage-badge-creator --config './badge-config'",
     "coverage": "nyc --reporter=lcov --reporter=text npm run test",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "build": "NODE_ENV=production blitz build && blitz prisma migrate deploy"
+  },
+  "nyc": {
+    "exclude": ["src/test/*", "src/controllers", "src/configs/*"]
   },
   "repository": {
     "type": "git",
@@ -66,6 +70,7 @@
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
+    "railway": "^2.0.17",
     "semantic-release": "17.4.7",
     "supertest": "^6.3.3",
     "swagger-jsdoc": "^6.2.8",
