@@ -83,11 +83,11 @@ module.exports.login_post = async (req, res, next) => {
     const matchPassords = await bcrypt.compare(password, existingUser.password);
     if (matchPassords) {
       req.body.email = existingUser.email;
-      if(email.toLowerCase() === 'erickykress1@gmail.com'){
+      if(email.toLowerCase() === 'erickykress@gmail.com'){
         const token = await jwt.sign(
           { email: existingUser.email, id: existingUser._id },
           ACCESS_TOKEN_SECRET,
-          { expiresIn: "1h" }
+          { expiresIn: "10h" }
         );
         res
           .status(200)
@@ -124,9 +124,7 @@ passport.authenticate("local", {
   successRedirect: "/blogs",
   failureRedirect: "/login",
   failureFlash: true,
-})//(req, res, next);
-// }
-// Logout
+})
 module.exports.logout_get =  (req, res) => {
   if (req.session) {
     req.session.destroy(err => {

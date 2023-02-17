@@ -2,81 +2,69 @@
   "swagger": "3.0.0",
   "openapi": "3.0.0",
   "info": {
-    "title": "My brand's Express API with Swagger",
-    "version": "0.1.0",
-    "description": "Swagger documentstion of my-brand CRUD API app",
-    "license": {
-      "name": "MIT",
-      "url": "https://spdx.org/licenses/MIT.html"
-    },
+    "title": "Swagger documentstion - OpenAPI 3.0",
+    "description": "My brand api documention",
+    "termsOfService": "http://swagger.io/terms/",
     "contact": {
-      "name": "Nsanzimfura Eric",
-      "url": "https://kress2000.github.io/my-brand/",
-      "email": "erickykress1@email.com",
-      "tel": "0780088171"
-    }
-  },
-  "apis": ["./src/routes/*.js"],
-  "host": "localhost:3000",
-  "basePath": "/",
-  "tags": [
-    {
-      "name": "Users",
-      "description": "API for users in the DB"
+      "email": "apiteam@swagger.io"
     },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.11"
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  },
+  "servers": [
     {
-      "name": "blogs",
-      "description": "API for blogs Posted"
+      "url": "http://localhost:5000/"
     }
   ],
-  "schemes": ["https", "http"],
-  "consumes": ["application/json"],
-  "produces": ["application/json"],
-
+  "schemes": ["http", "https"],
   "paths": {
     "/mybrand/signup": {
       "post": {
-        "tags": ["Users"],
-        "summary": "Create new account/User in system",
-        "description": "Create new account/User in system",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "requestBody": [
-          {
-            "description": "Optional description in *Markdown*",
-            "required": true,
-            "content": ["application/json"],
-            "schema": {
-              "$ref": "#/definitions/User"
+        "tags": ["user"],
+        "summary": "Create user",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "createUser",
+        "requestBody": {
+          "description": "Created user object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
             }
           }
-        ],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Sign as Admin to get acceess to the dashboard",
-            "required": true,
-            "type": "object",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          }
-        ],
+        },
         "responses": {
-          "201": {
-            "description": "New user is created",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          },
-          "400": {
-            "description": "User exists"
-          },
-          "500": {
-            "description": "Bad resquest",
-            "schema": {
-              "$ref": "#/definitions/User"
+          "default": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
             }
           }
         }
@@ -84,28 +72,62 @@
     },
     "/mybrand/login": {
       "post": {
-        "tags": ["Users"],
-        "summary": "Log into the system",
-        "description": "Be an active user in system",
-        "produces": ["application/json"],
-        "consumes": ["application/json"],
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "description": "active user",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/login"
+        "tags": ["user"],
+        "summary": "logs  user in",
+        "description": "This can only be done by registered in user.",
+        "operationId": "createUser",
+        "requestBody": {
+          "description": "Created user object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/login"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/login"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/login"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
-            "description": "Logged in successfully",
-            "schema": {
-              "$ref": "#/definitions/login"
+            "description": "successful operation",
+            "headers": {
+              "X-Rate-Limit": {
+                "description": "calls per hour allowed by the user",
+                "schema": {
+                  "type": "integer",
+                  "format": "int32",
+                  "$ref": "#/components/schemas/login"
+                }
+              },
+              "X-Expires-After": {
+                "description": "date in UTC when token expires",
+                "schema": {
+                  "type": "string",
+                  "format": "date-time",
+                  "$ref": "#/components/schemas/login"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "$ref": "#/components/schemas/login"
+                }
+              }
             }
+          },
+          "400": {
+            "description": "Invalid username/password supplied"
           },
           "404": {
             "description": "No user found"
@@ -113,116 +135,138 @@
         }
       }
     },
+    "/mybrand/logout": {
+      "delete": {
+        "tags": ["user"],
+        "summary": "Logs out current logged in user session",
+        "description": "",
+        "operationId": "logoutUser",
+        "parameters": [],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
     "/mybrand/api/users": {
       "get": {
-        "tags": ["Users"],
-        "summary": "Get all users from DB",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["user"],
+        "summary": "Get all users in th storee",
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/Users"
+              "$ref": "#/components/schemas/User"
             }
           }
         }
       }
     },
     "/mybrand/api/users/{id}": {
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "description": "ID of user that we want to find",
-          "type": "string"
-        },
-        {
-          "name": "name",
-          "in": "body",
-          "description": "Sign in Fist",
-          "schema": {
-            "$ref": "#/definitions/User"
-          }
-        }
-      ],
-      "delete": {
-        "security": [
+      "get": {
+        "tags": ["user"],
+        "summary": "Get user by Id",
+        "description": "",
+        "operationId": "getUserByName",
+        "parameters": [
           {
-            "bearerAuth": []
+            "name": "id",
+            "in": "path",
+            "description": "The name that needs to be fetched. Use user1 for testing. ",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
-        "summary": "Delete user with given ID",
-        "tags": ["Users"],
         "responses": {
           "200": {
-            "description": "User is deleted",
-            "schema": {
-              "$ref": "#/definitions/User"
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
             }
           },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
           "404": {
-            "description": "Not found"
+            "description": "User not found"
           }
         }
       },
       "put": {
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Update user with give ID",
-        "tags": ["Users"],
+        "tags": ["user"],
+        "summary": "Update user",
+        "description": "This can only be done by the logged in Admin.",
+        "operationId": "updateUser",
         "parameters": [
           {
-            "name": "user",
-            "in": "body",
-            "description": "User with new values of properties",
+            "name": "id",
+            "in": "path",
+            "description": "The name that needs to be fetched. Use user1 for testing. ",
+            "required": true,
             "schema": {
-              "$ref": "#/definitions/updateUser"
+              "type": "string"
             }
           }
         ],
-        "responses": {
-          "202": {
-            "description": "Changes accepted",
-            "schema": {
-              "$ref": "#/definitions/User"
+        "requestBody": {
+          "description": "Update an existent user in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
             }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
           },
           "404": {
-            "description": "Not found"
+            "description": "The user with this Id not found!"
           }
         }
-      }
-    },
-    "/mybrand/api/blogs/add": {
-      "post": {
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "tags": ["blogs"],
-        "summary": "Create new blog in DB",
-        "description": "Create new blog in DB",
-        "produces": ["application/json"],
+      },
+      "delete": {
+        "tags": ["user"],
+        "summary": "Delete user",
+        "description": "User is deleted from the system.",
+        "operationId": "deleteUser",
         "parameters": [
           {
-            "title": "blog",
-            "in": "body",
-            "description": "blog that we want to create",
+            "name": "id",
+            "in": "path",
+            "description": "The id that needs to be fetched. Use  for delete. ",
+            "required": true,
             "schema": {
-              "$ref": "#/definitions/blog"
+              "type": "string"
             }
           }
         ],
         "responses": {
-          "201": {
-            "description": "New blog is created",
-            "schema": {
-              "$ref": "#/definitions/blog"
-            }
+          "202": "Deleted successfully",
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "404": {
+            "description": "User not found"
           }
         }
       }
@@ -240,7 +284,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/blogs"
+              "$ref": "#/components/schemas/blog"
             }
           }
         }
@@ -267,148 +311,208 @@
         "responses": {
           "200": {
             "description": "Blog is deleted",
-            "schema": {
-              "$ref": "#/definitions/blog"
-            }
+            "schema": {}
           },
           "404": {
             "description": "Not found"
           }
         }
-      },
-      "put": {
+      },"put": {
+        "tags": ["blogs"],
+        "summary": "Update Blog",
+        "description": "This can only be done by the logged in Admin.",
+        "operationId": "updateUser",
+        "requestBody": {
+          "description": "Update an existent blog in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/blog"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "The user with this Id not found!"
+          }
+        }
+      }
+    },
+    "/mybrand/api/blogs/add": {
+      "post": {
         "security": [
           {
             "bearerAuth": []
           }
         ],
-        "summary": "Update blog with give ID",
         "tags": ["blogs"],
+        "summary": "Create new blog in DB",
+        "description": "Create new blog in DB",
+        "requestBody": {
+          "description": "Created user object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/blog"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/blog"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/blog"
+              }
+            }
+          }
+        },
         "parameters": [
           {
-            "title": "blog",
+            "title": "body",
             "in": "body",
-            "description": "blog with new values of properties",
+            "description": "blog that we want to create",
             "schema": {
-              "$ref": "#/definitions/updateBlog"
+              "$ref": "#/components/schemas/blog"
             }
           }
         ],
         "responses": {
-          "202": {
-            "description": "Changes accepted",
+          "201": {
+            "description": "New blog is created",
             "schema": {
-              "$ref": "#/definitions/blog"
+              "$ref": "#/components/schemas/blog"
             }
           },
-          "404": {
-            "description": "Not found"
-          }
+          "500": "Bad request"
         }
       }
     }
   },
-
   "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "nsanzimfura eric"
+          },
+          "email": {
+            "type": "string",
+            "example": "erickres3s@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "kress123"
+          },
+          "confirmPass": {
+            "type": "string",
+            "example": "kress123"
+          }
+        },
+        "xml": {
+          "name": "user"
+        }
+      },
+      "login": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "erickress1@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "kress123"
+          }
+        },
+        "xml": {
+          "name": "user"
+        }
+      },
+      "Users": {
+        "type": "array",
+        "$ref": "#/components/schemas/User"
+      },
+      "blog": {
+        "required": ["title", "description", "img"],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "img": {
+            "type": "file"
+          }
+        }
+      },
+      "blogs": {
+        "type": "array",
+        "$ref": "#/components/schemas/blog"
+      },
+      "ApiResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "##default"
+        }
+      }
+    },
+    "requestBodies": {
+      "UserArray": {
+        "description": "List of user objects",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        }
+      }
+    },
     "securitySchemes": {
       "bearerAuth": {
         "type": "http",
         "scheme": "bearer",
         "bearerFormat": "JWT"
+      },
+      "security": {
+        "bearerAuth": []
+      },
+      "api_key": {
+        "type": "apiKey",
+        "name": "api_key",
+        "in": "header"
       }
-    }
-  },
-  "security": {
-    "bearerAuth": []
-  },
-  "definitions": {
-    "login": {
-      "required": ["email", "password"],
-      "properties": {
-        "email": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        }
-      }
-    },
-    "User": {
-      "required": ["name", "email", "password", "confirmPass"],
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        },
-        "confirmPass": {
-          "type": "string"
-        }
-      }
-    },
-    "updateUser": {
-      "required": ["name", "email"],
-      "properties": {
-        "isPublic": {
-          "type": "boolean"
-        },
-        "name": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        }
-      }
-    },
-    "Users": {
-      "type": "array",
-      "$ref": "#/definitions/User"
-    },
-    "blog": {
-      "required": ["title", "description", "img", "_id"],
-      "properties": {
-        "_id": {
-          "type": "string",
-          "uniqueItems": true
-        },
-        "isPublic": {
-          "type": "boolean"
-        },
-        "title": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "img": {
-          "type": "file"
-        }
-      }
-    },
-    "updateBlog": {
-      "required": ["title", "description", "img"],
-      "properties": {
-        "isPublic": {
-          "type": "boolean"
-        },
-        "name": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        },
-        "img": {
-          "type": "file"
-        }
-      }
-    },
-    "blogs": {
-      "type": "array",
-      "$ref": "#/definitions/blog"
     }
   }
 }

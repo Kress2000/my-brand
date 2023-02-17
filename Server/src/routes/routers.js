@@ -25,7 +25,7 @@ const storage = multer.diskStorage({
   },
 });
 
-// authAdmin(["erickykress1@gmail.com"]) //check if yuo are admin
+// authAdmin(["erickykress@gmail.com"]) //check if yuo are admin
 // const upload = multer({dest: '../../uploadedImg'});
 const upload = multer({ storage: storage });
 // Login Page
@@ -42,15 +42,16 @@ router.delete("/logout", actionController.logout_get);
 router.post("/signup", actionController.signup_post);
 // users login
 router.post("/login", actionController.login_post);
+
 //users
 router.get(
   "/api/users",
-  authAdmin(["erickykress1@gmail.com"]),
+  authAdmin(["erickykress@gmail.com"]),
   userController.users_get
 ); //get all
 router.get(
   "/api/users/:id",
-  authAdmin(["erickykress1@gmail.com"]),
+  authAdmin(["erickykress@gmail.com"]),
   userController.users_getOne
 ); //get single
 router.put("/api/users/:id", userController.users_update); //updated one
@@ -61,12 +62,12 @@ router.get("/api/blogs", blogsController.blog_get); //get all
 router.get("/api/blogs/:id", blogsController.blog_getOne); //get single
 router.put(
   "/api/blogs/:id",
-  authAdmin(["erickykress1@gmail.com"]),
+  authAdmin(["erickykress@gmail.com"]),
   blogsController.blog_update
 ); //updated one
 router.delete(
   "/api/blogs/:id",
-  authAdmin(["erickykress1@gmail.com"]),
+  authAdmin(["erickykress@gmail.com"]),
   blogsController.blog_delete
 ); // delete one
 
