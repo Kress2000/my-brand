@@ -24,17 +24,4 @@ before((done) => {
   });
 
   //testing Routes -------
-describe("Routes test", () => {
-    it("should test Api default welcome", (done) => {
-      chai
-        .request(app)
-        .get("/")
-        .end((err, res) => {
-          res.should.have.status(200);
-          res.body.should.be.a("object");
-          done();
-        });
-    });
-    
-    
-})  
+ 

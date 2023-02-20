@@ -40,13 +40,6 @@ module.exports.signup_post = async (req, res) => {
     const existinguser = await User.findOne({ email: email });
     if (existinguser) {
       errors.push({ msgExists: "Email already exists" });
-      // res.render("signup", {
-      //   errors,
-      //   name,
-      //   email,
-      //   password,
-      //   confirmPass,
-      // });
       res.status(400).json({ message: "User already exists" });
       return;
     } else {
@@ -65,12 +58,8 @@ module.exports.signup_post = async (req, res) => {
         res
           .status(201)
           .json({ message: "Account created", user: newUser, token: token });
-        // req.flash("success_msg", "You are now registered and can log in");
-
-        // return res.redirect("/login");
       } catch (err) {
         console.log(err);
-        // res.status(400).send("Error! User not created!");
       }
     }
   }

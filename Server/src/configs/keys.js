@@ -1,3 +1,3 @@
 module.exports = {
-    mongoUri : 'mongodb+srv://my-brand:kress123@cluster0.638azsu.mongodb.net/my-brand'
+    mongoUri :"mongodb://mongo:ioBISEy9cUbylJAU2dDD@containers-us-west-90.railway.app:6880"
 }
