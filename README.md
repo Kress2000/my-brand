@@ -1,4 +1,4 @@
-# Nsanzimfura Eric's Portifolio ![Coverage](https://img.shields.io/badge/code--coverage-96.66%25-green)
+# Nsanzimfura Eric's Portifolio ![Coverage](https://img.shields.io/badge/code--coverage-96.66%25-darkgreen)
 
 - This is my website being built by only HTML5, CSS3 AND JS. It is made by such stacks as suggested by [@andela](https://github.com/andela).
 - I plan to make it a full-stack web app with mongoBd on the back-end and Express library. I will also use mongoose, and JWT.
