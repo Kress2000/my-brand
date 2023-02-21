@@ -17,16 +17,14 @@ const { authAdmin } = require("../middlewares/authAdmin");
 app.use(express.static(__dirname + "/public"));
 app.use("/uploads", express.static("uploads"));
 const storage = multer.diskStorage({
-  // destination: (req, file, cb) => {
-  //   cb(null, "./uploads");
-  // },
-  // filename: (req, file, cb) => {
-  //   cb(null, new Date().toISOString() + file.originalname);
-  // },
+  destination: (req, file, cb) => {
+    cb(null, "./uploads");
+  },
+  filename: (req, file, cb) => {
+    cb(null, new Date().toISOString() + file.originalname);
+  },
 });
 
-// authAdmin(["erickykress@gmail.com"]) //check if yuo are admin
-// const upload = multer({dest: '../../uploadedImg'});
 const upload = multer({ storage: storage });
 //logout
 router.delete("/logout", actionController.logout_get);

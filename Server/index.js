@@ -5,7 +5,6 @@ const router = require('./src/routes/routers')
 const app = express()
 app.use(express.json())
 const expressLayouts = require('express-ejs-layouts')
-const passport = require('passport')
 const session = require('express-session')
 app.use(express.static(__dirname + '/public'))
 app.use('/uploads', express.static('uploads'))
@@ -27,10 +26,6 @@ app.use(
     secret: 'secrete',
   }),
 )
-app.use(passport.initialize())
-app.use(passport.session())
-// Passport Config
-require('./src/configs/passport')(passport)
 app.use(expressLayouts)
 app.use(express.urlencoded({ extended: false }))
 connectToDb()

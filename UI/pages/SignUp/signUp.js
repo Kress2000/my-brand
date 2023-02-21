@@ -60,6 +60,16 @@ submitSignUpData.addEventListener("click", (e)=>{
                     }
                     users.push(formData);
                     localStorage.setItem("SignedInSuccessfully", JSON.stringify(users));
+                    fetch("https://nsanzimfura-server.up.railway.app/mybrand/signup", {
+                        method: "POST",
+                        credentials: 'same-origin',
+                        headers: {
+                          'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(users)
+                      })
+                        .then((res) => res.json())
+                        .then((data) => console.log(data));
                     alertMessage.innerHTML="<p>Success!</p>"
                     alertMessage.style.display = "flex";
                     alertMessage.style.backgroundColor = "green";
