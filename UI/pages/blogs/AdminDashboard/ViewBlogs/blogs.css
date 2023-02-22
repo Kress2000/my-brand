@@ -180,10 +180,13 @@ body{
     transition: var(--transition);
     font-size: 1rem;
 }
-.blogsActions a:first-child{
+#usersLink{
+    margin: 0 2rem;
+}
+.blogsActions a:first-child, #usersLink{
     border: 1px solid black;
 }
-.blogsActions a:first-child:hover{
+.blogsActions a:first-child:hover, #usersLink:hover{
     border: 1px solid var(--btn-bg);
     background-color: var(--btn-bg);
     

@@ -2,12 +2,8 @@ const copyRightYear = document.querySelectorAll(".year");
 const submitSignInData = document.getElementById("submitSignUpData");
 const alertMessage = document.getElementById("alertMessage");
 const email = document.getElementById("email");
-const passcode = document.getElementById("passcode");
-//  users fron LS
-const getFormData = JSON.parse(localStorage.getItem("SignedInSuccessfully"));
-let lastUser = getFormData.filter(
-  (user) => user === getFormData[getFormData.length - 1]
-);
+const password = document.getElementById("password");
+
 // cursor
 const cursor = document.querySelector(".cursor");
 document.addEventListener("mousemove", (e) => {
@@ -22,78 +18,79 @@ document.addEventListener("click", () => {
     cursor.classList.remove("expand");
   }, 500);
 });
-if (lastUser) {
-  email.value = lastUser[0].email;
-  passcode.value = lastUser[0].passcode;
-}
-const formData = {
-  email: email.value,
-  passcode: passcode.value,
-};
-const submitDataFn = () => {
-  if (
-    formData.email.toLowerCase() === "erickykress@gmail.com" &&
-    formData.passcode.toLowerCase() === "kress123"
-  ) {
-    // window.location.href = "../blogs/AdminDashboard/ViewBlogs/blogs.html";
-    window.location.href = "./signup.js";
-    alert("fdjhfdfidn", formData);
-  } //user Daashboard
-  else {
-    //check if this email is already registered first
-    getFormData.forEach((user) => {
-      if (
-        user.email.toLowerCase() === formData.email.toLowerCase() &&
-        user.passcode === formData.passcode
-      ) {
+const submitDataFn = (data) => {
+  fetch("https://nsanzimfura-server.up.railway.app/mybrand/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((res) => {
+      if (!res.ok) console.log("Error, not getting Url");
+      return res.json();
+    })
+    .then((ans) => {
+      const message = ans.message;
+      console.log(message);
+      alertMessage.style.background=message==="Welcome Admin!"?"green":"red"
+      alertMessage.style.display = "flex";
+      alertMessage.innerText = message ? message : "Incorrect credentials!";
+      setTimeout(function () {
         alertMessage.style.display = "none";
-        //getting user Locations
-        if ("geolocation" in navigator) {
-          navigator.geolocation.getCurrentPosition(
-            (position) => {
-              let lng = position.coords.longitude;
-              let lat = position.coords.latitude;
-              let newUserInfo = {
-                user: user,
-                location: {
-                  lat: lat,
-                  lng: lng,
-                },
-              };
-              localStorage.setItem("locateUser".JSON.stringify(newUserInfo));
-            },
-            (error) => {
-              throw error;
-            }
-          );
-        }
-        localStorage.setItem("user", JSON.stringify(user)); //to be displayed in blogs dashboard
-        fetch("https://nsanzimfura-server.up.railway.app/mybrand/login", {
-          method: "POST",
-          credentials: 'same-origin',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(user)
-        })
-          .then((res) => res.json())
-          .then((data) => console.log(data));
-        // window.location.href = "../blogs/code/blogs.html";
-      } else {
-        //edited credentials wrong, can't go in
-        alertMessage.style.display = "flex";
-        setTimeout(function () {
-          alertMessage.style.display = "none";
-        }, 2000);
-      }
-    });
+      }, 2000);
+      return ans;
+    })
+    .catch((err) => console.log(err));
+  if (
+    data.email.toLowerCase() === "erickykress@gmail.com" &&
+    data.password.toLowerCase() === "kress123"
+  ) {
+    window.location.href = "../blogs/AdminDashboard/ViewBlogs/blogs.html";
+  } else {
+    window.location.href = "../blogs/code/blogs.html";
   }
 };
-// get form data from local storage
-submitSignInData.addEventListener("click", (e) => {
+submitSignInData.addEventListener("click", async (e) => {
   e.preventDefault();
-  submitDataFn();
-  //admin dashboard
+  let formData = {
+    email: email.value,
+    password: password.value,
+  };
+  console.log(formData);
+  const db = await fetch(
+    "https://nsanzimfura-server.up.railway.app/mybrand/api/users"
+  );
+  const resp = await db.json();
+  const emailThere = resp.filter((user) => user.email === formData.email);
+  let newEmail = emailThere[0];
+  if (newEmail) {
+    alertMessage.style.display = "none";
+    localStorage.setItem("user", JSON.stringify(newEmail));
+    //getting user Locations
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+      console.log("No Geolocation");
+    }
+    function showPosition(position) {
+      const lat = position.coords.latitude;
+      const lng = position.coords.longitude;
+      formData = {
+        ...formData,
+        location: {
+          lat,
+          lng,
+        },
+      };
+    }
+    submitDataFn(formData);
+  } else {
+    alertMessage.style.display = "flex";
+    setTimeout(function () {
+      alertMessage.style.display = "none";
+    }, 2000);
+  }
 });
 copyRightYear.forEach((year) => {
   const time = new Date();

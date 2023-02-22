@@ -4,35 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign in Page</title>
-    <link rel="stylesheet" href="./signIn.css">
+    <title>users Admin page</title>
+    <link rel="stylesheet" href="./blogs.css">
     <script src="https://kit.fontawesome.com/ba4ad2d87b.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="cursor"><div class="point"></div></div>
-    <section class="signin-section">
-        <h1 class="pageTitle">Sign in with us</h1>
-        <form action="#" id="form" method="get">
-            <div>
-                <input type="text" placeholder="Email" id="email" autocomplete="email">
+    <section class="blogs-Admin-page">
+        <div class="nav-box">
+            <div class="account">
+                <div id="accountUser">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <strong>Admin</strong>
+                <a href="../../../SignIn/signIn.html" id="logout">Log out</a>
             </div>
-            <div>
-                <input type="password" id="password" placeholder="password" >
+            <div class="blogsActions">
+                <a href="../AddBlogs/blogs.html" id="addBlogsLink">Add a blog</a>
+                <a href="#" id="users">List users</a>
+                <a href="../ViewBlogs/blogs.html" id="viewBlogsLink">View blogs</a>
             </div>
-            <button id="submitSignUpData">Sign in</button>
-            <div class="haveAcc">
-                <p>Don't an account?</p>
-                <a href="../SignUp/signUp.html"> Sign up</a>
+        </div>
+        <div class="viewBlogsBox">
+            <h3>Registered users</h3>
+            <div class="lists" id="lists">
+                
             </div>
-        </form>
-        <div id="alertMessage">
-            <p>Incorrect credentials!</p>
         </div>
     </section>
     <section class="footer-section">
         <footer>
             <div class="footer-logo">
-                <a href="../../index.html"><img src="../../img/logo.png" alt="My Logo" class="logo"></a>
+                <a href="../../../../index.html"><img src="../../../../img/logo.png" alt="My Logo" class="logo"></a>
             </div>
             <div class="footer-link">
                 <span>
@@ -45,6 +48,7 @@
             </div>
         </footer>
     </section>
-    <script src="./signIn.js"></script>
+
+    <script src="./blogs.js"></script>
 </body>
 </html>
