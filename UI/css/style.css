@@ -18,7 +18,7 @@
     --bg: rgba(32, 41, 59, 0.992);
     --whiteopc: hsla(0, 0%, 100%, .5);
     --transition: all .5s ease-in-out;
-    --cursor: url("./UI/img/cursorPointer.svg"), auto;
+    --cursor: url("../../UI/img/cursorPointer.svg"), auto;
     --btmBorder: 10px solid #A40FFF;
     --ffamilyH1: 'Varela Round', sans-serif;
     --fsizeTitle: 4rem;
@@ -27,7 +27,7 @@
 body{
     background: rgba(32, 41, 59, 0.992);
     color: var(--white);
-    cursor: url("./UI/img/cursor.svg"), auto;
+    cursor: url("../../UI/img/cursor.svg"), auto;
 }
 /* cursor */
 .cursor {

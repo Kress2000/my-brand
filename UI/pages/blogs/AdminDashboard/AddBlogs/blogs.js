@@ -66,11 +66,15 @@ createBlogBtn.addEventListener("click", async (e) => {
   e.preventDefault();
   var regExName = /[a-z][a-z\s]?[0-9]?/gim;
   // create time when the blog is created
+  const randomumbers = Math.random(10);
   const time = new Date();
+  const getSeconds = time.getSeconds();
   const date = time.toDateString();
-  let blogDataArray = [];
+  let blogDataArray = JSON.parse(localStorage.getItem("blogDataAdd"));
   // console.log(imgUrl)
+  const newId= randomumbers+getSeconds;
   const blogData = {
+    id: newId,
     title: title.value,
     category: category.value,
     details: details.value,
@@ -91,6 +95,9 @@ createBlogBtn.addEventListener("click", async (e) => {
     blogData.title.match(regExName) &&
     blogData.details.match(regExName)
   ) {
+    blogDataArray.push(blogData);
+    console.log(blogDataArray)
+    localStorage.setItem("blogDataAdd", JSON.stringify(blogDataArray));
     const postUser = await fetch(
       "http://localhost:5000/mybrand/api/blogs/add",
       {
@@ -102,6 +109,7 @@ createBlogBtn.addEventListener("click", async (e) => {
       }
     );
     const userResp = await postUser.json();
+    
     console.log(userResp, "posted user");
     messageAlertSuccess.style.display = "flex";
     setTimeout(() => {

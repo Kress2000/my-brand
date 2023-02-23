@@ -29,11 +29,16 @@ const formComment = document.getElementById("formComment");
 const commentedText = document.getElementById("comment-area");
 //users infor:
 const locateUser = JSON.parse(localStorage.getItem("locateUser"))
-console.log(locateUser)
-if(user){
-    userName.innerText= user.name;
-    userEmail.innerText = user.email;
-}
+console.log(locateUser, "user location")
+if (user) {
+    if (user.email === "erickykress@gmail.com") {
+      userName.innerText = "Admin";
+      userEmail.innerText = user.email;
+    } else {
+      userName.innerText = "User";
+      userEmail.innerText = user.email;
+    }
+  }
 logo.addEventListener("click", ()=>{
     logout.style.display = "flex";
     userEmail.style.transition= "all .5s ease-in-out";

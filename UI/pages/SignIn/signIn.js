@@ -19,6 +19,10 @@ document.addEventListener("click", () => {
   }, 500);
 });
 const submitDataFn = (data) => {
+  if (JSON.parse(localStorage.getItem("user")) === null) {
+    localStorage.setItem("user", JSON.stringify([]));
+  }
+  localStorage.setItem("user", JSON.stringify(data));
   fetch("https://nsanzimfura-server.up.railway.app/mybrand/login", {
     method: "POST",
     headers: {
@@ -33,7 +37,8 @@ const submitDataFn = (data) => {
     .then((ans) => {
       const message = ans.message;
       console.log(message);
-      alertMessage.style.background=message==="Welcome Admin!"?"green":"red"
+      alertMessage.style.background =
+        message === "Welcome Admin!" ? "green" : "red";
       alertMessage.style.display = "flex";
       alertMessage.innerText = message ? message : "Incorrect credentials!";
       setTimeout(function () {

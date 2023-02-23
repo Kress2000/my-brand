@@ -192,6 +192,36 @@ body{
 .blogsActions a:first-child{
     background-color: var(--btn-bg);
 }
+@media screen and (max-width: 600px) {
+    .nav-box {
+      flex-direction: column;
+      gap: 20px;
+      height: fit-content;
+    }
+    .blogsActions {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .blogsActions a {
+      margin: 0 !important;
+      font-size: .8rem;
+      padding: 0 10px;
+    }
+    .account > div{
+      width: 3rem;
+      aspect-ratio: 1/1;
+      height: auto;
+      margin: 1rem;
+    }
+    .fa-user{
+        font-size: 1.5rem !important;
+    }
+    .viewBlogsBox >h3{
+        margin-top: 20vh !important;
+    }
+
+  }
 /* add blogs box */
 .addBlogsBox{
     min-height: 100vh;
