@@ -62,7 +62,7 @@ uploadImg.addEventListener("change", (e) => {
 });
 // submit data to local storage
 
-createBlogBtn.addEventListener("click", async(e) => {
+createBlogBtn.addEventListener("click", async (e) => {
   e.preventDefault();
   var regExName = /[a-z][a-z\s]?[0-9]?/gim;
   // create time when the blog is created
@@ -74,7 +74,7 @@ createBlogBtn.addEventListener("click", async(e) => {
     title: title.value,
     category: category.value,
     details: details.value,
-    img: imgUrl,
+    img: "imgUrl",
     time: date,
     userActions: {
       views: 100,
@@ -91,28 +91,18 @@ createBlogBtn.addEventListener("click", async(e) => {
     blogData.title.match(regExName) &&
     blogData.details.match(regExName)
   ) {
-    // fetch("https://nsanzimfura-server.up.railway.app/mybrand/api/blogs/add", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(blogData),
-    // }).then(res=>res.json())
-    // .then(postedBlog=>console.log("posted blog: ", postedBlog));
-    console.log(blogData)
     const postUser = await fetch(
-        "https://nsanzimfura-server.up.railway.app/mybrand/api/blogs/add",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(blogData),
-        }
-      );
-      const userResp = await postUser.json();
-      console.log(userResp, "posted user");
-    
+      "http://localhost:5000/mybrand/api/blogs/add",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json", 
+        },
+        body: JSON.stringify(blogData),
+      }
+    );
+    const userResp = await postUser.json();
+    console.log(userResp, "posted user");
     messageAlertSuccess.style.display = "flex";
     setTimeout(() => {
       messageAlertSuccess.style.display = "none";
