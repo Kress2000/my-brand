@@ -23,13 +23,13 @@ const filterBLOGS = async () => {
 };
 filterBLOGS();
 
-let blogDataAdd = [];
 let storyblogsList = [];
-if (blogDataAdd) {
-  blogDataAdd = JSON.parse(localStorage.getItem("blogDataAdd"));
+let blogDataAdd = JSON.parse(localStorage.getItem("blogDataAdd"));
+if (blogDataAdd !==null) {
   storyblogsList = blogDataAdd.filter((blog) =>
-    blog.category === "Code" ? blog : null
+  blog.category === "Code" ? blog : null
   );
+  console.log(blogDataAdd, storyblogsList)
 }
 const messageEmpty = document.getElementById("messageEmpty");
 // user loggedin

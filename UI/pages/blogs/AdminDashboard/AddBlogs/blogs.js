@@ -95,7 +95,7 @@ createBlogBtn.addEventListener("click", (e) => {
     blogData.title.match(regExName) &&
     blogData.description.match(regExName)
   ) {
-    blogDataArray.push(blogData);
+    blogDataArray.push(blogData, );
     localStorage.setItem("blogDataAdd", JSON.stringify(blogDataArray));
     console.log(blogDataArray)
     blogData.img = "https://www.flickr.com/photos/nasawebbtelescope/52196657049/in/album-72177720296737701/lightbox/";

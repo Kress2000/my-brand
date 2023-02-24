@@ -22,13 +22,12 @@ const filterBLOGS = async () => {
   console.log("activity blogs got: ", activityBlogs);
 };
 filterBLOGS();
-let blogDataAdd = [];
 let storyblogsList = [];
-if (blogDataAdd) {
-  blogDataAdd = JSON.parse(localStorage.getItem("blogDataAdd"));
-  storyblogsList = blogDataAdd.filter((blog) =>
-    blog.category === "Activities" ? blog : null
+let blogDataAdd =  JSON.parse(localStorage.getItem("blogDataAdd"));
+if (blogDataAdd !==null) {
+  storyblogsList = blogDataAdd.filter((blog) =>blog.category === "Activities" ? blog : null
   );
+  console.log(blogDataAdd, storyblogsList)
 }
 const messageEmpty = document.getElementById("messageEmpty");
 // user loggedin
