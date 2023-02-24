@@ -97,8 +97,8 @@ createBlogBtn.addEventListener("click", (e) => {
   ) {
     blogDataArray.push(blogData);
     localStorage.setItem("blogDataAdd", JSON.stringify(blogDataArray));
-    console.log(blogData)
-    blogData.img = "imgUrl";
+    console.log(blogDataArray)
+    blogData.img = "https://www.flickr.com/photos/nasawebbtelescope/52196657049/in/album-72177720296737701/lightbox/";
     fetch("https://nsanzimfura-server.up.railway.app/mybrand/api/blogs/add", {
       method: "POST",
       headers: {

@@ -7,6 +7,22 @@ const description = document.querySelectorAll(".details");
 let numbers = document.querySelectorAll(".number");
 const blogsBox = document.getElementById("blogsBox"); //blogs box
 // Access LS
+const filterBLOGS = async () => {
+  const getblogs = await fetch(
+    "https://nsanzimfura-server.up.railway.app/mybrand/api/blogs/"
+  );
+  const allBlogsFromDb = await getblogs.json();
+  console.log(allBlogsFromDb, "allb logs in DB");
+  let strotyBlogs = [];
+  if (allBlogsFromDb) {
+    strotyBlogs = allBlogsFromDb.filter((blog) =>
+      blog.category === "Code" ? blog : null
+    );
+  }
+  console.log("Code blogs got: ", strotyBlogs);
+};
+filterBLOGS();
+
 let blogDataAdd = [];
 let storyblogsList = [];
 if (blogDataAdd) {
@@ -132,7 +148,7 @@ function clickedBox(id) {
     const blogfromAll = blogfromAllArr[0];
     let index = blogDataAdd.indexOf(blogfromAll); // its index from teh whole blogs
     //increase view the blog is viewed
-    blogData.userActions.views++;
+    blogData.userActions.views += 1;
     blogData.userActions.views = blogData.userActions.views;
     blogDataAdd.splice(index, 1, blogData);
     localStorage.setItem("blogDataAdd", JSON.stringify(blogDataAdd)); //save to LS with new views
@@ -212,21 +228,34 @@ function clickedBox(id) {
                 </div>
             </div>
                 `;
-      // allow only the poster tio delete his comments
       let deleteComentBtn = document.getElementById(`${commentId}`);
       if (
         comment.user === user.email ||
-        user.email === "erickykress1@gmail.com"
+        user.email === "erickykress@gmail.com"
       ) {
         deleteComentBtn.style.display = "flex"; //allow to delete
       } else {
         deleteComentBtn.style.display = "none"; //can not able to delete
       }
+      // console.log(comment.user, user.email);
+      // if (blogData.userActions.comments) {
+      //   blogData.userActions.comments.forEach((commentusr) => {
+      //     if (
+      //       commentusr.user === user.email ||
+      //       user.email === "erickykress@gmail.com"
+      //     ) {
+      //       deleteComentBtn.style.display = "flex"; //allow to delete
+      //     } else {
+      //       deleteComentBtn.style.display = "none"; //can not able to delete
+      //     }
+      //   });
+      // }
+      
     });
-    console.log(user);
     //add comment
     formComment.onsubmit = (e) => {
       e.preventDefault();
+
       if (commentedText.value) {
         const commentObj = {
           user: user.email,

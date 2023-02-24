@@ -6,7 +6,22 @@ const popupTvBox = document.getElementById("popupBox");
 const description = document.querySelectorAll(".details");
 let numbers = document.querySelectorAll(".number");
 const blogsBox = document.getElementById("blogsBox"); //blogs box
-// Access LS
+// Access Db
+const filterBLOGS = async () => {
+  const getblogs = await fetch(
+    "https://nsanzimfura-server.up.railway.app/mybrand/api/blogs/"
+  );
+  const allBlogsFromDb = await getblogs.json();
+  console.log(allBlogsFromDb, "allb logs in DB");
+  let activityBlogs=[]
+  if (allBlogsFromDb) {
+    activityBlogs = allBlogsFromDb.filter((blog) =>
+      blog.category === "Activities" ? blog : null
+    );
+  }
+  console.log("activity blogs got: ", activityBlogs);
+};
+filterBLOGS();
 let blogDataAdd = [];
 let storyblogsList = [];
 if (blogDataAdd) {
@@ -31,6 +46,7 @@ const closeComment = document.getElementById("closeComment");
 const formComment = document.getElementById("formComment");
 const commentedText = document.getElementById("comment-area");
 //users infor:
+console.log(user)
 if (user) {
   if (user.email === "erickykress@gmail.com") {
     userName.innerText = "Admin";
@@ -216,8 +232,8 @@ function clickedBox(id) {
       // allow only the poster tio delete his comments
       let deleteComentBtn = document.getElementById(`${commentId}`);
       if (
-        comment.user === user[0].email ||
-        user[0].email === "erickykress1@gmail.com"
+        comment.user === user.email ||
+        user.email === "erickykress@gmail.com"
       ) {
         deleteComentBtn.style.display = "flex"; //allow to delete
       } else {
@@ -229,7 +245,7 @@ function clickedBox(id) {
       e.preventDefault();
       if (commentedText.value) {
         const commentObj = {
-          user: user[0].email,
+          user: user.email,
           comment: commentedText.value,
         };
         //bring LS bloga data and change comments
