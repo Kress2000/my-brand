@@ -1,3 +1,44 @@
+const copyRightYear = document.querySelectorAll(".year");
+// inputs form
+const title = document.getElementById("title");
+const category = document.getElementById("category");
+const details = document.getElementById("details");
+// user account
+const accountUser = document.getElementById("accountUser");
+const logout = document.getElementById("logout");
+
+// logout rights
+accountUser.addEventListener("mouseover", () => {
+    logout.style.display = "flex";
+  });
+  logout.addEventListener("mouseover", () => {
+    logout.style.display = "flex";
+  });
+  logout.addEventListener("click", () => {
+    logout.style.display = "none";
+  });
+  logout.addEventListener("mouseleave", () => {
+    logout.style.display = "none";
+  });
+  copyRightYear.forEach((year) => {
+    const time = new Date();
+    const timeYear = time.getFullYear();
+    year.innerText = timeYear;
+  });
+  // cursor
+  const cursor = document.querySelector(".cursor");
+  document.addEventListener("mousemove", (e) => {
+    cursor.setAttribute(
+      "style",
+      "top: " + (e.pageY - 10) + "px; left: " + (e.pageX - 10) + "px;"
+    );
+  });
+  document.addEventListener("click", () => {
+    cursor.classList.add("expand");
+    setTimeout(() => {
+      cursor.classList.remove("expand");
+    }, 500);
+  });
 const lists = document.getElementById("lists");
 let users=[]
 fetch("https://nsanzimfura-server.up.railway.app/mybrand/api/users")

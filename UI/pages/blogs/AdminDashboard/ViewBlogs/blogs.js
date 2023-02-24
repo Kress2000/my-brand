@@ -69,7 +69,7 @@ document.addEventListener('click', () => {
     }, 500)
 })
 
-// console.log(getBlogsData)
+console.log(getBlogsData)
 let codeBlogsArray = [];
 let activityBlogsArray =[];
 let storyBlogsArray =[];
@@ -362,7 +362,7 @@ const editBlog =  (id)=>{
         blogsBoxFormEdit.innerHTML = `
             <div class="textsInputs">
                 <input type="text" name="text" id="titleEdited" value='${blogData.title}' >
-                <textarea rows="4" cols="50" id='editDetails' name="editDetails">${blogData.details}</textarea>
+                <textarea rows="4" cols="50" id='editDetails' name="editDetails">${blogData.description}</textarea>
             </div>
             <div class="uploadBox">
                 <div class="tv" 
@@ -402,7 +402,7 @@ const editBlog =  (id)=>{
             const newTime = timeEdited.toDateString();
             // replace data into the blog 
             blogData.title = titleEdited?titleEdited :blogData.title ;
-            blogData.details = newValue?newValue : blogData.details;
+            blogData.description = newValue?newValue : blogData.description;
             blogData.time = newTime;
             blogData.img = imgUrl?imgUrl :blogData.img;
             getBlogsData.splice(index, 1, blogData)

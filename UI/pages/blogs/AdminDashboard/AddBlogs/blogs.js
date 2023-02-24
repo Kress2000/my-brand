@@ -7,7 +7,7 @@ const messageAlertSuccess = document.getElementById("messageAlertSuccess");
 // inputs form
 const title = document.getElementById("title");
 const category = document.getElementById("category");
-const details = document.getElementById("details");
+const description = document.getElementById("details");
 // user account
 const accountUser = document.getElementById("accountUser");
 const logout = document.getElementById("logout");
@@ -62,7 +62,7 @@ uploadImg.addEventListener("change", (e) => {
 });
 // submit data to local storage
 
-createBlogBtn.addEventListener("click", async (e) => {
+createBlogBtn.addEventListener("click", (e) => {
   e.preventDefault();
   var regExName = /[a-z][a-z\s]?[0-9]?/gim;
   // create time when the blog is created
@@ -72,13 +72,13 @@ createBlogBtn.addEventListener("click", async (e) => {
   const date = time.toDateString();
   let blogDataArray = JSON.parse(localStorage.getItem("blogDataAdd"));
   // console.log(imgUrl)
-  const newId= randomumbers+getSeconds;
+  const newId = randomumbers + getSeconds;
   const blogData = {
     id: newId,
     title: title.value,
     category: category.value,
-    details: details.value,
-    img: "imgUrl",
+    description: description.value,
+    img: imgUrl,
     time: date,
     userActions: {
       views: 100,
@@ -90,34 +90,33 @@ createBlogBtn.addEventListener("click", async (e) => {
   if (
     blogData.title &&
     blogData.category &&
-    blogData.details &&
+    blogData.description &&
     blogData.img &&
     blogData.title.match(regExName) &&
-    blogData.details.match(regExName)
+    blogData.description.match(regExName)
   ) {
     blogDataArray.push(blogData);
-    console.log(blogDataArray)
     localStorage.setItem("blogDataAdd", JSON.stringify(blogDataArray));
-    const postUser = await fetch(
-      "http://localhost:5000/mybrand/api/blogs/add",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json", 
-        },
-        body: JSON.stringify(blogData),
-      }
-    );
-    const userResp = await postUser.json();
-    
-    console.log(userResp, "posted user");
+    console.log(blogData)
+    blogData.img = "imgUrl";
+    fetch("http://localhost:5000/mybrand/api/blogs/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(blogData),
+    })
+      .then((resp) => resp.json())
+      .then((ans) => console.log(ans))
+      .catch((mist) => console.log(mist, "this is th  erro"));
+
     messageAlertSuccess.style.display = "flex";
     setTimeout(() => {
       messageAlertSuccess.style.display = "none";
       // clean fields
       title.value = "";
       category.value = "";
-      details.value = "";
+      description.value = "";
       tv.style.backgroundImage = "";
     }, 2000);
   } else {

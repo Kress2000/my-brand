@@ -3,7 +3,7 @@ const copyRightYear = document.querySelectorAll(".year");
 const popUp = document.getElementById("popUp");
 const backBtn = document.getElementById("backBtn");
 const popupTvBox = document.getElementById("popupBox");
-const detail = document.querySelectorAll(".details");
+const description = document.querySelectorAll(".details");
 let numbers = document.querySelectorAll(".number");
 const blogsBox = document.getElementById("blogsBox"); //blogs box
 // Access LS
@@ -89,7 +89,7 @@ storyblogsList.forEach((blog) => {
                 <small>${blog.time}</small>
             </div>
             <div class="details">
-                <p class="shortDetails">${blog.details
+                <p class="shortDetails">${blog.description
                   .split(" ")
                   .splice(0, 3)
                   .join(" ")}...</p>
@@ -150,7 +150,7 @@ function clickedBox(id) {
                         <small>${blogData.time}</small>
                     </div>
                     <div class="details">
-                        <p class="shortDetails">${blogData.details}</p>
+                        <p class="shortDetails">${blogData.description}</p>
                      </div>
                 </div>
             </div>
