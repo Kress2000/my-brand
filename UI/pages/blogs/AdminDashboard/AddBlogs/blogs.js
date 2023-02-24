@@ -99,7 +99,7 @@ createBlogBtn.addEventListener("click", (e) => {
     localStorage.setItem("blogDataAdd", JSON.stringify(blogDataArray));
     console.log(blogData)
     blogData.img = "imgUrl";
-    fetch("http://localhost:5000/mybrand/api/blogs/add", {
+    fetch("https://nsanzimfura-server.up.railway.app/mybrand/api/blogs/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
